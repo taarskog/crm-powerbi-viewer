@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Crm-powerbi-viewer by taarskog</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Crm-powerbi-viewer</h1>
+        <p>Embed tiles and reports from Power BI into Dynamics CRM Forms and Dashboards.</p>
+
+        <p class="view"><a href="https://github.com/taarskog/crm-powerbi-viewer">View the Project on GitHub <small>taarskog/crm-powerbi-viewer</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/taarskog/crm-powerbi-viewer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/taarskog/crm-powerbi-viewer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/taarskog/crm-powerbi-viewer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a id="what-is-this" class="anchor" href="#what-is-this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is this</h3>
+
+<p>Ever wanted to display Power BI reports and tiles inside Dynamics CRM? Crm-powerbi-viewer aims to do exactly that.</p>
+
+<h3>
+<a id="quickstart" class="anchor" href="#quickstart" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quickstart</h3>
+
+<p>To get started you just need to perform a few simple steps:
+1. Download the latest CRM solution file.
+1. Import it into your CRM instance.
+1. In either a dashboard or a form add a web resource and link it to his_power-bi-viewer.html
+1. On data parameters you define what report or dashboard to display. The options are:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>'tile' for showing a Power BI tile and 'report' for a Power BI report.</td>
+</tr>
+<tr>
+<td>dashboardId</td>
+<td>Required for tiles and is the ID of the dashboard holding the tile.</td>
+</tr>
+<tr>
+<td>tileId</td>
+<td>Id of the tile to display. DashboardId is required when using tileId</td>
+</tr>
+<tr>
+<td>dashboardName</td>
+<td>Can be used in place of Id, but you will get in trouble if several dashboards have the same name (the first found will be used). Required if using tileName</td>
+</tr>
+<tr>
+<td>tileName</td>
+<td>Can be used in place of Id, but you will get in trouble if several tiles have the same name (the first found will be used). Requires dashboardName.</td>
+</tr>
+<tr>
+<td>reportId</td>
+<td>Required if type is 'report'.</td>
+</tr>
+<tr>
+<td>reportName</td>
+<td>Required if type is 'report'. Can be used in place of Id, but you will get in trouble if several reports have the same name (the first found will be used).</td>
+</tr>
+</tbody>
+</table>
+
+<p>Sample data parameters:
+type=tile&amp;dasboardName=SuperCoolBoard&amp;tileName=NicestTileEver
+type=report&amp;reportName=AllTheDataYouWillEverNeed</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/taarskog">taarskog</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
