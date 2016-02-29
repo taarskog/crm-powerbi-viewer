@@ -3,15 +3,18 @@
 	"name": "crm-powerbi-viewer",
 	"description": "Embed tiles and reports from Power BI into Dynamics CRM Forms and Dashboards.",
 	"author": "Trond Aarskog",
-	
 	"private": true,
+	"keywords": [
+		"xrm",
+		"crm",
+		"powerbi"
+	],
 
 	"devDependencies": {
 		"gulp": "^3.9.1",
 		"tsd": "^0.6.5",
 		"typescript": "^1.8.2",
 		"gulp-typescript": "^2.12.0",
-		"gulp-changed": "^1.3.0",
 		"gulp-newer": "^1.1.0",
 		"gulp-concat": "^2.6.0",
 		"del": "^2.2.0",
