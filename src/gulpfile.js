@@ -28,8 +28,8 @@ var config = {
 		tsFiles: 'ts/**/*.ts',
 		tsTypingFiles: 'typings/**/*.d.ts',
 		libFiles: [
-			'bower_components/adal-angular/dist/adal.min.js',
-			'bower_components/adal-angular/dist/adal-angular.min.js',
+			'bower_components/adal-angular-for-crm/dist/adal.min.js',
+			'bower_components/adal-angular-for-crm/dist/adal-angular.min.js',
 			'bower_components/angular/angular.min.js',
 			'bower_components/angular-route/angular-route.min.js',
 		],
