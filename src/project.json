@@ -4,19 +4,19 @@
     "emitEntryPoint": true
   },
 
-   "dependencies": {
-      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
-      "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-      "Microsoft.CrmSdk.CoreTools": "8.0.2.1"
-   },
+	"dependencies": {
+		"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+		"Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+		"Microsoft.CrmSdk.CoreTools": "8.0.2.1",
+		"Microsoft.CrmSdk.XrmTooling.WpfControls": "8.0.2"
+	},
 
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "dnx451": { }
   },
 
   "exclude": [

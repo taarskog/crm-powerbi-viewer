@@ -142,9 +142,29 @@ gulp.task('dist:html', function () {
 	return stream.pipe(gulp.dest(config.distPath));
 });
 
+gulp.task('DEPLOY-TO-CRM', /*['DIST'],*/ function (cb) {
+	var proj = require('./project.json');
+	var crmToolsDstPath = "..\\artifacts\\crmtools\\";
 
-gulp.task('DEPLOY', ['DIST'], function (cb) {
-	exec('..\\tools\\CrmWebResourceDeployer\\CrmWebResourceDeployer.exe --prefix his --src ..\\artifacts\\dist --solution PowerBIViewer', function (err, stdout, stderr) {
+
+	var crmToolsPkgName = "Microsoft.CrmSdk.CoreTools";
+	var crmToolsVersion = proj.dependencies[crmToolsPkgName];
+	var crmToolsSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmToolsPkgName + "\\" + crmToolsVersion + "\\content\\bin\\coretools\\*.*";
+
+	var crmWpfPkgName = "Microsoft.CrmSdk.XrmTooling.WpfControls"
+	var crmWpfVersion = proj.dependencies[crmWpfPkgName];
+	var crmWpfSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmWpfPkgName + "\\" + crmWpfVersion + "\\lib\\net45\\*.dll";
+
+	var crmWebResourceDeployerSrcPath = "..\\tools\\CrmWebResourceDeployer\\*.*";
+
+	console.info(crmWebResourceDeployerSrcPath);
+
+	gulp.src([crmToolsSrcPath, crmWpfSrcPath, crmWebResourceDeployerSrcPath])
+		.pipe(newer(crmToolsDstPath))
+		.pipe(gulp.dest(crmToolsDstPath));
+
+
+	exec('..\\artifacts\\crmTools\\CrmWebResourceDeployer.exe --prefix his --src ..\\dist --solution PowerBIViewer -v', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.error(stderr);
 		cb(err);
@@ -182,4 +202,20 @@ function makeFilenameCrmCompatible(path) {
 		extname is the file extension including the '.' like path.extname(filename).
 	*/
 	path.basename = path.basename.replace(/-/g, function (matched) { return '_'; });
+}
+
+/**
+ * Expand all environment variables in provided string (enclosed by % such as '%PATH%')
+ */
+function expandEnv(s) {
+	var result = s;
+
+	var reg = new RegExp("%(.+?)%");
+
+	var match;
+	while ((match = result.match(reg)) != null) {
+		result = result.replace(match[0], process.env[match[1]]);
+	}
+
+	return result;
 }
