@@ -1,3 +1,6 @@
+src/wwwroot/**/*.css
+src/wwwroot/scripts/**/*.js
+
 lib/
 
 .vs/
@@ -6,7 +9,7 @@ node_modules/
 *.user
 project.lock.json
 artifacts/
-
+typings/
 
 # Build results
 [Dd]ebug/

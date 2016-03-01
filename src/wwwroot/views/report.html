@@ -1,0 +1,2 @@
+﻿<div class="loading" ng-hide="vm.report.id">Loading...</div>
+<iframe class="powerbi-container" ng-show="vm.report.id" id="{{vm.report.id}}" ng-onload="vm.sendToken(width, height)" ng-src="{{vm.report.embedUrl}}"></iframe>

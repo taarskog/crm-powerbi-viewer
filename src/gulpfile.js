@@ -1,9 +1,9 @@
-﻿/// <binding BeforeBuild='BUILD' AfterBuild='DIST' Clean='CLEAN' ProjectOpened='WATCH' />
+﻿/// <binding BeforeBuild='BUILD' AfterBuild='DIST' Clean='CLEAN' ProjectOpened='SETUP, WATCH' />
 
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var sass = require('gulp-sass');
-var exec = require('child_process');
+var exec = require('child_process').exec;
 var rename = require('gulp-rename');
 var newer = require('gulp-newer');
 var concat = require('gulp-concat');
@@ -12,6 +12,7 @@ var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-htmlmin');
 var preprocess = require('gulp-preprocess');
 var del = require('del');
+var typings = require('gulp-typings');
 
 var config = {
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
@@ -26,7 +27,7 @@ var config = {
 
 	src: {
 		tsFiles: 'ts/**/*.ts',
-		tsTypingFiles: 'typings/**/*.d.ts',
+		tsTypingFiles: 'typings/browser.d.ts',
 		libFiles: [
 			'bower_components/adal-angular-for-crm/dist/adal.min.js',
 			'bower_components/adal-angular-for-crm/dist/adal-angular.min.js',
@@ -37,17 +38,15 @@ var config = {
 		htmlFiles: ['wwwroot/**/*.html']
 	},
 
-	tsProject: ts.createProject({
-		declarationFiles: false,
-		noExternalResolve: true,
-		target: 'ES5',
+	tsProject: ts.createProject('tsconfig.json', {
+		noExternalResolve: false,
 		sortOutput: true,
 		typescript: require('typescript')
 	})
 };
 
 config.dest = {
-	tsFilename: 'powerBiViewerApp.js',
+	tsFilename: 'powerBiViewer.js',
 	libPath: config.destPath + config.libFolderName,
 	scriptPath: config.destPath + config.scriptFolderName,
 	stylePath: config.destPath
@@ -87,8 +86,8 @@ gulp.task('build:typescript', function () {
 
 gulp.task('build:styles', function () {
 	return gulp.src(config.src.scssFiles)
-		.pipe(sass({ errLogToConsole: true, outputStyle: 'nested' })) // outputStyles: nested, expanded, compact, compressed
 		.pipe(newer({ dest: config.dest.stylePath, ext: '.css' }))
+		.pipe(sass({ errLogToConsole: true, outputStyle: 'nested' })) // outputStyles: nested, expanded, compact, compressed
 		.pipe(gulp.dest(config.dest.stylePath));
 });
 
@@ -146,7 +145,6 @@ gulp.task('DEPLOY-TO-CRM', /*['DIST'],*/ function (cb) {
 	var proj = require('./project.json');
 	var crmToolsDstPath = "..\\artifacts\\crmtools\\";
 
-
 	var crmToolsPkgName = "Microsoft.CrmSdk.CoreTools";
 	var crmToolsVersion = proj.dependencies[crmToolsPkgName];
 	var crmToolsSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmToolsPkgName + "\\" + crmToolsVersion + "\\content\\bin\\coretools\\*.*";
@@ -163,8 +161,7 @@ gulp.task('DEPLOY-TO-CRM', /*['DIST'],*/ function (cb) {
 		.pipe(newer(crmToolsDstPath))
 		.pipe(gulp.dest(crmToolsDstPath));
 
-
-	exec('..\\artifacts\\crmTools\\CrmWebResourceDeployer.exe --prefix his --src ..\\dist --solution PowerBIViewer -v', function (err, stdout, stderr) {
+	exec('..\\artifacts\\crmTools\\CrmWebResourceDeployer.exe --prefix his --src ..\\artifacts\\dist --solution PowerBIViewer -v', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.error(stderr);
 		cb(err);
@@ -187,6 +184,14 @@ gulp.task('clean:styles', function () {
 
 gulp.task('clean:dist', function () {
 	return del(config.distPath, { force: true });
+});
+
+
+gulp.task('SETUP', ['setup:typings']);
+
+gulp.task('setup:typings', function () {
+	return gulp.src("./typings.json")
+		.pipe(typings());
 });
 
 

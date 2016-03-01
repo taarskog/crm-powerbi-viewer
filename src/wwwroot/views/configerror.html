@@ -1,0 +1,65 @@
+﻿<div class="config-error">
+	<!-- TODO: Move information to the config page or another separate page - make this page smaller with just a link (that opens in external page) to the config page -->
+	<h2>Invalid configuration</h2>
+	<h3>Data from CRM should contain:</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>type</td>
+				<td>
+					Type of Power BI element to display. Allowed values are '<strong>tile</strong>' or '<strong>report</strong>'
+				</td>
+			</tr>
+			<tr>
+				<td>dashboardName</td>
+				<td>
+					Name set on dashboard in Power BI containing the element to display. Required if type is 'tile'
+				</td>
+			</tr>
+			<tr>
+				<td>tileName</td>
+				<td>
+					Name in Power BI of tile to display. Required if type is 'tile'
+				</td>
+			</tr>
+			<tr>
+				<td>dashboardId</td>
+				<td>
+					Id of dashboard in Power BI containing the element to display. Required if type is 'tile'
+				</td>
+			</tr>
+			<tr>
+				<td>tileId</td>
+				<td>
+					Id of Power BI tile to display. Required if type is 'tile'
+				</td>
+			</tr>
+			<tr>
+				<td>reportName</td>
+				<td>
+					Name in Power BI of report to display. This or id required if type is 'report'
+				</td>
+			</tr>
+			<tr>
+				<td>reportId</td>
+				<td>
+					Id of Power BI report to display. This or name required if type is 'report'
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div>
+		<h3>Samples</h3>
+		type=tile&amp;dashboardName=myDashboard&amp;tileName=myTile<br />
+		type=report&amp;reportName=myReport
+		type=tile&amp;dashboardId=myDashboardGuid&amp;tileId=myTileGuid<br />
+		type=report&amp;reportId=myReportGuid
+	</div>
+</div>
