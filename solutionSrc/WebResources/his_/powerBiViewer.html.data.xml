@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource>
+  <WebResourceId>{9a51c7d2-f7df-e511-80dc-d89d67631c44}</WebResourceId>
+  <Name>his_/powerBiViewer.html</Name>
+  <DisplayName>powerBiViewer.html</DisplayName>
+  <WebResourceType>1</WebResourceType>
+  <IntroducedVersion>0.0.1</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/his_powerBiViewerhtml9A51C7D2-F7DF-E511-80DC-D89D67631C44</FileName>
+</WebResource>
