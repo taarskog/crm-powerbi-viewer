@@ -2,6 +2,10 @@ src/wwwroot/powerBi.css
 src/wwwroot/scripts/**/*.js
 src/wwwroot/lib/
 
+solutionSrc/**
+!solutionSrc/**/*.xml
+!solutionSrc/**/*.resx
+
 .vs/
 bower_components/
 node_modules/
