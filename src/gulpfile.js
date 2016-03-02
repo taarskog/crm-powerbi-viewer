@@ -164,7 +164,7 @@ gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles'], function (cb
 gulp.task('deploy-to-solution:updatefiles', ['DIST'], function (cb) {
 	return gulp.src(config.distPath + "**/*")
 		.pipe(newer(config.solutionSrcPath + "WebResources/his_"))
-		.pipe(config.solutionSrcPath + "WebResources/his_");
+		.pipe(gulp.dest(config.solutionSrcPath + "WebResources/his_"));
 });
 
 gulp.task('CLEAN', ['clean:libraries', 'clean:scripts', 'clean:styles', 'clean:dist']);
