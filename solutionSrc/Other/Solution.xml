@@ -90,6 +90,7 @@
       <RootComponent type="61" schemaName="his_/powerBi.css" behavior="0" />
       <RootComponent type="61" schemaName="his_/powerBiConfig.html" behavior="0" />
       <RootComponent type="61" schemaName="his_/powerBiViewer.html" behavior="0" />
+      <RootComponent type="61" schemaName="his_/scripts/powerBiConfig.js" behavior="0" />
       <RootComponent type="61" schemaName="his_/scripts/powerBiViewer.js" behavior="0" />
       <RootComponent type="61" schemaName="his_/views/config.html" behavior="0" />
       <RootComponent type="61" schemaName="his_/views/configerror.html" behavior="0" />

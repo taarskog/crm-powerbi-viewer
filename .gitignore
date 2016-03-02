@@ -5,6 +5,7 @@ src/wwwroot/lib/
 solutionSrc/**
 !solutionSrc/**/*.xml
 !solutionSrc/**/*.resx
+!solutionSrc/WebResources/his_/scripts/powerBiConfig.js
 
 .vs/
 bower_components/

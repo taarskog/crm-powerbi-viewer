@@ -9,10 +9,22 @@
 /// <reference path="controllers/reportcontroller.ts" />
 /// <reference path="controllers/tilecontroller.ts" />
 
+
+var powerBiViewerConfigDefaults: PowerBiViewer.Models.PowerBiConfigModel = {
+	tenant: null,
+	clientId: null,
+	tokenCacheLocation: 'sessionStorage',
+	enableHttpCache: true
+};
+
+var powerBiViewerConfig: PowerBiViewer.Models.PowerBiConfigModel = powerBiViewerConfig || powerBiViewerConfigDefaults;
+
 module PowerBiViewer.App {
 	interface AdalRoute extends ng.route.IRoute {
 		requireADLogin: boolean;
 	}
+
+	var appStateIsValid = validateConfig();
 
 	angular.module('powerBiViewerApp', ['ngRoute', 'AdalAngular'])
 		.service('IPowerBiService', PowerBiViewer.Services.PowerBiService)
@@ -74,24 +86,33 @@ module PowerBiViewer.App {
 	function getRoute($window: ng.IWindowService) {
 		var redirectUrl: string = null;
 
-		var config = PowerBiViewer.Services.ConfigService.create($window.location.search);
+		if (!appStateIsValid) {
+			redirectUrl = "/configerror"
+		}
+		else {
+			var config = PowerBiViewer.Services.ConfigService.create($window.location.search);
 
-		switch (config.powerBi.type) {
-			case 'tile':
-				redirectUrl = buildTileUrl(config.powerBi);
-				break;
-			case 'report':
-				redirectUrl = buildReportUrl(config.powerBi);
-				break;
-			default:
-				redirectUrl = '/configerror';
-				break;
+			switch (config.powerBi.type) {
+				case 'tile':
+					redirectUrl = buildTileUrl(config.powerBi);
+					break;
+				case 'report':
+					redirectUrl = buildReportUrl(config.powerBi);
+					break;
+				default:
+					redirectUrl = '/configerror';
+					break;
+			}
 		}
 
 		return { redirectTo: redirectUrl };
 	}
 
 	function preventCache($httpProvider: ng.IHttpProvider) {
+		if (!powerBiViewerConfig.enableHttpCache) {
+			return;
+		}
+
 		//initialize get if not there
 		if (!$httpProvider.defaults.headers.get) {
 			(<any>$httpProvider.defaults.headers).get = {};
@@ -107,13 +128,12 @@ module PowerBiViewer.App {
 	function configAdal($httpProvider: ng.IHttpProvider, adalAuthenticationServiceProvider) {
 		adalAuthenticationServiceProvider.init(
 			{
-				tenant: "nordynamics.onmicrosoft.com",
-				clientId: "d976555d-531d-4e3a-b277-4cf309b81ab1", // CRM Power BI Viewer
+				tenant: powerBiViewerConfig.tenant,
+				clientId: powerBiViewerConfig.clientId,
+				cacheLocation: powerBiViewerConfig.tokenCacheLocation,
 				endpoints: {
 					"https://api.powerbi.com": "https://analysis.windows.net/powerbi/api"
-				},
-				//cacheLocation: 'localStorage' // enable this for IE, as sessionStorage does not work for localhost
-				cacheLocation: 'sessionStorage'
+				}
 			},
 			$httpProvider
 		);
@@ -128,4 +148,44 @@ module PowerBiViewer.App {
 		]);
 	}
 	configUrlWhiteList.$inject = ['$sceDelegateProvider'];
+
+	function validateConfig() {
+		var state = true;
+
+		//
+		// Set defaults of values not set in configuration
+		//
+		if (typeof powerBiViewerConfig.tenant === "undefined") {
+			powerBiViewerConfig.tenant = powerBiViewerConfigDefaults.tenant
+		}
+
+		if (typeof powerBiViewerConfig.clientId === "undefined") {
+			powerBiViewerConfig.clientId = powerBiViewerConfigDefaults.clientId
+		}
+
+		if (typeof powerBiViewerConfig.tokenCacheLocation === "undefined") {
+			powerBiViewerConfig.tokenCacheLocation = powerBiViewerConfigDefaults.tokenCacheLocation
+		}
+
+		if (typeof powerBiViewerConfig.enableHttpCache === "undefined") {
+			powerBiViewerConfig.enableHttpCache = powerBiViewerConfigDefaults.enableHttpCache
+		}
+
+		//
+		// Check that the configuration contains valid values
+		//
+		if (powerBiViewerConfig.clientId === null || powerBiViewerConfig.clientId.length === 0) {
+			state = false;
+		}
+
+		if (!(powerBiViewerConfig.tokenCacheLocation === 'localStorage' || powerBiViewerConfig.tokenCacheLocation === 'sessionStorage')) {
+			state = false;
+		}
+
+		if (typeof powerBiViewerConfig.enableHttpCache !== "boolean") {
+			state = false;
+		}
+
+		return state;
+	}
 }
