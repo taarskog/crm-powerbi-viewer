@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='BUILD' AfterBuild='DIST' Clean='CLEAN' ProjectOpened='SETUP, WATCH' />
+﻿/// <binding BeforeBuild='BUILD' Clean='CLEAN' ProjectOpened='SETUP, WATCH' />
 
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
@@ -21,6 +21,7 @@ var config = {
 
 	destPath: "wwwroot/",
 	distPath: "../artifacts/dist/",
+	solutionSrcPath: "../solutionSrc/",
 
 	libFolderName: 'lib/',
 	scriptFolderName: 'scripts/',
@@ -94,14 +95,14 @@ gulp.task('build:styles', function () {
 
 gulp.task('DIST', ['dist:libraries', 'dist:scripts', 'dist:styles', 'dist:html']);
 
-gulp.task('dist:libraries', function () {
+gulp.task('dist:libraries', ['build:libraries'], function () {
 	return gulp.src(config.src.libFiles)
 		.pipe(rename(makeFilenameCrmCompatible))
 		.pipe(newer(config.dist.libPath))
 		.pipe(gulp.dest(config.dist.libPath));
 });
 
-gulp.task('dist:scripts', function () {
+gulp.task('dist:scripts', ['build:typescript'], function () {
 	var stream = gulp.src(config.dest.scriptPath + '**/*.js')
 		.pipe(newer(config.dist.scriptPath));
 
@@ -112,7 +113,7 @@ gulp.task('dist:scripts', function () {
 	return stream.pipe(gulp.dest(config.dist.scriptPath));
 });
 
-gulp.task('dist:styles', function () {
+gulp.task('dist:styles', ['build:styles'], function () {
 	var stream = gulp.src(config.dest.stylePath + '**/*.css')
 		.pipe(newer(config.dist.stylePath));
 
@@ -141,29 +142,29 @@ gulp.task('dist:html', function () {
 	return stream.pipe(gulp.dest(config.distPath));
 });
 
-gulp.task('DEPLOY-TO-CRM', /*['DIST'],*/ function (cb) {
-	var proj = require('./project.json');
-	var crmToolsDstPath = "..\\artifacts\\crmtools\\";
-
-	var crmToolsPkgName = "Microsoft.CrmSdk.CoreTools";
-	var crmToolsVersion = proj.dependencies[crmToolsPkgName];
-	var crmToolsSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmToolsPkgName + "\\" + crmToolsVersion + "\\content\\bin\\coretools\\*.*";
-
-	var crmWpfPkgName = "Microsoft.CrmSdk.XrmTooling.WpfControls"
-	var crmWpfVersion = proj.dependencies[crmWpfPkgName];
-	var crmWpfSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmWpfPkgName + "\\" + crmWpfVersion + "\\lib\\net45\\*.dll";
-
-	var crmWebResourceDeployerSrcPath = "..\\tools\\CrmWebResourceDeployer\\*.*";
-
-	gulp.src([crmToolsSrcPath, crmWpfSrcPath, crmWebResourceDeployerSrcPath])
-		.pipe(newer(crmToolsDstPath))
-		.pipe(gulp.dest(crmToolsDstPath));
-
+gulp.task('DEPLOY-TO-CRM', ['DIST'], function (cb) {
 	exec('..\\artifacts\\crmTools\\CrmWebResourceDeployer.exe --prefix his --src ..\\artifacts\\dist --solution PowerBIViewer -v', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.error(stderr);
 		cb(err);
 	});
+});
+
+gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles'], function (cb) {
+	// TODO: Create an unpacker that gets solutions from CRM, and extracts into solution src - using cmd similar to this:
+	//       crmtools\SolutionPackager.exe /a:Extract /p:Both /f:"../solutionSrc" /e:Warning /allowDelete:Yes /n /loc /z:PowerBIViewer_0_0_1.zip
+
+	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer.zip"', function (err, stdout, stderr) {
+		console.log(stdout);
+		console.error(stderr);
+		cb(err);
+	});
+});
+
+gulp.task('deploy-to-solution:updatefiles', ['DIST'], function (cb) {
+	return gulp.src(config.distPath + "**/*")
+		.pipe(newer(config.solutionSrcPath + "WebResources/his_"))
+		.pipe(config.solutionSrcPath + "WebResources/his_");
 });
 
 gulp.task('CLEAN', ['clean:libraries', 'clean:scripts', 'clean:styles', 'clean:dist']);
@@ -185,11 +186,30 @@ gulp.task('clean:dist', function () {
 });
 
 
-gulp.task('SETUP', ['setup:typings']);
+gulp.task('SETUP', ['setup:typings', 'setup:crmtools']);
 
 gulp.task('setup:typings', function () {
 	return gulp.src("./typings.json")
 		.pipe(typings());
+});
+
+gulp.task('setup:crmtools', function () {
+	var proj = require('./project.json');
+	var crmToolsDstPath = "..\\artifacts\\crmtools\\";
+
+	var crmToolsPkgName = "Microsoft.CrmSdk.CoreTools";
+	var crmToolsVersion = proj.dependencies[crmToolsPkgName];
+	var crmToolsSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmToolsPkgName + "\\" + crmToolsVersion + "\\content\\bin\\coretools\\*.*";
+
+	var crmWpfPkgName = "Microsoft.CrmSdk.XrmTooling.WpfControls"
+	var crmWpfVersion = proj.dependencies[crmWpfPkgName];
+	var crmWpfSrcPath = expandEnv("%DNX_HOME%\\packages\\") + crmWpfPkgName + "\\" + crmWpfVersion + "\\lib\\net45\\*.dll";
+
+	var crmWebResourceDeployerSrcPath = "..\\tools\\CrmWebResourceDeployer\\*.*";
+
+	return gulp.src([crmToolsSrcPath, crmWpfSrcPath, crmWebResourceDeployerSrcPath])
+		.pipe(newer(crmToolsDstPath))
+		.pipe(gulp.dest(crmToolsDstPath));
 });
 
 

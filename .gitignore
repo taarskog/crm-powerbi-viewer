@@ -1,7 +1,7 @@
-powerBi.css
+wwwroot/powerBi.css
 src/wwwroot/scripts/**/*.js
 
-lib/
+wwwroot/lib/
 
 .vs/
 bower_components/

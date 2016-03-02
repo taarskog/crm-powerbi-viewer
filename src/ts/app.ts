@@ -123,7 +123,7 @@ module PowerBiViewer.App {
 	function configUrlWhiteList($sceDelegateProvider: ng.ISCEDelegateProvider) {
 		$sceDelegateProvider.resourceUrlWhitelist([
 			'self',
-			'https://*.crm4.dynamics.com/**',
+			'https://*.dynamics.com/**',
 			'https://*.powerbi.com/**'
 		]);
 	}
