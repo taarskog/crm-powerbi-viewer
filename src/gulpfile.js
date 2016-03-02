@@ -14,6 +14,7 @@ var preprocess = require('gulp-preprocess');
 var del = require('del');
 var typings = require('gulp-typings');
 var bump = require('gulp-bump');
+var replace = require('gulp-replace');
 
 var config = {
 	version: "0.0.1",
@@ -159,9 +160,9 @@ gulp.task('DEPLOY-TO-CRM', ['DIST'], function (cb) {
 	});
 });
 
-gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles'], function (cb) {
+gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles', 'deploy-to-solution:updateversion'], function (cb) {
 	// TODO: Create an unpacker that gets solutions from CRM, and extracts into solution src - using cmd similar to this:
-	//       crmtools\SolutionPackager.exe /a:Extract /p:Both /f:"../solutionSrc" /e:Warning /allowDelete:Yes /n /loc /z:PowerBIViewer_0_0_1.zip
+	//       crmtools\SolutionPackager.exe /a:Extract /p:Both /f:"../solutionSrc" /e:Warning /allowDelete:Yes /n /loc /z:PowerBIViewer.zip
 
 	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer_' + config.version.replace(/\./g, '_') + '.zip"', function (err, stdout, stderr) {
 		console.log(stdout);
@@ -170,10 +171,16 @@ gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles'], function (cb
 	});
 });
 
-gulp.task('deploy-to-solution:updatefiles', ['DIST'], function (cb) {
+gulp.task('deploy-to-solution:updatefiles', ['DIST'], function () {
 	return gulp.src(config.distPath + "**/*")
 		.pipe(newer(config.solutionSrcPath + "WebResources/his_"))
 		.pipe(gulp.dest(config.solutionSrcPath + "WebResources/his_"));
+});
+
+gulp.task('deploy-to-solution:updateversion', function () {
+	return gulp.src(config.solutionSrcPath + "Other/Solution.xml")
+		.pipe(replace(/<Version>.*<\/Version>/g, "<Version>" + config.version + "</Version>", { stripBOM: false }))
+		.pipe(gulp.dest(config.solutionSrcPath + "Other2/"));
 });
 
 gulp.task('CLEAN', ['clean:libraries', 'clean:scripts', 'clean:styles', 'clean:dist']);
