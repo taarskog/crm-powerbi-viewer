@@ -20,7 +20,7 @@ module PowerBiViewer.App {
 		.directive('ngOnload', PowerBiViewer.Directives.onLoadDirective)
 		.controller('ITileController', PowerBiViewer.Controllers.TileController)
 		.controller('IReportController', PowerBiViewer.Controllers.ReportController)
-		.controller('IInfoController', PowerBiViewer.Controllers.ConfigController)
+		.controller('IConfigController', PowerBiViewer.Controllers.ConfigController)
 		.config(preventCache)
 		.config(configureRoutes)
 		.config(configAdal)

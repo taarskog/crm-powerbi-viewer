@@ -155,8 +155,6 @@ gulp.task('DEPLOY-TO-CRM', /*['DIST'],*/ function (cb) {
 
 	var crmWebResourceDeployerSrcPath = "..\\tools\\CrmWebResourceDeployer\\*.*";
 
-	console.info(crmWebResourceDeployerSrcPath);
-
 	gulp.src([crmToolsSrcPath, crmWpfSrcPath, crmWebResourceDeployerSrcPath])
 		.pipe(newer(crmToolsDstPath))
 		.pipe(gulp.dest(crmToolsDstPath));
