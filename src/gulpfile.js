@@ -13,8 +13,11 @@ var minifyHtml = require('gulp-htmlmin');
 var preprocess = require('gulp-preprocess');
 var del = require('del');
 var typings = require('gulp-typings');
+var bump = require('gulp-bump');
 
 var config = {
+	version: "0.0.1",
+
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
 	//buildConfig: 'debug',
 	buildConfig: 'release',
@@ -67,16 +70,22 @@ gulp.task('WATCH', function () {
 });
 
 
-gulp.task('BUILD', ['build:libraries', 'build:typescript', 'build:styles']);
+gulp.task('BUILD', ['build:setversion', 'build:libraries', 'build:typescript', 'build:styles']);
 
-gulp.task('build:libraries', function () {
+gulp.task('build:setversion', function () {
+	return gulp.src(['./bower.json', './package.json', './project.json'])
+		.pipe(bump({version: config.version }))
+		.pipe(gulp.dest('./'));
+});
+
+gulp.task('build:libraries', ['build:setversion'], function () {
 	return gulp.src(config.src.libFiles)
 		.pipe(rename(makeFilenameCrmCompatible))
 		.pipe(newer(config.dest.libPath))
 		.pipe(gulp.dest(config.dest.libPath));
 });
 
-gulp.task('build:typescript', function () {
+gulp.task('build:typescript', ['build:setversion'], function () {
 	return gulp.src([config.src.tsFiles, config.src.tsTypingFiles])
 		.pipe(newer(config.dest.scriptPath + '/' + config.dest.tsFilename))
 		.pipe(ts(config.tsProject))
@@ -85,7 +94,7 @@ gulp.task('build:typescript', function () {
 		.pipe(gulp.dest(config.dest.scriptPath));
 });
 
-gulp.task('build:styles', function () {
+gulp.task('build:styles', ['build:setversion'], function () {
 	return gulp.src(config.src.scssFiles)
 		.pipe(newer({ dest: config.dest.stylePath, ext: '.css' }))
 		.pipe(sass({ errLogToConsole: true, outputStyle: 'nested' })) // outputStyles: nested, expanded, compact, compressed
@@ -154,7 +163,7 @@ gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles'], function (cb
 	// TODO: Create an unpacker that gets solutions from CRM, and extracts into solution src - using cmd similar to this:
 	//       crmtools\SolutionPackager.exe /a:Extract /p:Both /f:"../solutionSrc" /e:Warning /allowDelete:Yes /n /loc /z:PowerBIViewer_0_0_1.zip
 
-	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer.zip"', function (err, stdout, stderr) {
+	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer_' + config.version.replace(/\./g, '_') + '.zip"', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.error(stderr);
 		cb(err);

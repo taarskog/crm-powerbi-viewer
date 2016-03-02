@@ -9,7 +9,6 @@
 		"crm",
 		"powerbi"
 	],
-
 	"devDependencies": {
 		"gulp": "^3.9.1",
 		"tsd": "^0.6.5",
