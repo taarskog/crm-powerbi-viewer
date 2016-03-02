@@ -1,4 +1,4 @@
-src/wwwroot/**/*.css
+powerBi.css
 src/wwwroot/scripts/**/*.js
 
 lib/

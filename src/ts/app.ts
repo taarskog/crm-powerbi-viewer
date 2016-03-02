@@ -42,6 +42,7 @@ module PowerBiViewer.App {
 			.when('/configerror', { templateUrl: getFullTemplateUrl($window, 'views/configerror.html') })
 			.otherwise({ redirectTo: '/' });
 	}
+	configureRoutes.$inject = ['$routeProvider', '$windowProvider'];
 
 	function getFullTemplateUrl($window: ng.IWindowService, templateRelativeUrl): string {
 		return $window.location.origin + $window.location.pathname.toLowerCase().replace("powerbiviewer.html", "") + templateRelativeUrl;
@@ -101,6 +102,7 @@ module PowerBiViewer.App {
 		$httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
 		$httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 	}
+	preventCache.$inject = ['$httpProvider'];
 
 	function configAdal($httpProvider: ng.IHttpProvider, adalAuthenticationServiceProvider) {
 		adalAuthenticationServiceProvider.init(
@@ -116,6 +118,7 @@ module PowerBiViewer.App {
 			$httpProvider
 		);
 	}
+	configAdal.$inject = ['$httpProvider', 'adalAuthenticationServiceProvider'];
 
 	function configUrlWhiteList($sceDelegateProvider: ng.ISCEDelegateProvider) {
 		$sceDelegateProvider.resourceUrlWhitelist([
@@ -124,4 +127,5 @@ module PowerBiViewer.App {
 			'https://*.powerbi.com/**'
 		]);
 	}
+	configUrlWhiteList.$inject = ['$sceDelegateProvider'];
 }

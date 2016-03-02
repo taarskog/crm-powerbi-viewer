@@ -16,8 +16,8 @@ var typings = require('gulp-typings');
 
 var config = {
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
-	buildConfig: 'debug',
-	//buildConfig: 'release',
+	//buildConfig: 'debug',
+	buildConfig: 'release',
 
 	destPath: "wwwroot/",
 	distPath: "../artifacts/dist/",
