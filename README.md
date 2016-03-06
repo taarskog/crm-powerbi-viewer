@@ -17,6 +17,10 @@ This is still a fairly young project and I've not had time to add proper documen
            [x] View all Reports
            [x] View all Dashboards
   1. Set the reply url to your CRM URL (such as *https://mycrmonline/crm4.dynamics.com*)
+  1. Allow Implicit Flow for oAuth2:
+    * Download Manifest by clicking Manage Manifest (button at the bottom om the screen)
+    * Open it in a text editor and change the value of "oauth2AllowImplicitFlow" from **false** to **true**
+    * Save the manifest and upload the changes (by clicking Manage Manifest once more and choosing Upload).
   1. Copy the client id
 1. In Dynamics CRM either create a new solution or use an existing unmanaged and add the existing web resource named *'his_/scripts/powerBiConfig.js'*.
 1. Update the newly added web resource with the client id from Azure AD (remember to remove the comment (//)
