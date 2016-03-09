@@ -16,6 +16,8 @@ author :
   twitter : taarskog
   feedburner : nil
 
+baseurl: crm-powerbi-viewer
+
 production_url : http://taarskog.github.io/crm-powerbi-viewer
 
 # Tell Github to use the kramdown markdown interpreter
