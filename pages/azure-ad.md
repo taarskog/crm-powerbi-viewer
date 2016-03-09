@@ -7,7 +7,7 @@ To be able to authenticate with Power BI a token is required. The token is deliv
 
 ### Steps
 
-|{{ BASE_PATH }}||{{BASE_PATH}}||{{ site.urlbase }}||{{ baseurl }}|
+|[[BASE_PATH]]|[BASE_PATH]|
 
 1. Go to the old Azure portal at <https://manage.windowsazure.com> (this is the old portal as AAD is currently not available in the new). 
 2. Navigate to your Active Directory.
