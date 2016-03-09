@@ -1,3 +1,5 @@
+
+baseurl: /crm-powerbi-viewer
 # This is the default format.
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:day/:title
@@ -17,7 +19,6 @@ author :
   feedburner : nil
 
 production_url : http://taarskog.github.io/crm-powerbi-viewer
-baseurl: /crm-powerbi-viewer
 
 # Tell Github to use the kramdown markdown interpreter
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
