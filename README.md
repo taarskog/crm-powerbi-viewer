@@ -4,7 +4,10 @@ Embed tiles and reports from Power BI into Dynamics CRM Forms and Dashboards.
 This is still a fairly young project and I've not had time to add proper documentation just yet. A more detailed guide will be added soon.
 
 ## Getting started
+
 ~~If you just want the solution embedded into your CRM instance you should head over to the wiki to read the full guide~~ (also in the works).
+
+A detailed guide on configuring Azure AD can be found at <http://crm-powerbi-viewer.heiigjen.com/pages/azure-ad.html>.
 
 ###For experienced CRM devs (with Azure AD knowledge) this is the quick intro:
 
