@@ -1,16 +1,10 @@
 ---
 layout: page
-title: Installation
-description: How to install crm-powerbi-viewer.
+title: Configuration
+description: How to add Power BI reports/tiles in Dynamics CRM.
 ---
 
 This is how you make it possible to show Power BI reports and tiles in your CRM Online installation.
-
-### First things
-
-You have of course already created a Power BI report or dashboard with tiles you want to embed into your Dynamics CRM instance?
-
-Also you need to verify that you have the proper rights to add an application to your Azure Active Directory (AAD).
 
 ### Let's get going
 
