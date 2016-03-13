@@ -8,6 +8,7 @@
 		isId: string;
 		dashboard: string;
 		tile: string;
+		group: string;
 	}
 
 	interface IPowerBiMessage {
@@ -23,16 +24,18 @@
 		private _log: ng.ILogService;
 		private _window: ng.IWindowService;
 
-		constructor(pbiService: Services.IPowerBiService, adalProvider, $routeParams: ITileRouteParams, $log: ng.ILogService, $window: ng.IWindowService) {
+		constructor(pbiService: Config.IPowerBiService, adalProvider, $routeParams: ITileRouteParams, $log: ng.ILogService, $window: ng.IWindowService) {
 			this._adal = adalProvider;
 			this._log = $log;
 			this._window = $window;
+
+			var groupPart = (typeof $routeParams.group === "undefined" ? "" : ("&groupId=" + $routeParams.group));
 
 			if ($routeParams.isId === "true") {
 				this.tile = {
 					id: $routeParams.tile,
 					title: "<undefined when using ID>",
-					embedUrl: "https://app.powerbi.com/embed?dashboardId=" + $routeParams.dashboard + "&tileId=" + $routeParams.tile
+					embedUrl: "https://app.powerbi.com/embed?dashboardId=" + $routeParams.dashboard + "&tileId=" + $routeParams.tile + groupPart
 				};
 			} else {
 				pbiService.getTile($routeParams.dashboard, $routeParams.tile)

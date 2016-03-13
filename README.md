@@ -35,3 +35,8 @@ A detailed guide on configuring Azure AD can be found at <http://crm-powerbi-vie
 1. Or if you want to embed a Power BI tile from a dashboard yo set the data parameters to *type=tile&dashboardId=\<PBI_dashboard_GUID\>&tileId=\<PBI_tile_GUID\>*.
 1. If you want to reference the reports/tiles by name you change Id to Name and input that instead - just remember that the names need to be unique.
 
+
+## Dev
+
+To test locally you need to copy the powerBiConfig.js found under solutionSrc\WebResources\his_\scripts into src\wwwroot\scripts and set the clientId in the copy.
+   Remember to also update the list of reply urls to include http://localhost:5000.

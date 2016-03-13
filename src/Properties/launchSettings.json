@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:30701/",
-      "sslPort": 0
+      "applicationUrl": "http://local.heiigjen.com:5000",
+      "sslPort": 4343
     }
   },
   "profiles": {

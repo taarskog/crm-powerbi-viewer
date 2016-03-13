@@ -1,11 +1,12 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "compilationOptions": {
     "emitEntryPoint": true
   },
   "dependencies": {
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
     "Microsoft.CrmSdk.CoreTools": "8.0.2.1",
     "Microsoft.CrmSdk.XrmTooling.WpfControls": "8.0.2"
   },
@@ -17,7 +18,8 @@
   },
   "exclude": [
     "wwwroot",
-    "node_modules"
+    "node_modules",
+    "bower_components"
   ],
   "publishExclude": [
     "**.user",

@@ -1,5 +1,5 @@
 {
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"name": "crm-powerbi-viewer",
 	"description": "Embed tiles and reports from Power BI into Dynamics CRM Forms and Dashboards.",
 	"author": "Trond Aarskog",

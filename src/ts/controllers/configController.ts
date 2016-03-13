@@ -3,7 +3,7 @@
 	export interface IConfigController {
 		dashboards: Models.PowerBiDashboardInfoModel[];
 		reports: Models.PowerBiReportModel[];
-		//groups: Models.PowerBiGroup[];
+		groups: Models.PowerBiGroupModel[];
 	}
 
 	export class ConfigController implements IConfigController {
@@ -11,14 +11,14 @@
 
 		dashboards: Models.PowerBiDashboardInfoModel[];
 		reports: Models.PowerBiReportModel[];
-		//groups: Models.PowerBiGroup[];
+		groups: Models.PowerBiGroupModel[];
 
 		private _adal;
 
-		constructor(pbiService: Services.IPowerBiService, adalProvider) {
+		constructor(pbiService: Config.IPowerBiService, adalProvider) {
 			this._adal = adalProvider;
 
-			pbiService.getDashboards()
+			pbiService.getUserDashboards()
 				.then((result: Models.PowerBiDashboardInfoModel[]) => {
 					result.forEach(dash => {
 						pbiService.getDashboardTiles(dash.id)
@@ -31,6 +31,23 @@
 			pbiService.getAllReports()
 				.then((result: Models.PowerBiReportModel[]) => {
 					this.reports = result;
+				});
+
+			pbiService.getGroupsForCurrentUser()
+				.then((result: Models.PowerBiGroupModel[]) => {
+					result.forEach(grp => {
+						pbiService.getGroupDashboards(grp.id)
+							.then((result: Models.PowerBiDashboardInfoModel[]) => {
+								grp.dashboards = result;
+
+								result.forEach(dash => {
+									pbiService.getGroupDashboardTiles(dash.id, grp.id)
+										.then(tiles => { dash.tiles = tiles; });
+								});
+							});
+					})
+
+					this.groups = result;
 				});
 		}
 	}

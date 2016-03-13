@@ -7,6 +7,7 @@
 	interface IReportRouteParams {
 		isId: string;
 		report: string;
+		group: string;
 	}
 
 	interface IPowerBiMessage {
@@ -21,16 +22,17 @@
 		private _adal;
 		private _log: ng.ILogService;
 
-		constructor(pbiService: Services.IPowerBiService, adalProvider, $routeParams: IReportRouteParams, $log: ng.ILogService, $window: ng.IWindowService) {
+		constructor(pbiService: Config.IPowerBiService, adalProvider, $routeParams: IReportRouteParams, $log: ng.ILogService, $window: ng.IWindowService) {
 			this._adal = adalProvider;
 			this._log = $log;
 
+			var groupPart = (typeof $routeParams.group === "undefined" ? "" : ("&groupId=" + $routeParams.group));
 
 			if ($routeParams.isId === "true") {
 				this.report = {
 					id: $routeParams.report,
 					name: "<undefined when using ID>",
-					embedUrl: "https://app.powerbi.com/reportEmbed?reportId=" + $routeParams.report,
+					embedUrl: "https://app.powerbi.com/reportEmbed?reportId=" + $routeParams.report + groupPart,
 					webUrl: "https://app.powerbi.com/reports/" + $routeParams.report,
 				};
 			} else {

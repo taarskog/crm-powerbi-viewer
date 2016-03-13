@@ -1,11 +1,14 @@
-﻿module PowerBiViewer.Services {
+﻿module PowerBiViewer.Config {
 	export interface IPowerBiService {
 		getTile(dashboardName: string, tileName: string): ng.IPromise<Models.PowerBiTileModel>;
 		getReport(reportName: string): ng.IPromise<Models.PowerBiReportModel>;
 
-		getDashboards(): ng.IPromise<Models.PowerBiDashboardModel[]>;
+		getUserDashboards(): ng.IPromise<Models.PowerBiDashboardModel[]>;
+		getGroupDashboards(groupId: string): ng.IPromise<Models.PowerBiDashboardModel[]>;
+		getGroupDashboardTiles(dashboardId: string, groupId: string): ng.IPromise<Models.PowerBiTileModel[]>;
 		getDashboardTiles(dashboardId: string): ng.IPromise<Models.PowerBiTileModel[]>;
 		getAllReports(): ng.IPromise<Models.PowerBiReportModel[]>;
+		getGroupsForCurrentUser(): ng.IPromise<Models.PowerBiGroupModel[]>
 	}
 
 	export class PowerBiService implements IPowerBiService {
@@ -24,7 +27,7 @@
 		 */
 		getTile(dashboardName: string, tileName: string): ng.IPromise<Models.PowerBiTileModel> {
 			// Get all dashboards
-			return this.getDashboards()
+			return this.getUserDashboards()
 
 				// Search for named dashboard
 				.then(response => {
@@ -91,8 +94,15 @@
 				});
 		}
 
-		getDashboards(): ng.IPromise<Models.PowerBiDashboardModel[]> {
+		getUserDashboards(): ng.IPromise<Models.PowerBiDashboardModel[]> {
 			return this._http.get('https://api.powerbi.com/beta/myorg/dashboards')
+				.then(response => {
+					return <Models.PowerBiDashboardModel[]>(<any>response.data).value
+				});
+		}
+
+		getGroupDashboards(groupId: string): ng.IPromise<Models.PowerBiDashboardModel[]> {
+			return this._http.get('https://api.powerbi.com/beta/myorg/groups/' + groupId + '/dashboards')
 				.then(response => {
 					return <Models.PowerBiDashboardModel[]>(<any>response.data).value
 				});
@@ -103,6 +113,21 @@
 			return this._http.get('https://api.powerbi.com/beta/myorg/dashboards/' + dashboardId + '/tiles')
 				.then(response => {
 					return <Models.PowerBiTileModel[]>(<any>response.data).value
+				});
+		}
+
+		getGroupDashboardTiles(dashboardId: string, groupId: string): ng.IPromise<Models.PowerBiTileModel[]> {
+			// Get all dashboards
+			return this._http.get('https://api.powerbi.com/beta/myorg/groups/' + groupId + '/dashboards/' + dashboardId + '/tiles')
+				.then(response => {
+					return <Models.PowerBiTileModel[]>(<any>response.data).value
+				});
+		}
+
+		getGroupsForCurrentUser(): ng.IPromise<Models.PowerBiGroupModel[]> {
+			return this._http.get('https://api.powerbi.com/v1.0/myorg/groups')
+				.then(response => {
+					return <Models.PowerBiGroupModel[]>(<any>response.data).value
 				});
 		}
 	}
