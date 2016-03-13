@@ -3,11 +3,16 @@
 		<h2>Dashboards</h2>
 		<div ng-hide="vm.dashboards">Loading...</div>
 		<div ng-show="vm.dashboards" ng-repeat="dash in vm.dashboards">
-			<h4>{{dash.displayName}} ({{dash.id}})</h4>
+			<h4>{{dash.displayName}} <!--({{dash.id}})--></h4>
 
 			<ul ng-show="dash.tiles">
 				<li ng-repeat="tile in dash.tiles">
-					{{tile.title}} ({{tile.id}}) <a href="{{tile.embedUrl}}">EmbedUrl</a>
+					<strong>{{tile.title}}</strong> <!--({{tile.id}}) <a href="{{tile.embedUrl}}">EmbedUrl</a>--> | type=tile&amp;dashboardId={{dash.id}}&amp;tileId={{tile.id}} |
+					<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">preview</a>
+					<!-- @if NODE_ENV != 'release' -->
+					| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">test</a>
+					<!-- @endif -->
+
 				</li>
 			</ul>
 		</div>
@@ -17,8 +22,13 @@
 		<h2>Reports</h2>
 		<div ng-hide="vm.reports">Loading...</div>
 		<div ng-show="vm.reports" ng-repeat="report in vm.reports">
-			<strong>{{report.name}}</strong> | {{ report.id}} |
-			<a href="{{report.embedUrl}}">EmbedUrl</a> | <a href="{{report.webUrl}}">WebUrl</a>
+			<strong>{{report.name}}</strong> <!--| {{ report.id}} |
+			<a href="{{report.embedUrl}}">EmbedUrl</a> | <a href="{{report.webUrl}}">WebUrl</a>--> | type=report&amp;reportId={{report.id}} |
+			<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">preview</a>
+			<!-- @if NODE_ENV != 'release' -->
+			| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">test</a>
+			<!-- @endif -->
+
 		</div>
 	</div>
 
@@ -27,19 +37,36 @@
 		<div ng-hide="vm.groups">Loading...</div>
 		<div ng-show="vm.groups">These are the groups you have access to. You should make sure that all CRM users that have access to the Form/dashboards where you place Organizational Power BI visuals also have access to the related group.</div>
 		<div ng-show="vm.groups" ng-repeat="grp in vm.groups">
-			<strong>{{grp.name}}</strong> | {{ grp.id}}
+			<strong>{{grp.name}}</strong> <!--| {{ grp.id}}-->
 
 			<h3>Dashboards</h3>
 			<div ng-hide="grp.dashboards">Loading...</div>
 			<div ng-show="grp.dashboards" ng-repeat="dash in grp.dashboards">
-				<h4>{{dash.displayName}} ({{dash.id}})</h4>
+				<h4>{{dash.displayName}} <!--({{dash.id}})--></h4>
 
 				<ul ng-show="dash.tiles">
 					<li ng-repeat="tile in dash.tiles">
-						{{tile.title}} ({{tile.id}}) <a href="{{tile.embedUrl}}">EmbedUrl</a>
+						<strong>{{tile.title}}</strong> <!--({{tile.id}}) <a href="{{tile.embedUrl}}">EmbedUrl</a>--> | type=tile&amp;dashboardId={{dash.id}}&amp;tileId={{tile.id}}&amp;groupId={{grp.id}} |
+						<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id + '&groupId=' + grp.id)}}">preview</a>
+						<!-- @if NODE_ENV != 'release' -->
+						| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id + '&groupId=' + grp.id)}}">test</a>
+						<!-- @endif -->
+
 					</li>
 				</ul>
 			</div>
+
+			<h3>Reports</h3>
+			<div ng-hide="grp.reports">Loading...</div>
+			<div ng-show="grp.reports" ng-repeat="report in grp.reports">
+				<strong>{{report.name}}</strong> <!--| {{ report.id}} |
+				<a href="{{report.embedUrl}}">EmbedUrl</a> | <a href="{{report.webUrl}}">WebUrl</a>--> | type=report&amp;reportId={{report.id}}&amp;groupId={{grp.id}} |
+				<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id + '&groupId=' + grp.id)}}">preview</a> 
+				<!-- @if NODE_ENV != 'release' -->
+				| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id + '&groupId=' + grp.id)}}">test</a>
+				<!-- @endif -->
+			</div>
+
 		</div>
 
 	</div>

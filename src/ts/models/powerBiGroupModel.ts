@@ -4,5 +4,6 @@
 		name: string;
 
 		dashboards: PowerBiDashboardInfoModel[];
+		reports: Models.PowerBiReportModel[];
 	}
 }

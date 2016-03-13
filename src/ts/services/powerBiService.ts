@@ -8,6 +8,7 @@
 		getGroupDashboardTiles(dashboardId: string, groupId: string): ng.IPromise<Models.PowerBiTileModel[]>;
 		getDashboardTiles(dashboardId: string): ng.IPromise<Models.PowerBiTileModel[]>;
 		getAllReports(): ng.IPromise<Models.PowerBiReportModel[]>;
+		getGroupReports(groupId: string): ng.IPromise<Models.PowerBiReportModel[]>;
 		getGroupsForCurrentUser(): ng.IPromise<Models.PowerBiGroupModel[]>
 	}
 
@@ -89,6 +90,13 @@
 
 		getAllReports(): ng.IPromise<Models.PowerBiReportModel[]> {
 			return this._http.get('https://api.powerbi.com/beta/myorg/reports')
+				.then(response => {
+					return <Models.PowerBiReportModel[]>(<any>response.data).value;
+				});
+		}
+
+		getGroupReports(groupId: string): ng.IPromise<Models.PowerBiReportModel[]> {
+			return this._http.get('https://api.powerbi.com/beta/myorg/groups/' + groupId + '/reports')
 				.then(response => {
 					return <Models.PowerBiReportModel[]>(<any>response.data).value;
 				});

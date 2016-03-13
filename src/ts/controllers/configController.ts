@@ -4,6 +4,7 @@
 		dashboards: Models.PowerBiDashboardInfoModel[];
 		reports: Models.PowerBiReportModel[];
 		groups: Models.PowerBiGroupModel[];
+		getUrlQueryFromCrmDataString(crmData: string): string;
 	}
 
 	export class ConfigController implements IConfigController {
@@ -45,10 +46,18 @@
 										.then(tiles => { dash.tiles = tiles; });
 								});
 							});
+
+
+						pbiService.getGroupReports(grp.id)
+							.then(reports => { grp.reports = reports; });
 					})
 
 					this.groups = result;
 				});
+		}
+
+		getUrlQueryFromCrmDataString(crmData: string): string {
+			return "data=" + encodeURIComponent(crmData);
 		}
 	}
 }

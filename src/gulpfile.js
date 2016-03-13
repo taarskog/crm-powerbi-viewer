@@ -180,7 +180,7 @@ gulp.task('deploy-to-solution:updatefiles', ['DIST'], function () {
 gulp.task('deploy-to-solution:updateversion', function () {
 	return gulp.src(config.solutionSrcPath + "Other/Solution.xml")
 		.pipe(replace(/<Version>.*<\/Version>/g, "<Version>" + config.version + "</Version>", { stripBOM: false }))
-		.pipe(gulp.dest(config.solutionSrcPath + "Other2/"));
+		.pipe(gulp.dest(config.solutionSrcPath + "Other/"));
 });
 
 gulp.task('CLEAN', ['clean:libraries', 'clean:scripts', 'clean:styles', 'clean:dist']);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ImportExportXml version="8.0.0001.0079" SolutionPackageVersion="8.0" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>PowerBIViewer</UniqueName>
@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Embed tiles and reports from Power BI into CRM Dashboards and Forms." languagecode="1033" />
     </Descriptions>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Managed>2</Managed>
     <ConfigurationPage>his_/powerBiConfig.html</ConfigurationPage>
     <Publisher>

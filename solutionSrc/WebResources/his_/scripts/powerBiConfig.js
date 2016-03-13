@@ -1,1 +1,1 @@
-var powerBiViewerConfig={clientId:"6f8f3ec6-e83b-482f-8ac9-60b841e9740d",tokenCacheLocation:"sessionStorage",enableHttpCache:!0};
+var powerBiViewerConfig={clientId:"6f8f3ec6-e83b-482f-8ac9-60b841e9740d",tokenCacheLocation:"sessionStorage",enableHttpCache:!1};
