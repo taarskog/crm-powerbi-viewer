@@ -22,6 +22,8 @@ production_url: http://crm-powerbi-viewer.heiigjen.com
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
 markdown: kramdown
 
+safe: true
+
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
