@@ -1,7 +1,7 @@
 ---
 layout: page
 title: CRM Power BI Viewer
-tagline: Add Power BI to Dynamics CRM
+tagline: add the Power of BI to Dynamics CRM
 description: Embed Power BI reports/tiles into Dynamics CRM dashboards and forms.
 ---
 
@@ -22,9 +22,11 @@ application to your Azure Active Directory (AAD). Without such rights you will n
 1. [Add crm-powerbi-viewer as an application in Azure AD](pages/azure-ad.html)
 1. [Install and configure crm-powerbi-viewer in Dynamics CRM](pages/install-solution.html)
 
-## Configuration *(currently incomplete)*
+## Configuration
 
 The guides below shows how to add Power BI elements to CRM Dashboards. You can apply the same steps to CRM Forms.
 
 1. [Add a Power BI report to a Dynamics CRM dashboard](pages/add-report-to-dashboard.html)
 1. [Add a Power BI dashboard tile to a dashboard in Dynamics CRM](pages/add-tile-to-dashboard.html)
+
+[![]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-3.png)]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-3.png)
