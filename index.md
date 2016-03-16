@@ -64,8 +64,5 @@ The guides below describe how to add Power BI elements to CRM Dashboards.
 **Note** You can apply exactly the same steps to CRM Forms.
 {: .alert .alert-info }
 
-<br />
-
-
 [![]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-3.png)]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-3.png)
 <br />
