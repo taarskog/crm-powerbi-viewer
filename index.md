@@ -22,7 +22,7 @@ for self-service dashboards users can embed report and tiles from their personal
 created in Power BI.
 
 <br />
-[![]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-4.png)]({{BASE_PATH}}/assets/images/samples/sample-crm-montage.png)
+[![]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-4.png)]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-4.png)
 <br />
 <br />
 <br />
