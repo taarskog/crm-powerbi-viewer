@@ -5,7 +5,7 @@ tagline: add the Power of BI to Dynamics CRM
 description: Embed Power BI reports/tiles into Dynamics CRM dashboards and forms.
 ---
 
-[Download](https://github.com/taarskog/crm-powerbi-viewer/releases) \| [Source](https://github.com/taarskog/crm-powerbi-viewer)
+[Download](https://github.com/taarskog/crm-powerbi-viewer/releases/latest/) \| [Source](https://github.com/taarskog/crm-powerbi-viewer)
 {: style="text-align: center"}
 <br />
 
