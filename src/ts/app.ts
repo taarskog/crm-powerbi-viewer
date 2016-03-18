@@ -1,4 +1,5 @@
 ﻿/// <reference path="directives/ng-onload.ts" />
+/// <reference path="directives/ng-clipboard.ts" />
 
 /// <reference path="models/powerbiappconfigmodel.ts" />
 /// <reference path="models/powerbigroupmodel.ts" />
@@ -28,7 +29,8 @@ module PowerBiViewer.App {
 		.constant('IAppConfig', new Config.AppConfig(powerBiViewerConfig))
 		.constant('IViewConfig', new Config.ViewConfig(window.location.search))
 		.service('IPowerBiService', PowerBiViewer.Config.PowerBiService)
-		.directive('ngOnload', Directives.onLoadDirective)
+		.directive(Directives.onLoadDirective.name, Directives.onLoadDirective.get)
+		.directive(Directives.clipboardDirective.name, Directives.clipboardDirective.get)
 		.controller('ITileController', Controllers.TileController)
 		.controller('IReportController', Controllers.ReportController)
 		.controller('IConfigController', Controllers.ConfigController)

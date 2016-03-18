@@ -1,5 +1,5 @@
 {
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"name": "crm-powerbi-viewer",
 	"description": "Embed tiles and reports from Power BI into Dynamics CRM Forms and Dashboards.",
 	"authors": [
@@ -14,6 +14,7 @@
 	"dependencies": {
 		"adal-angular-for-crm": "taarskog/adal-angular-for-crm-webresources#142ea782ef",
 		"angular": "~1.4.9",
-		"angular-route": "~1.4.9"
+		"angular-route": "~1.4.9",
+		"clipboard": "^1.5.9"
 	}
 }

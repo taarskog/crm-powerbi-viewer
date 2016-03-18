@@ -13,6 +13,8 @@
 					| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">test</a>
 					<!-- @endif -->
 
+					<button class="btn" data-clipboard-text="type=tile&dashboardId={{dash.id}}&tileId={{tile.id}}">Copy config to clipboard</button>
+
 				</li>
 			</ul>
 		</div>
