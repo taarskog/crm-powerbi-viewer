@@ -32,7 +32,7 @@ var config = {
 
 	src: {
 		tsFiles: 'ts/**/*.ts',
-		tsTypingFiles: 'typings/browser.d.ts',
+		tsTypingFiles: ['ts/filesort.d.ts', 'typings/browser.d.ts'],
 		libFiles: [
 			'bower_components/adal-angular-for-crm/dist/adal.min.js',
 			'bower_components/adal-angular-for-crm/dist/adal-angular.min.js',
@@ -88,7 +88,7 @@ gulp.task('build:libraries', ['build:setversion'], function () {
 });
 
 gulp.task('build:typescript', ['build:setversion'], function () {
-	return gulp.src([config.src.tsFiles, config.src.tsTypingFiles])
+	return gulp.src([].concat(config.src.tsTypingFiles, config.src.tsFiles))
 		.pipe(newer(config.dest.scriptPath + '/' + config.dest.tsFilename))
 		.pipe(ts(config.tsProject))
 		.js
