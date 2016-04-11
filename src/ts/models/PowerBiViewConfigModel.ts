@@ -8,5 +8,8 @@
 		reportId: string;
 		reportName: string;
 		groupId: string;
+
+		filterFn: string;
+
 	}
 }

@@ -4,41 +4,34 @@
 		sendToken(width: number, height: number): void;
 	}
 
-	interface ITileRouteParams {
-		isId: string;
-		dashboard: string;
-		tile: string;
-		group: string;
-	}
-
 	interface IPowerBiMessage {
 		event: string;
 	}
 
 	export class TileController implements ITileController {
-		static $inject: Array<string> = ['IPowerBiService', 'adalAuthenticationService', '$routeParams', '$log', '$window'];
+		static $inject: Array<string> = ['IPowerBiService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig'];
 
 		tile: Models.PowerBiTileModel;
 
 		private _adal;
 		private _log: ng.ILogService;
-		private _window: ng.IWindowService;
 
-		constructor(pbiService: Config.IPowerBiService, adalProvider, $routeParams: ITileRouteParams, $log: ng.ILogService, $window: ng.IWindowService) {
+		constructor(pbiService: Config.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig) {
 			this._adal = adalProvider;
 			this._log = $log;
-			this._window = $window;
 
-			var groupPart = (typeof $routeParams.group === "undefined" ? "" : ("&groupId=" + $routeParams.group));
+			var isId = (typeof viewConfig.powerBi.dashboardId !== "undefined") && (typeof viewConfig.powerBi.tileId !== "undefined");
 
-			if ($routeParams.isId === "true") {
+			var groupPart = (typeof viewConfig.powerBi.groupId === "undefined" ? "" : ("&groupId=" + viewConfig.powerBi.groupId));
+
+			if (isId === true) {
 				this.tile = {
-					id: $routeParams.tile,
+					id: viewConfig.powerBi.tileId,
 					title: "<undefined when using ID>",
-					embedUrl: "https://app.powerbi.com/embed?dashboardId=" + $routeParams.dashboard + "&tileId=" + $routeParams.tile + groupPart
+					embedUrl: "https://app.powerbi.com/embed?dashboardId=" + viewConfig.powerBi.dashboardId + "&tileId=" + viewConfig.powerBi.tileId + groupPart
 				};
 			} else {
-				pbiService.getTile($routeParams.dashboard, $routeParams.tile)
+				pbiService.getTile(viewConfig.powerBi.dashboardName, viewConfig.powerBi.tileName)
 					.then(tile => {
 						this.tile = tile;
 					}
