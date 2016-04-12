@@ -17,7 +17,7 @@ var bump = require('gulp-bump');
 var replace = require('gulp-replace');
 
 var config = {
-	version: "0.1.1",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
+	version: "0.2.0",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
 
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
 	//buildConfig: 'debug',
