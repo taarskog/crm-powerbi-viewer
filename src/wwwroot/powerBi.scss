@@ -20,8 +20,83 @@
 }
 
 .config-info {
-	
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	padding-bottom: 10px;
 }
+
+.config-info .container,
+.container h2, 
+.container h3,
+.container h4 {
+	clear:both;
+	position: relative;
+}
+
+	.config-info .item {
+		position: relative;
+		margin: 2px;
+		padding: 3px;
+		float: left;
+		width: 200px;
+		height: 132px;
+		//border: 2px solid #44546a;
+		background-color: rgba(68, 84, 106, 0.30);
+		//border-radius: 8px 8px 0 0;
+	}
+
+	.config-info .item .title {
+		color: #44546a;
+		font-weight: bold;
+		text-align: center;
+		max-height: 42px;
+		overflow:hidden;
+	}
+
+	.config-info .item .subtitle {
+		color: #44546a;
+		text-align: center;
+		font-size:smaller;
+		max-height: 34px;
+		overflow:hidden;
+	}
+
+	.config-info .item .preview {
+		text-align: center;
+		position: absolute;
+		height: 20px;
+		bottom: 2px;
+		left: 2px;
+		right: 2px;
+		font-size:small;
+	}
+
+	.config-info .item .clipboard-container {
+		position: absolute;
+		bottom: 24px;
+		left:84px;
+		height: 32px;
+		width: 32px;
+	}
+
+	.config-info .item a {
+		color: #44546a;
+	}
+
+	.config-info .item a:hover {
+		color: rgb(221, 70, 70);
+	}
+
+	.config-info .item .copy-to-clipboard {
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAXEAAAFxABGGER2wAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAAdBJREFUWEftlT9Lw2AQxjsJYnHyA4gIgpuLkwi2FRRcTNvJWWnq7FwQHB2kq+AiTmqXWlAXi4soLhY/RTcHJ23Mxbv0OC953yTt5g8e+v65e56jGd6cLaVK3eNacdw5vBovxbLbl+FcWDY+tFCu4nbtDEtHT8GpnVMQHoXwIfAoG6WKGxpq8j9FGHRweNLUariw1I716v63ZpJVaG9GNnCTJML2P35GogySCtuzD5CV/wEyDUDrtJJ+VsgG2ifV6tbuJu8PzGxI3GAg0wAFx/2ifRpJPyt4w/LGzjTt00j6WZG4wQB4rTnDt8OIHID2MVrwNeW/lvNHx6ez2JYeMoa1/+rFPkxBg8/V7bNnEpaakeZxDAaDyXb3bckP+JSBUthiRg5A+yhBjRZIgvtqozEBv1ZwYx4UJajTgrkuO097UGcFNwaKjnsRJ6jRQjUFhibkADZoYVHClmj4ALSOE9RpQQY1oU+FGwM8TBPUkDFf2wjq/8CNbfA8Lw9m13cvYY8MihO2DEk6QBQ33V5fC9TUeXwf5o1qAEILlMLSX2iAQtn9wKPMaKEkuPc/40xQSNAQoxJ4th96LRneun+N/qc1ozRarNbzaBnAB8AjJJf7AYE5OdkffOUHAAAAAElFTkSuQmCC') /*copy-to-clipboard_32.png*/;
+		background-size: contain;
+		background-repeat:no-repeat;
+		background-position: center;
+		cursor:pointer;
+	}
+
+	.copy-to-clipboard:active {
+		transform: scale(0.8);
+	}
 
 .config-error {
 	position: fixed;

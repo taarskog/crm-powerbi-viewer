@@ -1,40 +1,54 @@
 ﻿<div class="config-info">
-	<div>
+	<div class="container">
 		<h2>Dashboards</h2>
 		<div ng-hide="vm.dashboards">Loading...</div>
 		<div ng-show="vm.dashboards" ng-repeat="dash in vm.dashboards">
 			<h4>{{dash.displayName}} <!--({{dash.id}})--></h4>
 
-			<ul ng-show="dash.tiles">
-				<li ng-repeat="tile in dash.tiles">
-					<strong>{{tile.title}}</strong> <!--({{tile.id}}) <a href="{{tile.embedUrl}}">EmbedUrl</a>--> | type=tile&amp;dashboardId={{dash.id}}&amp;tileId={{tile.id}} |
-					<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">preview</a>
-					<!-- @if NODE_ENV != 'release' -->
-					| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">test</a>
-					<!-- @endif -->
+			<div class="container" ng-show="dash.tiles">
+				<div class="item" ng-repeat="tile in dash.tiles">
 
-					<button class="btn" data-clipboard-text="type=tile&dashboardId={{dash.id}}&tileId={{tile.id}}">Copy config to clipboard</button>
+					<div class="title">{{tile.title}}</div>
+					<div class="subtitle">{{tile.subTitle}}</div>
 
-				</li>
-			</ul>
+					<div class="clipboard-container">
+						<a title="Copy CRM configuration to clipboard" ng-clipboard data-clipboard-text="type=tile&dashboardId={{dash.id}}&tileId={{tile.id}}"><div class="copy-to-clipboard">&nbsp;</div></a>
+					</div>
+
+					<div class="preview">
+						<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">preview</a>
+
+						<!-- @if NODE_ENV != 'release' -->
+						| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">test</a>
+						<!-- @endif -->
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div>
+	<div class="container">
 		<h2>Reports</h2>
 		<div ng-hide="vm.reports">Loading...</div>
-		<div ng-show="vm.reports" ng-repeat="report in vm.reports">
-			<strong>{{report.name}}</strong> <!--| {{ report.id}} |
-			<a href="{{report.embedUrl}}">EmbedUrl</a> | <a href="{{report.webUrl}}">WebUrl</a>--> | type=report&amp;reportId={{report.id}} |
-			<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">preview</a>
-			<!-- @if NODE_ENV != 'release' -->
-			| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">test</a>
-			<!-- @endif -->
+		<div class="container" ng-show="vm.reports">
+			<div class="item" ng-repeat="report in vm.reports">
+				<div class="title">{{report.name}}</div>
 
+				<div class="clipboard-container">
+					<a title="Copy CRM configuration to clipboard" ng-clipboard data-clipboard-text="type=report&reportId={{report.id}}"><div class="copy-to-clipboard">&nbsp;</div></a>
+				</div>
+
+				<div class="preview">
+					<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">preview</a>
+					<!-- @if NODE_ENV != 'release' -->
+					| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">test</a>
+					<!-- @endif -->
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div>
+	<div class="container">
 		<h2>Groups</h2>
 		<div ng-hide="vm.groups">Loading...</div>
 		<div ng-show="vm.groups">These are the groups you have access to. You should make sure that all CRM users that have access to the Form/dashboards where you place Organizational Power BI visuals also have access to the related group.</div>
@@ -46,30 +60,46 @@
 			<div ng-show="grp.dashboards" ng-repeat="dash in grp.dashboards">
 				<h4>{{dash.displayName}} <!--({{dash.id}})--></h4>
 
-				<ul ng-show="dash.tiles">
-					<li ng-repeat="tile in dash.tiles">
-						<strong>{{tile.title}}</strong> <!--({{tile.id}}) <a href="{{tile.embedUrl}}">EmbedUrl</a>--> | type=tile&amp;dashboardId={{dash.id}}&amp;tileId={{tile.id}}&amp;groupId={{grp.id}} |
-						<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id + '&groupId=' + grp.id)}}">preview</a>
-						<!-- @if NODE_ENV != 'release' -->
-						| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id + '&groupId=' + grp.id)}}">test</a>
-						<!-- @endif -->
+				<div class="container" ng-show="dash.tiles">
+					<div class="item" ng-repeat="tile in dash.tiles">
 
-					</li>
-				</ul>
+						<div class="title">{{tile.title}}</div>
+						<div class="subtitle">{{tile.subTitle}}</div>
+
+						<div class="clipboard-container">
+							<a title="Copy CRM configuration to clipboard" ng-clipboard data-clipboard-text="type=tile&dashboardId={{dash.id}}&tileId={{tile.id}}"><div class="copy-to-clipboard">&nbsp;</div></a>
+						</div>
+
+						<div class="preview">
+							<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">preview</a>
+
+							<!-- @if NODE_ENV != 'release' -->
+							| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=tile&dashboardId=' + dash.id + '&tileId=' + tile.id)}}">test</a>
+							<!-- @endif -->
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<h3>Reports</h3>
 			<div ng-hide="grp.reports">Loading...</div>
-			<div ng-show="grp.reports" ng-repeat="report in grp.reports">
-				<strong>{{report.name}}</strong> <!--| {{ report.id}} |
-				<a href="{{report.embedUrl}}">EmbedUrl</a> | <a href="{{report.webUrl}}">WebUrl</a>--> | type=report&amp;reportId={{report.id}}&amp;groupId={{grp.id}} |
-				<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id + '&groupId=' + grp.id)}}">preview</a> 
-				<!-- @if NODE_ENV != 'release' -->
-				| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id + '&groupId=' + grp.id)}}">test</a>
-				<!-- @endif -->
+			<div class="item" ng-show="grp.reports" ng-repeat="report in grp.reports">
+				<div class="title">{{report.name}}</div>
+
+				<div class="clipboard-container">
+					<a title="Copy CRM configuration to clipboard" ng-clipboard data-clipboard-text="type=report&reportId={{report.id}}"><div class="copy-to-clipboard">&nbsp;</div></a>
+				</div>
+
+				<div class="preview">
+					<a href="/webresources/his_/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">preview</a>
+					<!-- @if NODE_ENV != 'release' -->
+					| <a href="/powerBiViewer.html?{{vm.getUrlQueryFromCrmDataString('type=report&reportId=' + report.id)}}">test</a>
+					<!-- @endif -->
+				</div>
 			</div>
-
 		</div>
-
+		&nbsp;
 	</div>
+	&nbsp;
 </div>
+<div class="container">&nbsp;</div>
