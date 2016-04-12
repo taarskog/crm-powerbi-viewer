@@ -16,6 +16,7 @@
 /// <reference path="config/viewconfig.ts" />
 /// <reference path="config/routeconfig.ts" />
 
+/// <reference path="services/filterservice.ts" />
 /// <reference path="services/powerbiservice.ts" />
 
 /// <reference path="controllers/configcontroller.ts" />

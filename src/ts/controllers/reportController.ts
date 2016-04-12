@@ -9,7 +9,7 @@
 	}
 
 	export class ReportController implements IReportController {
-		static $inject: Array<string> = ['IPowerBiService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig'];
+		static $inject: Array<string> = ['IPowerBiService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig', 'IFilterService'];
 
 		report: Models.PowerBiReportModel;
 
@@ -17,12 +17,14 @@
 		private _log: ng.ILogService;
 		private _filter: string;
 
-		constructor(pbiService: Config.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig) {
+		constructor(pbiService: Config.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig, filterService: Services.IFilterService) {
 			this._adal = adalProvider;
 			this._log = $log;
 
 			if (typeof viewConfig.powerBi.filterFn !== "undefined" && viewConfig.powerBi.filterFn.length > 0) {
-				this._filter = <string>this.executeFunctionByName(viewConfig.powerBi.filterFn, $window);
+				this._filter = filterService.getFilterFromFunction(viewConfig.powerBi.filterFn);
+			} else if (typeof viewConfig.powerBi.filter !== "undefined" && viewConfig.powerBi.filter.length > 0) {
+				this._filter = filterService.getFilterFromCrmForm(viewConfig.powerBi.filter);
 			}
 
 			if (typeof this._filter === "undefined" || this._filter.length === 0) {
@@ -59,16 +61,6 @@
 					}
 				}
 			};
-		}
-
-		executeFunctionByName(functionName, context): any {
-			var namespaces = functionName.split(".");
-			var func = namespaces.pop();
-			for (var i = 0; i < namespaces.length; i++) {
-				context = context[namespaces[i]];
-			}
-
-			return context[func].apply(context);
 		}
 
 		sendToken(width: number, height: number): void {

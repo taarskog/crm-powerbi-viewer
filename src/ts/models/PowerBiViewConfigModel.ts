@@ -9,6 +9,7 @@
 		reportName: string;
 		groupId: string;
 
+		filter: string;
 		filterFn: string;
 
 	}
