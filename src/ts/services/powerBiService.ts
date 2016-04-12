@@ -1,4 +1,4 @@
-﻿module PowerBiViewer.Config {
+﻿module PowerBiViewer.Services {
 	export interface IPowerBiService {
 		getTile(dashboardName: string, tileName: string): ng.IPromise<Models.PowerBiTileModel>;
 		getReport(reportName: string): ng.IPromise<Models.PowerBiReportModel>;

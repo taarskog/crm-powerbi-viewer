@@ -16,7 +16,7 @@
 
 		private _adal;
 
-		constructor(pbiService: Config.IPowerBiService, adalProvider) {
+		constructor(pbiService: Services.IPowerBiService, adalProvider) {
 			this._adal = adalProvider;
 
 			pbiService.getUserDashboards()

@@ -17,7 +17,7 @@
 		private _log: ng.ILogService;
 		private _filter: string;
 
-		constructor(pbiService: Config.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig, filterService: Services.IFilterService) {
+		constructor(pbiService: Services.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig, filterService: Services.IFilterService) {
 			this._adal = adalProvider;
 			this._log = $log;
 

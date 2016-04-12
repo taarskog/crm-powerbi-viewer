@@ -16,7 +16,7 @@
 		private _adal;
 		private _log: ng.ILogService;
 
-		constructor(pbiService: Config.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig) {
+		constructor(pbiService: Services.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig) {
 			this._adal = adalProvider;
 			this._log = $log;
 
