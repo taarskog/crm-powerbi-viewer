@@ -62,15 +62,48 @@ If none of the above methods meet your requirements you have the option of addin
 - the same file you modified during [installation](install-solution.html).
 
 #### Sample Function
-```js
+
+
+```javascript
 function opportunityFilter() {
-    /// TODO: Add your custom logic to build the filter - such as using parent.Xrm or calling external APIs.
+    // TODO: Add your custom logic to build the filter. 
+    // - such as using parent.Xrm or calling external APIs.
     var filter = "OpportunitySet/Status eq 'Won'";
-    
-    /// The function must return a string with a valid Power BI filter or null if no filter should be added. 
+        
+    // The function must return a string with a valid 
+    // Power BI filter or null if no filter should be added. 
     return filter;
 }
 ```
+
+
+```js
+function opportunityFilter() {
+    // TODO: Add your custom logic to build the filter. 
+    // - such as using parent.Xrm or calling external APIs.
+    var filter = "OpportunitySet/Status eq 'Won'";
+        
+    // The function must return a string with a valid 
+    // Power BI filter or null if no filter should be added. 
+    return filter;
+}
+```
+
+
+
+```
+function opportunityFilter() {
+    // TODO: Add your custom logic to build the filter. 
+    // - such as using parent.Xrm or calling external APIs.
+    var filter = "OpportunitySet/Status eq 'Won'";
+        
+    // The function must return a string with a valid 
+    // Power BI filter or null if no filter should be added. 
+    return filter;
+}
+```
+
+
 
 #### Format
 

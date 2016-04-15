@@ -3,7 +3,6 @@
 permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "ReadMe.md", "Rakefile", "changelog.md", "License.md", "start local server.bat", "Gemfile", "Gemfile.lock"]
-highlighter: rouge
 
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
@@ -22,6 +21,13 @@ production_url: http://crm-powerbi-viewer.heiigjen.com
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
 markdown: kramdown
 
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+highlighter: rouge
+  
 #safe: true
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
