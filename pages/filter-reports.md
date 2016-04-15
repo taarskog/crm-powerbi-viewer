@@ -91,8 +91,11 @@ Reference the function by adding the following to the end of your CRM data param
 
 #### Sample
 
-   > &filter=OpportunitySet/statecode eq 'Open'
+   > &filterFn=opportunityFilter
 
+[![]({{BASE_PATH}}/assets/images/crm-config/crm-config-filter-function.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-filter-function.png)
+{: style="text-align: center"}
+<br/>
 
 **Note.** You can create several functions and reference different filter functions on the various locations you add a report in CRM.
 {: .alert .alert-warning }
