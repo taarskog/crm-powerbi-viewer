@@ -5,13 +5,14 @@ tagline: on CRM data
 description: Filter reports on CRM data or using a custom javascript.
 ---
 
-Reports shown inside CRM can be filtered by:
+**Reports shown inside CRM can be filtered by:**
 
-1. Setting a static filter.
-2. Using attributes from the form where the report is embedded.
-3. Creating a custom function that returns the filter. 
-<br/>
-<br/>
+<span class="badge badge-info">1</span> Setting a static filter.   
+<span class="badge badge-info">2</span> Using attributes from the form where the report is embedded.   
+<span class="badge badge-info">3</span> Creating a custom function that returns the filter.   
+
+[![]({{BASE_PATH}}/assets/images/crm-config/crm-config-report-filter.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-report-filter.png)
+
 
 **Note 1.** Currently Power BI supports setting a single filter. Feedback from the team during Build 2016 was that they have plans to add support for multiple filters in a future release.
 {: .alert .alert-info }
@@ -26,8 +27,8 @@ Static filters is set by adding the following to the end of the CRM data paramet
 {% raw %}
     &filter=<table>/<column> eq '<filtervalue>'
 {% endraw %}
-| **table** | Power BI table |
-| **column** | Power BI column |
+| **table** | Power BI table (cannot contain spaces) |
+| **column** | Power BI column (cannot contain spaces) |
 | **filtervalue** | Filter Value  |
 {: .table .table-condensed .table-bordered .table-hover}
 
@@ -43,9 +44,9 @@ of a CRM attribute visible on the form.
     &filter=<table>/<column> eq '{{<logicalname>[#F|T]}}'
 {% endraw %}
 
-| **table** | Power BI table |
-| **column** | Power BI column |
-| **logicalname** | Logical name of an attribute visible on the form. Use \{\{id\}\} to reference the form record. |
+| **table** | Power BI table (cannot contain spaces) |
+| **column** | Power BI column (cannot contain spaces) |
+| **logicalname** | Logical name of an attribute visible on the form. Use \{\{id\}\} to reference the form record |
 | **#F** | Use the name of a lookup/optionset instead of the value |
 | **#T** | Use logical name of the referenced entity in a lookup |
 {: .table .table-condensed .table-bordered .table-hover}
@@ -62,21 +63,6 @@ If none of the above methods meet your requirements you have the option of addin
 - the same file you modified during [installation](install-solution.html).
 
 #### Sample Function
-
-
-```javascript
-function opportunityFilter() {
-    // TODO: Add your custom logic to build the filter. 
-    // - such as using parent.Xrm or calling external APIs.
-    var filter = "OpportunitySet/Status eq 'Won'";
-        
-    // The function must return a string with a valid 
-    // Power BI filter or null if no filter should be added. 
-    return filter;
-}
-```
-
-
 ```js
 function opportunityFilter() {
     // TODO: Add your custom logic to build the filter. 
@@ -84,26 +70,13 @@ function opportunityFilter() {
     var filter = "OpportunitySet/Status eq 'Won'";
         
     // The function must return a string with a valid 
-    // Power BI filter or null if no filter should be added. 
+    // Power BI filter or null if no filter should be added.
+    //
+    // Remember that Power BI does not support spaces on table
+    // and column names when filtering through the API
     return filter;
 }
 ```
-
-
-
-```
-function opportunityFilter() {
-    // TODO: Add your custom logic to build the filter. 
-    // - such as using parent.Xrm or calling external APIs.
-    var filter = "OpportunitySet/Status eq 'Won'";
-        
-    // The function must return a string with a valid 
-    // Power BI filter or null if no filter should be added. 
-    return filter;
-}
-```
-
-
 
 #### Format
 

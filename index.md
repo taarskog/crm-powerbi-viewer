@@ -56,8 +56,9 @@ Reach out to your Office 365 Admin if you do not have the proper rights.
 
 The guides below describe how to add Power BI elements to CRM Dashboards.
 
-<span class="badge badge-info">Report</span> [Add a Power BI report to a Dynamics CRM dashboard](pages/add-report-to-dashboard.html)  
-<span class="badge badge-info">Tile</span> [Add a Power BI dashboard tile to a dashboard in Dynamics CRM](pages/add-tile-to-dashboard.html)
+<span class="badge badge-info">Report</span> [Add a Power BI report to a Dynamics CRM dashboard](pages/add-report-to-dashboard.html)     
+<span class="badge badge-info">Filter</span> [Add report filtering](pages/filter-reports.html)   
+<span class="badge badge-info">Tile</span> [Add a Power BI dashboard tile to a dashboard in Dynamics CRM](pages/add-tile-to-dashboard.html)   
 
 <br />
 
