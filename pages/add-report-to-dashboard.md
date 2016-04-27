@@ -11,15 +11,14 @@ You embed a Power BI report by referencing the Power BI report id. Alternatively
 that if multiple reports have the same name the first found will be used.
 
 The easiest approach to find reports you have access to and the required CRM configuration is by going to the solution
-configuration page (image below shows an early version of this page).
-
-   > [![]({{BASE_PATH}}/assets/images/crm-config/crm-config-get-report-params.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-get-report-params.png)
+configuration page.
 
 The configuration page lists available tiles and reports. Both those you have access to through your workspace and those through
 group membership(s). Click preview to see how the report looks inside Dynamics CRM (note: shown inside the configuration page).
 
-1. When you have found the report you want to use you need to copy the configuration values 
-(text marked 1 in the picture above - all text between the pipes).
+1. When you have found the report you want to use you need to copy the configuration values. Click the clipboard icon to copy the configuration values to the clipboard. 
+
+   > [![]({{BASE_PATH}}/assets/images/crm-config/crm-config-get-tile-params-2.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-get-tile-params-2.png)
 
    > [![]({{BASE_PATH}}/assets/images/crm-config/crm-config-dash-add-web-resource.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-dash-add-web-resource.png)
 
