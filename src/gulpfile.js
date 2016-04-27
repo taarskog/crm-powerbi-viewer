@@ -17,15 +17,19 @@ var bump = require('gulp-bump');
 var replace = require('gulp-replace');
 
 var config = {
-	version: "0.2.0",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
+	version: "0.3.0",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
 
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
 	//buildConfig: 'debug',
 	buildConfig: 'release',
 
+	crmVer: "8",
+	crmOldVer: "7",
+
 	destPath: "wwwroot/",
 	distPath: "../artifacts/dist/",
 	solutionSrcPath: "../solutionSrc/",
+	solutionSrcOldVerPath: "../solutionSrc-crm7/",
 
 	libFolderName: 'lib/',
 	scriptFolderName: 'scripts/',
@@ -161,11 +165,11 @@ gulp.task('DEPLOY-TO-CRM', ['DIST'], function (cb) {
 	});
 });
 
-gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles', 'deploy-to-solution:updateversion'], function (cb) {
+gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles', 'deploy-to-solution:updateversion', 'deploy-to-solution-old-version'], function (cb) {
 	// TODO: Create an unpacker that gets solutions from CRM, and extracts into solution src - using cmd similar to this:
 	//       crmtools\SolutionPackager.exe /a:Extract /p:Both /f:"../solutionSrc" /e:Warning /allowDelete:Yes /n /loc /z:PowerBIViewer.zip
 
-	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer_' + config.version.replace(/\./g, '_') + '.zip"', function (err, stdout, stderr) {
+	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer_CRM' + config.crmVer + "_v" + config.version.replace(/\./g, '_') + '.zip"', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.error(stderr);
 		cb(err);
@@ -183,6 +187,36 @@ gulp.task('deploy-to-solution:updateversion', function () {
 		.pipe(replace(/<Version>.*<\/Version>/g, "<Version>" + config.version + "</Version>", { stripBOM: false }))
 		.pipe(gulp.dest(config.solutionSrcPath + "Other/"));
 });
+
+/*************************************************************
+ *
+ * Code to update solution for CRM 2015
+ * Temporary here until 2016 is the "oldest" on CRM online
+ * 
+ *************************************************************/
+
+gulp.task('deploy-to-solution-old-version', ['deploy-to-solution-old-version:updatefiles', 'deploy-to-solution-old-version:updateversion'], function (cb) {
+	exec('..\\artifacts\\crmTools\\SolutionPackager.exe /a:Pack /p:Both /f:"' + config.solutionSrcOldVerPath + '" /e:Warning /allowDelete:Yes /n /loc /z:"..\\artifacts\\PowerBIViewer_CRM' + config.crmOldVer + "_v" + config.version.replace(/\./g, '_') + '.zip"', function (err, stdout, stderr) {
+		console.log(stdout);
+		console.error(stderr);
+		cb(err);
+	});
+});
+
+gulp.task('deploy-to-solution-old-version:updatefiles', ['DIST'], function () {
+	return gulp.src(config.distPath + "**/*")
+		.pipe(newer(config.solutionSrcOldVerPath + "WebResources/his_"))
+		.pipe(gulp.dest(config.solutionSrcOldVerPath + "WebResources/his_"));
+});
+
+gulp.task('deploy-to-solution-old-version:updateversion', function () {
+	return gulp.src(config.solutionSrcOldVerPath + "Other/Solution.xml")
+		.pipe(replace(/<Version>.*<\/Version>/g, "<Version>" + config.version + "</Version>", { stripBOM: false }))
+		.pipe(gulp.dest(config.solutionSrcOldVerPath + "Other/"));
+});
+
+/***** END 2015 LOGIC *****/
+/**************************/
 
 gulp.task('CLEAN', ['clean:libraries', 'clean:scripts', 'clean:styles', 'clean:dist']);
 

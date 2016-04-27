@@ -2,10 +2,10 @@ src/wwwroot/powerBi.css
 src/wwwroot/scripts/**/*.js
 src/wwwroot/lib/
 
-solutionSrc/**
-!solutionSrc/**/*.xml
-!solutionSrc/**/*.resx
-!solutionSrc/WebResources/his_/scripts/powerBiConfig.js
+solutionSrc*/WebResources/**/*.css
+solutionSrc*/WebResources/**/*.html
+solutionSrc*/WebResources/**/*.js
+!solutionSrc*/WebResources/his_/scripts/powerBiConfig.js
 
 .vs/
 bower_components/
