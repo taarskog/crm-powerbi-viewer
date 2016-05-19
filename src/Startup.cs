@@ -19,6 +19,7 @@
 			app.UseIISPlatformHandler();
 
 			app.UseStaticFiles();
+			app.UseStaticFiles("/webresources/his_");
 
 			app.Run(async (context) =>
 			{
