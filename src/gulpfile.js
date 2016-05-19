@@ -17,7 +17,7 @@ var bump = require('gulp-bump');
 var replace = require('gulp-replace');
 
 var config = {
-	version: "0.3.0",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
+	version: "0.3.1",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
 
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
 	//buildConfig: 'debug',
@@ -38,8 +38,8 @@ var config = {
 		tsFiles: 'ts/**/*.ts',
 		tsTypingFiles: ['ts/filesort.d.ts', 'typings/browser.d.ts'],
 		libFiles: [
-			'bower_components/adal-angular-for-crm/dist/adal.min.js',
-			'bower_components/adal-angular-for-crm/dist/adal-angular.min.js',
+			'bower_components/adal-angular/dist/adal.min.js',
+			'bower_components/adal-angular/dist/adal-angular.min.js',
 			'bower_components/angular/angular.min.js',
 			'bower_components/angular-route/angular-route.min.js',
 			'bower_components/clipboard/dist/clipboard.min.js'

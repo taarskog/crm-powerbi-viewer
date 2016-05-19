@@ -4,5 +4,7 @@
 		clientId: string;
 		tokenCacheLocation?: string;
 		enableHttpCache?: boolean;
+		adalLogLevel?: number;
+		adalLogFn?: Function;
 	}
 }

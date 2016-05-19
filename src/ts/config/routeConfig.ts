@@ -25,8 +25,8 @@ module PowerBiViewer.Config.RouteConfig {
 		$routeProvider
 			.when('/', getRoute(pbiConfig))
 			.when('/config', createAdalRoute($window, 'views/config.html', 'IConfigController'))
-			.when('/tile'/*/:isId/:dashboard/:tile/:group?'*/, createAdalRoute($window, 'views/tile.html', 'ITileController'))
-			.when('/report'/*/:isId/:report/:group?'*/, createAdalRoute($window, 'views/report.html', 'IReportController'))
+			.when('/tile', createAdalRoute($window, 'views/tile.html', 'ITileController'))
+			.when('/report', createAdalRoute($window, 'views/report.html', 'IReportController'))
 			.when('/configerror', { templateUrl: getFullTemplateUrl($window, 'views/configerror.html') })
 			.otherwise({ redirectTo: '/' });
 	}
@@ -79,12 +79,7 @@ module PowerBiViewer.Config.RouteConfig {
 			return "/configerror";
 		}
 
-		var groupPart = (typeof pbi.groupId === "undefined") ? "" : ("/" + pbi.groupId);
-
-		return '/tile' /*/' + isId + '/' +
-			(isId ? pbi.dashboardId : pbi.dashboardName) + '/' +
-			(isId ? pbi.tileId : pbi.tileName) +
-			groupPart*/;
+		return '/tile';
 	}
 
 	function buildReportUrl(pbi: PowerBiViewer.Models.PowerBiViewConfigModel): string {
@@ -94,11 +89,7 @@ module PowerBiViewer.Config.RouteConfig {
 			return "/configerror";
 		}
 
-		var groupPart = (typeof pbi.groupId === "undefined") ? "" : ("/" + pbi.groupId);
-
-		return '/report' /*/' + isId + '/' +
-			(isId ? pbi.reportId : pbi.reportName) +
-			groupPart;*/
+		return '/report';
 	}
 
 }

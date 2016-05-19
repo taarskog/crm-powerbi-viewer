@@ -12,7 +12,9 @@
 			tenant: null,
 			clientId: null,
 			tokenCacheLocation: 'sessionStorage',
-			enableHttpCache: true
+			enableHttpCache: true,
+			adalLogLevel: 0,
+			adalLogFn: msg => console.log(msg)
 		};
 
 		constructor(config: Models.PowerBiAppConfigModel) {
@@ -22,7 +24,7 @@
 		}
 
 		/**
-		 * Set defaults of values not set in prvided configuration.
+		 * Set defaults of values not set in provided configuration.
 		 */
 		private setDefaults():void {
 			if (typeof this.config === "undefined" || this.config === null) {
@@ -30,19 +32,27 @@
 			}
 
 			if (typeof powerBiViewerConfig.tenant === "undefined") {
-				powerBiViewerConfig.tenant = AppConfig.powerBiViewerConfigDefaults.tenant
+				powerBiViewerConfig.tenant = AppConfig.powerBiViewerConfigDefaults.tenant;
 			}
 
 			if (typeof powerBiViewerConfig.clientId === "undefined") {
-				powerBiViewerConfig.clientId = AppConfig.powerBiViewerConfigDefaults.clientId
+				powerBiViewerConfig.clientId = AppConfig.powerBiViewerConfigDefaults.clientId;
 			}
 
 			if (typeof powerBiViewerConfig.tokenCacheLocation === "undefined") {
-				powerBiViewerConfig.tokenCacheLocation = AppConfig.powerBiViewerConfigDefaults.tokenCacheLocation
+				powerBiViewerConfig.tokenCacheLocation = AppConfig.powerBiViewerConfigDefaults.tokenCacheLocation;
 			}
 
 			if (typeof powerBiViewerConfig.enableHttpCache === "undefined") {
-				powerBiViewerConfig.enableHttpCache = AppConfig.powerBiViewerConfigDefaults.enableHttpCache
+				powerBiViewerConfig.enableHttpCache = AppConfig.powerBiViewerConfigDefaults.enableHttpCache;
+			}
+
+			if (typeof powerBiViewerConfig.adalLogLevel === "undefined") {
+				powerBiViewerConfig.adalLogLevel = AppConfig.powerBiViewerConfigDefaults.adalLogLevel;
+			}
+
+			if (typeof powerBiViewerConfig.adalLogFn === "undefined") {
+				powerBiViewerConfig.adalLogFn = AppConfig.powerBiViewerConfigDefaults.adalLogFn;
 			}
 		}
 
