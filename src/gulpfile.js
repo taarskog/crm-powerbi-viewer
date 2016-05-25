@@ -8,7 +8,7 @@ var rename = require('gulp-rename');
 var newer = require('gulp-newer');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
+var minifyCss = require('gulp-clean-css');
 var minifyHtml = require('gulp-htmlmin');
 var preprocess = require('gulp-preprocess');
 var del = require('del');
@@ -17,7 +17,7 @@ var bump = require('gulp-bump');
 var replace = require('gulp-replace');
 
 var config = {
-	version: "0.3.1",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
+	version: "0.3.2",	// Format must be on the form <major>.<minor>.<patch> => 0.1.0
 
 	// Hardcoded build config - waiting for a more supported way of getting build/debug from VS. Work-around here http://www.myeyeson.net/gulp-js-and-browserify-with-asp-net/
 	//buildConfig: 'debug',
@@ -177,7 +177,7 @@ gulp.task('DEPLOY-TO-SOLUTION', ['deploy-to-solution:updatefiles', 'deploy-to-so
 });
 
 gulp.task('deploy-to-solution:updatefiles', ['DIST'], function () {
-	return gulp.src(config.distPath + "**/*")
+	return gulp.src([config.distPath + "**/*", "!" + config.distPath + "scripts/powerBiConfig.js"])
 		.pipe(newer(config.solutionSrcPath + "WebResources/his_"))
 		.pipe(gulp.dest(config.solutionSrcPath + "WebResources/his_"));
 });
@@ -204,7 +204,7 @@ gulp.task('deploy-to-solution-old-version', ['deploy-to-solution-old-version:upd
 });
 
 gulp.task('deploy-to-solution-old-version:updatefiles', ['DIST'], function () {
-	return gulp.src(config.distPath + "**/*")
+	return gulp.src([config.distPath + "**/*", "!" + config.distPath + "scripts/powerBiConfig.js"])
 		.pipe(newer(config.solutionSrcOldVerPath + "WebResources/his_"))
 		.pipe(gulp.dest(config.solutionSrcOldVerPath + "WebResources/his_"));
 });
