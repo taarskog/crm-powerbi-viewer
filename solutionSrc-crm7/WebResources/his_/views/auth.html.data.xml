@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource>
+  <WebResourceId>{6a23973a-b49e-e611-80f1-5065f38b4681}</WebResourceId>
+  <Name>his_/views/auth.html</Name>
+  <DisplayName>views/auth.html</DisplayName>
+  <WebResourceType>1</WebResourceType>
+  <IntroducedVersion>0.3.3</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/his_viewsauthhtml6A23973A-B49E-E611-80F1-5065F38B4681</FileName>
+</WebResource>

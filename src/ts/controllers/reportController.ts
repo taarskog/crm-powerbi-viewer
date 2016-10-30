@@ -9,17 +9,26 @@
 	}
 
 	export class ReportController implements IReportController {
-		static $inject: Array<string> = ['IPowerBiService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig', 'IFilterService'];
+		static $inject: Array<string> = ['IPowerBiService', 'IAuthService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig', 'IFilterService', '$q'];
 
 		report: Models.PowerBiReportModel;
 
 		private _adal;
 		private _log: ng.ILogService;
 		private _filter: string;
+		private _q: ng.IQService
 
-		constructor(pbiService: Services.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig, filterService: Services.IFilterService) {
+		constructor(pbiService: Services.IPowerBiService, authService: Services.IAuthService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig, filterService: Services.IFilterService, $q: ng.IQService) {
 			this._adal = adalProvider;
 			this._log = $log;
+			this._q = $q;
+
+			this.report = {
+				id: null,
+				name: "",
+				embedUrl: "",
+				webUrl: ""
+			}
 
 			if (typeof viewConfig.powerBi.filterFn !== "undefined" && viewConfig.powerBi.filterFn.length > 0) {
 				this._filter = filterService.getFilterFromFunction(viewConfig.powerBi.filterFn);
@@ -35,32 +44,35 @@
 
 			var groupPart = (typeof viewConfig.powerBi.groupId === "undefined" ? "" : ("&groupId=" + viewConfig.powerBi.groupId));
 
-			if (isId === true) {
-				this.report = {
-					id: viewConfig.powerBi.reportId,
-					name: "<undefined when using ID>",
-					embedUrl: "https://app.powerbi.com/reportEmbed?reportId=" + viewConfig.powerBi.reportId + groupPart,
-					webUrl: "https://app.powerbi.com/reports/" + viewConfig.powerBi.reportId,
-				};
-			} else {
-				pbiService.getReport(viewConfig.powerBi.reportName)
-					.then(report => this.report = report);
-			}
+			authService.waitForAuth().then(() => {
 
-			$window.onmessage = (ev: MessageEvent) => {
-				if (ev.data) {
-					try {
-						var data: IPowerBiMessage = JSON.parse(ev.data);
-						if (data.event === "reportClicked") {
+				if (isId === true) {
+					this.report = {
+						id: viewConfig.powerBi.reportId,
+						name: "<undefined when using ID>",
+						embedUrl: "https://app.powerbi.com/reportEmbed?reportId=" + viewConfig.powerBi.reportId + groupPart,
+						webUrl: "https://app.powerbi.com/reports/" + viewConfig.powerBi.reportId,
+					};
+				} else {
+					pbiService.getReport(viewConfig.powerBi.reportName)
+						.then(report => this.report = report);
+				}
 
-							$window.open(this.report.webUrl, this.report.id, null, true);
+				$window.onmessage = (ev: MessageEvent) => {
+					if (ev.data) {
+						try {
+							var data: IPowerBiMessage = JSON.parse(ev.data);
+							if (data.event === "reportClicked") {
+
+								$window.open(this.report.webUrl, this.report.id, null, true);
+							}
+						}
+						catch (e) {
+							this._log.error("Unable to read message data from Power BI iframe");
 						}
 					}
-					catch (e) {
-						this._log.error("Unable to read message data from Power BI iframe");
-					}
-				}
-			};
+				};
+			});
 		}
 
 		sendToken(width: number, height: number): void {

@@ -7,6 +7,7 @@ module PowerBiViewer.App {
 		.constant('XrmStatic', typeof parent.Xrm === "undefined" ? null : parent.Xrm)
 		.service('IPowerBiService', PowerBiViewer.Services.PowerBiService)
 		.service('IFilterService', PowerBiViewer.Services.FilterService)
+		.service('IAuthService', PowerBiViewer.Services.AuthService)
 		.directive(Directives.onLoadDirective.name, Directives.onLoadDirective.get)
 		.directive(Directives.clipboardDirective.name, Directives.clipboardDirective.get)
 		.controller('ITileController', Controllers.TileController)

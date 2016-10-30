@@ -17,6 +17,7 @@
 /// <reference path="config/routeconfig.ts" />
 
 /// <reference path="services/filterservice.ts" />
+/// <reference path="services/authservice.ts" />
 /// <reference path="services/powerbiservice.ts" />
 
 /// <reference path="controllers/configcontroller.ts" />

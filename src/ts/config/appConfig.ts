@@ -14,7 +14,12 @@
 			tokenCacheLocation: 'sessionStorage',
 			enableHttpCache: true,
 			adalLogLevel: 0,
-			adalLogFn: msg => console.log(msg)
+			adalLogFn: msg => console.log(msg),
+			urlWhitelist: [],
+			anonymousEndpoints: [
+				".dynamics.com"
+			],
+			crmOnline: true
 		};
 
 		constructor(config: Models.PowerBiAppConfigModel) {
@@ -54,6 +59,18 @@
 			if (typeof powerBiViewerConfig.adalLogFn === "undefined") {
 				powerBiViewerConfig.adalLogFn = AppConfig.powerBiViewerConfigDefaults.adalLogFn;
 			}
+
+			if (typeof powerBiViewerConfig.urlWhitelist === "undefined") {
+				powerBiViewerConfig.urlWhitelist = AppConfig.powerBiViewerConfigDefaults.urlWhitelist;
+			}
+
+			if (typeof powerBiViewerConfig.anonymousEndpoints === "undefined") {
+				powerBiViewerConfig.anonymousEndpoints = AppConfig.powerBiViewerConfigDefaults.anonymousEndpoints;
+			}
+
+			if (typeof powerBiViewerConfig.crmOnline === "undefined") {
+				powerBiViewerConfig.crmOnline = AppConfig.powerBiViewerConfigDefaults.crmOnline;
+			}
 		}
 
 
@@ -72,6 +89,14 @@
 			}
 
 			if (typeof powerBiViewerConfig.enableHttpCache !== "boolean") {
+				state = false;
+			}
+
+			if (!Array.isArray(powerBiViewerConfig.urlWhitelist)) {
+				state = false;
+			}
+
+			if (!Array.isArray(powerBiViewerConfig.anonymousEndpoints)) {
 				state = false;
 			}
 

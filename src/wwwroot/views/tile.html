@@ -1,2 +1,14 @@
-﻿<div class="loading" ng-hide="vm.tile.id">Loading...</div>
-<iframe class="powerbi-container" ng-show="vm.tile.id" id="{{vm.tile.id}}" ng-onload="vm.sendToken(width, height)" ng-src="{{vm.tile.embedUrl}}"></iframe>
+﻿<div ng-hide="userInfo.isAuthenticated">
+	<div>
+		Not authenticated - look for a popup window to log in to the Power BI Service.
+	</div>
+	<div>
+		(<a href="#" onclick="location.reload();return false;">refresh</a> if no window exists)
+	</div>
+</div>
+
+<div ng-show="userInfo.isAuthenticated">
+
+	<div class="loading" ng-hide="vm.tile.id">Loading...</div>
+	<iframe class="powerbi-container" ng-show="vm.tile.id" id="{{vm.tile.id}}" ng-onload="vm.sendToken(width, height)" ng-src="{{vm.tile.embedUrl}}"></iframe>
+</div>

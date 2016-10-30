@@ -2,6 +2,9 @@ var powerBiViewerConfig = {
 	// See documentation on how to register the application in Azure AD and get a client id. Uncomment the line below and insert your client id.
 	//clientId: "<Get Client Id from Azure AD>",
 
+	// Setting this false enables alternative popup authentication for on-premise installations
+	crmOnline: true,
+
 	// Where to cache tokens. Valid values are 'sessionStorage' or 'localStorage'. You will typically use session.
 	tokenCacheLocation: 'sessionStorage',
 

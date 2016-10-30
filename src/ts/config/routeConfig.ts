@@ -5,8 +5,11 @@ module PowerBiViewer.Config.RouteConfig {
 	}
 
 	export function configure($routeProvider: ng.route.IRouteProvider, $windowProvider: ng.IServiceProvider, appConfig: Config.IAppConfig, viewConfig: Config.IViewConfig) {
-		var $window = $windowProvider.$get();
-		if (appConfig.isValid) {
+		var $window: ng.IWindowService = $windowProvider.$get();
+		if (!($window !== $window.parent)) {
+			setRouteForAuthWindow($routeProvider, $window);
+		}
+		else if (appConfig.isValid) {
 			setRoutes($routeProvider, $window, viewConfig.powerBi);
 		}
 		else {
@@ -17,18 +20,22 @@ module PowerBiViewer.Config.RouteConfig {
 		export const $inject: Array<string> = ['$routeProvider', '$windowProvider', 'IAppConfig', 'IViewConfig'];
 	}
 
+	function setRouteForAuthWindow($routeProvider: ng.route.IRouteProvider, $window: ng.IWindowService) {
+		$routeProvider.otherwise({ templateUrl: getFullTemplateUrl($window, 'views/auth.html') });
+	}
+
 	function setRouteForInvalidState($routeProvider: ng.route.IRouteProvider, $window: ng.IWindowService) {
 		$routeProvider.otherwise({ templateUrl: getFullTemplateUrl($window, 'views/configerror.html') });
 	}
 
 	function setRoutes($routeProvider: ng.route.IRouteProvider, $window: ng.IWindowService, pbiConfig: Models.PowerBiViewConfigModel): void {
 		$routeProvider
-			.when('/', getRoute(pbiConfig))
+			.when('/home', getRoute(pbiConfig))
 			.when('/config', createAdalRoute($window, 'views/config.html', 'IConfigController'))
 			.when('/tile', createAdalRoute($window, 'views/tile.html', 'ITileController'))
 			.when('/report', createAdalRoute($window, 'views/report.html', 'IReportController'))
 			.when('/configerror', { templateUrl: getFullTemplateUrl($window, 'views/configerror.html') })
-			.otherwise({ redirectTo: '/' });
+			.otherwise({ redirectTo: '/home' });
 	}
 
 	/**

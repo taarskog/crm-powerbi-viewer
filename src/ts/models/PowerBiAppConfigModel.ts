@@ -6,5 +6,8 @@
 		enableHttpCache?: boolean;
 		adalLogLevel?: number;
 		adalLogFn?: Function;
+		urlWhitelist?: string[];
+		anonymousEndpoints?: string[];
+		crmOnline?: boolean;
 	}
 }

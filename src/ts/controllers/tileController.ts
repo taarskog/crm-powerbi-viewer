@@ -9,14 +9,14 @@
 	}
 
 	export class TileController implements ITileController {
-		static $inject: Array<string> = ['IPowerBiService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig'];
+		static $inject: Array<string> = ['IPowerBiService', 'IAuthService', 'adalAuthenticationService', '$log', '$window', 'IViewConfig'];
 
 		tile: Models.PowerBiTileModel;
 
 		private _adal;
 		private _log: ng.ILogService;
 
-		constructor(pbiService: Services.IPowerBiService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig) {
+		constructor(pbiService: Services.IPowerBiService, authService: Services.IAuthService, adalProvider, $log: ng.ILogService, $window: ng.IWindowService, viewConfig: Config.IViewConfig) {
 			this._adal = adalProvider;
 			this._log = $log;
 
@@ -24,39 +24,41 @@
 
 			var groupPart = (typeof viewConfig.powerBi.groupId === "undefined" ? "" : ("&groupId=" + viewConfig.powerBi.groupId));
 
-			if (isId === true) {
-				this.tile = {
-					id: viewConfig.powerBi.tileId,
-					title: "<undefined when using ID>",
-					embedUrl: "https://app.powerbi.com/embed?dashboardId=" + viewConfig.powerBi.dashboardId + "&tileId=" + viewConfig.powerBi.tileId + groupPart
-				};
-			} else {
-				pbiService.getTile(viewConfig.powerBi.dashboardName, viewConfig.powerBi.tileName)
-					.then(tile => {
-						this.tile = tile;
-					}
-				);
-			}
+			authService.waitForAuth().then(() => {
+				if (isId === true) {
+					this.tile = {
+						id: viewConfig.powerBi.tileId,
+						title: "<undefined when using ID>",
+						embedUrl: "https://app.powerbi.com/embed?dashboardId=" + viewConfig.powerBi.dashboardId + "&tileId=" + viewConfig.powerBi.tileId + groupPart
+					};
+				} else {
+					pbiService.getTile(viewConfig.powerBi.dashboardName, viewConfig.powerBi.tileName)
+						.then(tile => {
+							this.tile = tile;
+						}
+						);
+				}
 
-			$window.onmessage = (ev: MessageEvent) => {
-				if (ev.data) {
-					try {
-						var data: IPowerBiMessage = JSON.parse(ev.data);
-						if (data.event === "tileClicked") {
+				$window.onmessage = (ev: MessageEvent) => {
+					if (ev.data) {
+						try {
+							var data: IPowerBiMessage = JSON.parse(ev.data);
+							if (data.event === "tileClicked") {
 
-							var iFrameSrc = (<HTMLIFrameElement>$window.document.getElementById(this.tile.id)).src;
-							var dashboardId = iFrameSrc.split("dashboardId=")[1].split("&")[0];
-							var urlVal = iFrameSrc.split("/embed")[0] + "/dashboards/{0}";
-							urlVal = urlVal.replace("{0}", dashboardId)
+								var iFrameSrc = (<HTMLIFrameElement>$window.document.getElementById(this.tile.id)).src;
+								var dashboardId = iFrameSrc.split("dashboardId=")[1].split("&")[0];
+								var urlVal = iFrameSrc.split("/embed")[0] + "/dashboards/{0}";
+								urlVal = urlVal.replace("{0}", dashboardId)
 
-							$window.open(urlVal, this.tile.id, null, true);
+								$window.open(urlVal, this.tile.id, null, true);
+							}
+						}
+						catch (e) {
+							this._log.error("Unable to read message data from Power BI iframe");
 						}
 					}
-					catch (e) {
-						this._log.error("Unable to read message data from Power BI iframe");
-					}
-				}
-			};
+				};
+			});
 		}
 
 		sendToken(width: number, height: number): void {
