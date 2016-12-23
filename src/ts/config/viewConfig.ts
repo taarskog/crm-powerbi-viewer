@@ -7,13 +7,6 @@
 		powerBi: Models.PowerBiViewConfigModel;
 
 		constructor(queryString: string) {
-			if (typeof queryString !== "undefined" && queryString !== null && queryString.length > 0) {
-				sessionStorage.setItem("PowerBiViewer.Config", queryString);
-			}
-			else {
-				queryString = sessionStorage.getItem("PowerBiViewer.Config");
-			}
-
 			var query = ViewConfig.parseQueryString(queryString);
 			this.powerBi = <Models.PowerBiViewConfigModel>ViewConfig.parseCrmDataString(query.data);
 		}

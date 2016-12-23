@@ -1,7 +1,10 @@
 ﻿var Logging = Logging || {};
 
-module PowerBiViewer.Config.AdalConfig {
+interface Window { pbiAuthMaster: number; }
+window.pbiAuthMaster = window.pbiAuthMaster || -1;
 
+
+module PowerBiViewer.Config.AdalConfig {
 	export function configure($httpProvider: ng.IHttpProvider, adalAuthenticationServiceProvider, appConfig: Config.IAppConfig, $windowProvider: ng.IServiceProvider) {
 		var config = appConfig.config;
 		var $window: ng.IWindowService = $windowProvider.$get();
@@ -20,6 +23,27 @@ module PowerBiViewer.Config.AdalConfig {
 				anonymousEndpoints: config.anonymousEndpoints,
 				redirectUri: $window.location.href.split('#')[0].split('?')[0],
 				displayCall: config.crmOnline ? null : function (urlNavigate) {
+					let myId = -1;
+					let masterId = -1;
+					for (let i = 0; i < parent.frames.length; i++){
+						let childFrame = parent.frames[i];
+						if (childFrame.frameElement.id === window.frameElement.id) {
+							myId = i;
+						}
+
+						if (masterId === -1 && childFrame.location.pathname.indexOf("/his_/powerBiViewer.html") >= 0) {
+							masterId = i;
+						}
+
+						if (myId >= 0 && masterId >= 0) {
+							break;
+						}
+					}
+
+					parent.frames[masterId].pbiAuthMaster = parent.frames[masterId].pbiAuthMaster == -1 ? myId : parent.frames[masterId].pbiAuthMaster;
+					let isAuthMaster = myId === parent.frames[masterId].pbiAuthMaster;
+					console.debug("Auth master? " + (isAuthMaster ? "*Yes*" : "No"));
+
 					let popupWidth = 483;
 					let popupHeight = 600;
 
@@ -38,21 +62,47 @@ module PowerBiViewer.Config.AdalConfig {
 					let left = ((width / 2) - (popupWidth / 2)) + winLeft;
 					let top = ((height / 2) - (popupHeight / 2)) + winTop;
 
-					var popupWindow = $window.open(urlNavigate, "pbiViewerLogin", `width=${popupWidth}, height=${popupHeight}, top=${top}, left=${left}`);
+					let popupWindow = $window.open(null, "pbiViewerLogin", 'width=' + popupWidth + ', height=' + popupHeight + ', top=' + top + ', left=' + left);
 					if (popupWindow && popupWindow.focus) {
 						popupWindow.focus();
 					}
 
-					var registeredRedirectUri = this.redirectUri;
-					var pollTimer = $window.setInterval(() => {
+					if (isAuthMaster) {
+						popupWindow.location.replace(urlNavigate);
+					}
+
+					let registeredRedirectUri = this.redirectUri;
+					let pollTimer = $window.setInterval(() => {
 						if (!popupWindow || popupWindow.closed || popupWindow.closed === undefined) {
 							$window.clearInterval(pollTimer);
+
+							// FIX: Reload to handle multiple webresources on the same page as they will all show the same report/tile if not (temp fix).
+							if (isAuthMaster) {
+								// Resetting auth master in situations where a single frame will later need to re-auth without having to wait for reload of old master.
+								parent.frames[masterId].pbiAuthMaster = -1;
+							}
+							else {
+								//console.info("Slave reloading...");
+								$window.location.reload();
+							}
 						}
 						try {
 							if (popupWindow.document.URL.indexOf(registeredRedirectUri) != -1) {
 								$window.clearInterval(pollTimer);
-								$window.location.hash = popupWindow.location.hash;
-								popupWindow.close();
+
+								if (isAuthMaster) {
+									//console.info("Auth master getting hash...");
+									// Resetting auth master in situations where a single frame will later need to re-auth without having to wait for reload of old master.
+									parent.frames[masterId].pbiAuthMaster = -1;
+									$window.location.hash = popupWindow.location.hash;
+									popupWindow.close();
+								}
+
+								// FIX: Reload to handle multiple webresources on the same page as they will all show the same report/tile if not (temp fix).
+								if (!isAuthMaster) {
+									//console.info("Slave reloading...");
+									$window.location.reload();
+								}
 							}
 						} catch (e) {
 						}
