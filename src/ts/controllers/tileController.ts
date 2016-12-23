@@ -47,7 +47,13 @@
 
 								var iFrameSrc = (<HTMLIFrameElement>$window.document.getElementById(this.tile.id)).src;
 								var dashboardId = iFrameSrc.split("dashboardId=")[1].split("&")[0];
-								var urlVal = iFrameSrc.split("/embed")[0] + "/dashboards/{0}";
+
+								var groupPart = "";
+								if (iFrameSrc.indexOf("groupId=") > 0) {
+									groupPart = "/groups/" + iFrameSrc.split("groupId=")[1].split("&")[0];
+								}
+								
+								var urlVal = iFrameSrc.split("/embed")[0] + groupPart + "/dashboards/{0}";
 								urlVal = urlVal.replace("{0}", dashboardId)
 
 								$window.open(urlVal, this.tile.id, null, true);
