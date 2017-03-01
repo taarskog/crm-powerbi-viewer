@@ -55,9 +55,11 @@ To be able to authenticate with Power BI a token is required. The token is deliv
 1. Give the app at least delegated permissions to view all reports and dashboards (recommend future proofing this by also adding view all groups).
 
    > [![]({{BASE_PATH}}/assets/images/aad/AAD-add-pbi-delegated-permissions.png)]({{BASE_PATH}}/assets/images/aad/AAD-add-pbi-delegated-permissions.png)
-   
+
 1. Finally scroll up to the **client id** and copy it as you will need the id when installing the solution in Dynamics CRM.
 
    > [![]({{BASE_PATH}}/assets/images/aad/AAD-clientid.png)]({{BASE_PATH}}/assets/images/aad/AAD-clientid.png)
 
-1. All done here continue to [install and configure crm-powerbi-viewer](install-solution.html) 
+1. **Click save** and then you are all done here.
+
+   > Next step is to [install and configure crm-powerbi-viewer](install-solution.html) in Dynamics CRM.
