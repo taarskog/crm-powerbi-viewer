@@ -31,8 +31,9 @@ created in Power BI.
 <br />
 <br />
 
-**Important** The code is currently built to support [CRM Online](https://www.microsoft.com/en-us/dynamics/crm-office-365.aspx)
-and has not been tested for Dynamics CRM on-premises.
+**Important** The code is primarily built to support [CRM Online / Dynamics 365](https://www.microsoft.com/en-us/dynamics/crm-office-365.aspx)
+and has not been properly tested for Dynamics CRM on-premises. It will run but may have limited functionality - such as embedding multiple tiles/reports on the same page.
+Documentation for on-premise is not available - though the most important/only difference is setting crmOnline to false in the configuration web resource.
 {: .alert .alert-warning }
 
 <br />
