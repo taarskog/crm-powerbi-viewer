@@ -1,5 +1,13 @@
 {
-    "url": "//analytics-heiigjen.azurewebsites.net/",
-	"siteId": 1,
-    "heartBeat": 15
+    "piwik": {
+        "enabled": true,
+        "url": "//analytics-heiigjen.azurewebsites.net/",
+        "siteId": 1,
+        "heartBeat": 15
+    },
+    "ga": {
+        "enabled": true,
+        "url": "https://www.google-analytics.com/analytics.js",
+        "trackingId": "UA-75243310-3"
+    }
 }
