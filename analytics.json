@@ -1,4 +1,5 @@
 {
     "url": "//analytics-heiigjen.azurewebsites.net/",
-	"siteId": 1
+	"siteId": 1,
+    "heartBeat": 15
 }
