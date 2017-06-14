@@ -1,4 +1,4 @@
-import * as AuthenticationContext from "adal-angular";
+import AuthenticationContext from "adal-angular";
 import appConfig from "../config/appConfig";
 import log from "../diag/logger";
 import { LoginEventData } from "./eventData";

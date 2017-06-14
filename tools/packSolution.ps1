@@ -12,7 +12,7 @@ function Main() {
     (Get-Content $solutionXmlFile) -replace '<Version>.*</Version>', "<Version>$version</Version>" | Set-Content $solutionXmlFile
 
     Write-Host "Packing Solution..."
-    Compress-CrmCISolution -Pack -ZipFile "$PSScriptRoot\..\dist\PowerBIViewer_v$(($version) -replace '\.', '_').zip" -Folder "$PSScriptRoot\..\solutionSrc" -PackageType Both -MappingFile "$PSScriptRoot\solutionFileMap.xml"
+    Compress-CrmCISolution -Pack -ZipFile "$PSScriptRoot\..\dist\PowerBIViewer_v$(($version) -replace '\.', '_').zip" -Folder "$PSScriptRoot\..\solutionSrc" -PackageType Both -MappingFile "$PSScriptRoot\solutionFileMap.xml" -Loc
 }
 
 Main

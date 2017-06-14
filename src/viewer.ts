@@ -5,7 +5,6 @@ import eventLog from "./diag/eventLog";
 import pbia from "./diag/analytics";
 import AuthBase from "./auth/authBase";
 import {service, factories, Embed, IEmbedConfiguration, models} from "powerbi-client";
-import * as pbiService from "./services/powerbi-service";
 import AppBase from "./appBase";
 import { XhrClient, RequestMethods, XhrRequestError } from "./services/xhrClient";
 

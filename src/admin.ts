@@ -4,7 +4,7 @@ import pbia from "./diag/analytics";
 import AuthBase from "./auth/authBase";
 import * as PbiService from "./services/powerbi-service";
 import * as Handlebars from "handlebars";
-import * as Clipboard from "clipboard";
+import Clipboard from "clipboard";
 import AppBase from "./appBase";
 
 interface DashboardModelExt extends PbiService.DashboardModel {
