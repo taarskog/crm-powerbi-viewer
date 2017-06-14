@@ -133,32 +133,16 @@
 </value>
   </metadata>
   <data name="15062:Description,heiigjensolutionshis91030" xml:space="preserve">
-    <value>Solutions for Dynamics CRM by Heiigjen Solutions.</value>
+    <value>Solutions for Dynamics 365 by Heiigjen Solutions.</value>
     <comment> 'heiigjensolutions' : Description for Solution Publisher</comment>
   </data>
-  <data name="15062:Description,heiigjensolutionshis91030" xml:space="preserve">
-    <value>Solutions for Dynamics CRM by Heiigjen Solutions.</value>
-    <comment> 'heiigjensolutions' : Description for Solution Publisher</comment>
-  </data>
-  <data name="15062:Description,PowerBIViewer" xml:space="preserve">
-    <value>Embed tiles and reports from Power BI into CRM Dashboards and Forms.</value>
-    <comment> 'PowerBIViewer' : Description for Solution</comment>
-  </data>
-  <data name="15062:Description,PowerBIViewer" xml:space="preserve">
-    <value>Embed tiles and reports from Power BI into CRM Dashboards and Forms.</value>
+   <data name="15062:Description,PowerBIViewer" xml:space="preserve">
+    <value>Embed tiles and reports from Power BI into Dynamics 365 Sales and Service Dashboards and Forms.</value>
     <comment> 'PowerBIViewer' : Description for Solution</comment>
   </data>
   <data name="15062:LocalizedName,heiigjensolutionshis91030" xml:space="preserve">
     <value>Heiigjen Solutions</value>
     <comment> 'heiigjensolutions' : LocalizedName for Solution Publisher</comment>
-  </data>
-  <data name="15062:LocalizedName,heiigjensolutionshis91030" xml:space="preserve">
-    <value>Heiigjen Solutions</value>
-    <comment> 'heiigjensolutions' : LocalizedName for Solution Publisher</comment>
-  </data>
-  <data name="15062:LocalizedName,PowerBIViewer" xml:space="preserve">
-    <value>Power BI Viewer</value>
-    <comment> 'PowerBIViewer' : LocalizedName for Solution</comment>
   </data>
   <data name="15062:LocalizedName,PowerBIViewer" xml:space="preserve">
     <value>Power BI Viewer</value>

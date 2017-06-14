@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="8.0.0001.0079" SolutionPackageVersion="8.0" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="7.0.0002.0072" SolutionPackageVersion="7.0" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>PowerBIViewer</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Power BI Viewer" languagecode="1033" />
     </LocalizedNames>
     <Descriptions>
-      <Description description="Embed tiles and reports from Power BI into CRM Dashboards and Forms." languagecode="1033" />
+      <Description description="Embed tiles and reports from Power BI into Dynamics 365 Sales and Service Dashboards and Forms." languagecode="1033" />
     </Descriptions>
-    <Version>0.3.3</Version>
+    <Version>0.5.0</Version>
     <Managed>2</Managed>
-    <ConfigurationPage>his_/powerBiConfig.html</ConfigurationPage>
+    <ConfigurationPage>his_/powerbi/admin.html</ConfigurationPage>
     <Publisher>
       <UniqueName>heiigjensolutions</UniqueName>
       <LocalizedNames>
         <LocalizedName description="Heiigjen Solutions" languagecode="1033" />
       </LocalizedNames>
       <Descriptions>
-        <Description description="Solutions for Dynamics CRM by Heiigjen Solutions." languagecode="1033" />
+        <Description description="Solutions for Dynamics 365 by Heiigjen Solutions..&#xA;&#xA;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR&#xA;IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,&#xA;FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE&#xA;AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER&#xA;LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,&#xA;OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE&#xA;SOFTWARE." languagecode="1033" />
       </Descriptions>
       <EMailAddress>trond@heiigjen.com</EMailAddress>
-      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <SupportingWebsiteUrl>http://crm-powerbi-viewer.heiigjen.com/</SupportingWebsiteUrl>
       <CustomizationPrefix>his</CustomizationPrefix>
       <CustomizationOptionValuePrefix>91030</CustomizationOptionValuePrefix>
       <Addresses>
@@ -29,7 +29,7 @@
           <AddressTypeCode>1</AddressTypeCode>
           <City xsi:nil="true"></City>
           <County xsi:nil="true"></County>
-          <Country xsi:nil="true"></Country>
+          <Country>Norway</Country>
           <Fax xsi:nil="true"></Fax>
           <FreightTermsCode xsi:nil="true"></FreightTermsCode>
           <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
@@ -83,21 +83,11 @@
       </Addresses>
     </Publisher>
     <RootComponents>
-      <RootComponent type="61" schemaName="his_/lib/adal.min.js" behavior="0" />
-      <RootComponent type="61" schemaName="his_/lib/adal_angular.min.js" behavior="0" />
-      <RootComponent type="61" schemaName="his_/lib/angular.min.js" behavior="0" />
-      <RootComponent type="61" schemaName="his_/lib/angular_route.min.js" behavior="0" />
-	  <RootComponent type="61" schemaName="his_/lib/clipboard.min.js" behavior="0" />
-      <RootComponent type="61" schemaName="his_/powerBi.css" behavior="0" />
-      <RootComponent type="61" schemaName="his_/powerBiConfig.html" behavior="0" />
-      <RootComponent type="61" schemaName="his_/powerBiViewer.html" behavior="0" />
-      <RootComponent type="61" schemaName="his_/scripts/powerBiConfig.js" behavior="0" />
-      <RootComponent type="61" schemaName="his_/scripts/powerBiViewer.js" behavior="0" />
-      <RootComponent type="61" schemaName="his_/views/auth.html" behavior="0" />
-      <RootComponent type="61" schemaName="his_/views/config.html" behavior="0" />
-      <RootComponent type="61" schemaName="his_/views/configerror.html" behavior="0" />
-      <RootComponent type="61" schemaName="his_/views/report.html" behavior="0" />
-      <RootComponent type="61" schemaName="his_/views/tile.html" behavior="0" />
+      <RootComponent type="61" schemaName="his_/powerbi/admin.html" />
+      <RootComponent type="61" schemaName="his_/powerbi/scripts/admin.js" />
+      <RootComponent type="61" schemaName="his_/powerbi/scripts/config.js" />
+      <RootComponent type="61" schemaName="his_/powerbi/scripts/viewer.js" />
+      <RootComponent type="61" schemaName="his_/powerbi/viewer.html" />
     </RootComponents>
     <MissingDependencies />
   </SolutionManifest>

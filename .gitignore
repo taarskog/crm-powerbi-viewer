@@ -1,27 +1,44 @@
-src/wwwroot/powerBi.css
-src/wwwroot/scripts/**/*.js
-src/wwwroot/lib/
+# Ignore Dev Deployment Server
+.deployconfig*
 
-solutionSrc*/WebResources/**/*.css
-solutionSrc*/WebResources/**/*.html
-solutionSrc*/WebResources/**/*.js
-!solutionSrc*/WebResources/his_/scripts/powerBiConfig.js
+# Ignore User Specific App Config
+userappconfig.js
+
+
+[Tt]est/[Rr]esults/
+
+[Dd]ist/
+node_modules/
+npm-debug.log
+npm-debug.log.*
 
 .vs/
-bower_components/
-node_modules/
-*.user
-project.lock.json
-artifacts/
-typings/
 
-# Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
+#
+# From https://raw.githubusercontent.com/github/gitignore/master/Global/VisualStudioCode.gitignore
+#
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+#
+# From https://github.com/github/gitignore/blob/master/Global/MicrosoftOffice.gitignore
+#
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsdx

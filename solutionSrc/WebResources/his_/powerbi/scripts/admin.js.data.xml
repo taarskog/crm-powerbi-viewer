@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource>
+  <WebResourceId>{2662da90-8d43-e711-837f-00155d017306}</WebResourceId>
+  <Name>his_/powerbi/scripts/admin.js</Name>
+  <DisplayName>powerbi/scripts/admin.js</DisplayName>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>0.3.5</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/his_powerbiscriptsadminjs2662DA90-8D43-E711-837F-00155D017306</FileName>
+</WebResource>

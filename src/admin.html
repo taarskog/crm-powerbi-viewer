@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html;UTF-8">
+
+    <!-- @if NODE_ENV != 'release' -->
+    <!-- Prevent caching while developing -->
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <!-- @endif -->
+
+    <title>Power BI Viewer for Dynamics 365 Sales and Service</title>
+
+    <!-- build:cssInline -->
+    <!-- Styles will be inlined here to reduce number of small files the client needs to download -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- endbuild -->
+</head>
+
+<body id="adminPage" style="background-clip: 'red'">
+    <h1 class="title">
+        <!-- @echo displayName -->
+    </h1>
+    <div class="description">
+        <p><!-- @echo description --> <a target="<!-- @echo name -->" href="<!-- @echo homepage -->">Learn more</a>.
+        You are using v<!-- @echo version --> of <!-- @echo name -->.</p>
+
+        <p>Click the eye icon to preview a report, dashboard or single tile. Click the copy icon to put the configuration into the
+            clipboard so you can paste it into the data parameter section of the <!-- @echo name --> webresource.</p>
+    </div>
+
+    <div id="error-container">
+        <div id="error">An error has occured. Please try again and finally contact your administrator. More details may be found in
+            the debug console (if appropriate logging level has been set).</div>
+    </div>
+
+    <div id="admincontainer">
+        <div id="event-container">
+            Loading...
+        </div>
+
+        <div id="data-container">
+            {{#groups}}
+            <div class="group">
+                <div class="{{#if @first}}user-header{{else}}group-header{{/if}}" title="{{#if @first}}Personal Workspace{{else}}Group Workspace{{/if}}">{{group.name}}</div>
+                <div class="group-content">
+
+                    <div class="reports-container">
+                        {{#reports}}
+                        <div class="report" title="Report">
+                            <div class="tile-title report-name">{{name}}</div>
+                            <div class="actions">
+                                <div class="copy-action" title="Copy configuration to clipboard" data-clipboard-text="{{crmdata 'report' ../group }}"></div>
+                                <div class="preview-action" title="Preview" onclick="document.location.href = 'viewer.html?{{previewquery 'report' ../group }}&preview=1'"></div>
+                            </div>
+                        </div>
+                        {{/reports}}
+                        {{^reports}}No reports found. {{/reports}}
+                    </div>
+
+                    <div class="dashboards-container">
+                        {{#dashboards}}
+                        <div class="dashboard" title="Dashboard">
+                            <div class="dashboard-header">
+                                <div class="dashboard-name">{{displayName}}
+                                    <div class="actions">
+                                        <div class="copy-action" title="Copy configuration to clipboard" data-clipboard-text="{{crmdata 'dashboard' ../group }}"></div>
+                                        <div class="preview-action" title="Preview" onclick="document.location.href = 'viewer.html?{{previewquery 'dashboard' ../group }}&preview=1'"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-content">
+                                {{#tiles}}
+                                <div class="tile" title="Single tile">
+                                    <div class="tile-title tile-name">{{title}}{{#subtitle}} - {{subtitle}}{{/subtitle}}</div>
+                                    <div class="actions">
+                                        <div class="copy-action" title="Copy configuration to clipboard" data-clipboard-text="{{crmdata 'tile' ../group .. }}"></div>
+                                        <div class="preview-action" title="Preview" onclick="document.location.href = 'viewer.html?{{previewquery 'tile' ../group .. }}&preview=1'"></div>
+                                    </div>
+
+                                </div>
+                                {{/tiles}}
+                                {{^tiles}}No tiles found. {{/tiles}}
+                            </div>
+                        </div>
+                        {{/dashboards}}
+                        {{^dashboards}}No dashboards found. {{/dashboards}}
+                    </div>
+                </div>
+            </div>
+            {{/groups}}
+        </div>
+    </div>
+
+    <div class="analytics">
+        <h2 class="title">Analytics</h2>
+        <p><strong>Important!</strong> <!-- @echo name --> collects a few metrics about its usage. This help improve the solution and understand usage patterns. Logged information are such as, but not limited to,
+            major events like login success/failure and what type of views that are displayed (tile, dashboard, report, admin). A hashed, and thus not identifiable, version of the user 
+            id is connected to these events to help pinpoint issues. By installing and configuring <!-- @echo name --> it is assumed that you agree to the above.</p>
+        <p>To keep logging to a minimum the team has chosen to not use third party tools (Google Analytics and similar) as they log an excessive amount of data. Want to see what is getting logged? See the documentation for details.</p>
+    </div>
+
+    <div class="libraries">
+        <h2 class="title">Dependent libraries</h2>
+        <p>
+            This solution uses a few third party libraries. Remember that by using <!-- @echo name --> you are also bound by the licenses
+            of these libraries.
+        </p>
+
+        <ul>
+        <!-- @foreach $lib in libraries --><li>$lib</li><!--@endfor -->
+        </ul>
+    </div>
+
+    <script src="scripts/config.js"></script>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

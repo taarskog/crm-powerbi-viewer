@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+       <FileToPath map="..\solutionSrc\WebResources\his_\**\*.html" to="..\dist\**" />
+       <FileToPath map="..\solutionSrc\WebResources\his_\**\*.js" to="..\dist\**" />
+</Mapping>

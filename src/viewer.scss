@@ -1,0 +1,116 @@
+html, body {
+    color: black;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.refresh-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	z-index: 1100;
+
+	.refresh {
+		visibility: hidden;
+		position: relative;
+		top: 5px;
+		left: 5px;
+		cursor: pointer;
+		content: '';
+
+		width: 16px;
+		height: 16px;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-image: url(images/refresh-inactive.svg);
+	}
+
+	.refresh:hover,
+	.refresh:focus {
+		background-image: url(images/refresh-active.svg);
+	}
+}
+
+.refresh-container:hover {
+	background-color: rgba(#FFF, 0.6);
+	border-bottom-right-radius: 20px;
+
+
+ .refresh {
+	visibility: visible;
+ }
+}
+
+#pbicontainer {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	iframe {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		border: 0;
+		padding: 0;
+		margin: 0;	
+	}
+}
+
+#error-container {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(#000, 0.6);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	visibility: hidden;
+}
+
+#error {
+	border: red solid 15px;
+	margin: 15px;
+	padding: 30px;
+	background-color: white;
+}
+
+#event-container > .event {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+#event-container > .event > .mark {
+	width: 10px;
+	height: 10px;
+	margin: 1px 4px 1px 2px;
+	border-radius: 10px;
+}
+
+#event-container > .level4 > .mark {
+	background-color: #BBB;
+}
+
+#event-container > .level2 > .mark {
+	background-color: #FFD800;
+}
+
+#event-container > .level1 > .mark {
+	background-color: red;
+}
+
+#data-container {
+	visibility: hidden;
+}

@@ -1,0 +1,1 @@
+PLACEHOLDER - Automatically replaced when packing solution file
