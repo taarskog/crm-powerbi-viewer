@@ -6,6 +6,11 @@
         "noImplicitAny": false,
         "target": "es2015",
         "module": "es2015",
+        "lib": [
+            "es5",
+            "dom",
+            "es2015.promise"
+        ],
         "allowJs": true,
         "moduleResolution": "node"
     }

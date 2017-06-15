@@ -61,7 +61,7 @@ export class XhrClient {
 
             // When using GET we append params to the url
             if (paramString !== null) {
-                if (!url.includes("?")) {
+                if (url.indexOf("?") === -1) {
                     url += "?";
                 }
 

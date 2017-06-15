@@ -70,6 +70,7 @@
   },
 
   "dependencies": {
+    "babel-polyfill": "6.23.0",
     "adal-angular": "AzureAD/azure-activedirectory-library-for-js#9c4982ec76f324174423418be5fb6ca5b9f8b326",
     "powerbi-client": "2.3.1",
     "handlebars": "4.0.10",

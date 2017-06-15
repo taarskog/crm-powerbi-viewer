@@ -1,3 +1,4 @@
+import "core-js/es6/promise";
 import log from "./diag/logger";
 import eventLog from "./diag/eventLog";
 import pbia from "./diag/analytics";

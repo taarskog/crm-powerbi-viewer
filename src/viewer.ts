@@ -1,3 +1,4 @@
+import "core-js/es6/promise";
 import appConfig from "./config/appConfig";
 import viewConfig from "./config/viewConfig";
 import log from "./diag/logger";
