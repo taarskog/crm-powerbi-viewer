@@ -95,6 +95,7 @@ $tile-margin: 5px;
 
 			.dashboard {
 				margin: 15px 0;
+                min-width: $tile-width + 2 * $tile-margin + 2 * 5;
 
 				.dashboard-header {
 					@include common-header(1.2em, $primary-color);
