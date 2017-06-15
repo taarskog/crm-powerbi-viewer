@@ -5,10 +5,10 @@ class AppConfig {
     private static _instance: AppConfig = null;
     public static get instance() { return this._instance || (this._instance = new this()); }
 
-    /** True if hosting on Dynamics 365 Online - otherwise false
-     * @description If false popup authentication will be used.
+    /** How to perform authentication - valid values are "inline" or "popup".
+     * @description You should typically use "inline" on Dynamics 365 Online with users located in your Azure AD and "popup" when on-premise (might also be required if you have invited external parties to your Azure AD).
      */
-    online =  true;
+    auth_mode = "inline";
 
     /** Auto-refresh access - may cause page reload if token cannot be updated silently  */
     auto_refresh_token: boolean = true;
@@ -71,6 +71,9 @@ class AppConfig {
 
     /** Analytics script url */
     analytics_uri = "https://raw.githubusercontent.com/taarskog/crm-powerbi-viewer/gh-pages/pbia.js";
+
+    /** Seed to use when hashing - djb2 defines 5381 */
+    hash_seed = 5381;
 
     /** Expiry of data stored in local storage (for performance reasons). */
     cache_expiry = 30 * 24 * 60 * 60 * 1000;

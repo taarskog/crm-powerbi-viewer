@@ -53,7 +53,7 @@ export class Analytics {
     }
 
     setEnv() {
-        this.env("Online", appConfig.online ? "true" : "false");
+        this.env("AuthMode", appConfig.auth_mode);
         this.env("LogLevel", appConfig.log_level.toString());
         this.env("AuthLogLevel", appConfig.auth_log_level.toString());
         this.env("CacheLocation", appConfig.auth_cache_location);

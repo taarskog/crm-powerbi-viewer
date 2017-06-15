@@ -139,7 +139,6 @@ class PowerBiViewerApp extends AppBase {
         return url;
     }
 
-
     private embedTile(token: string): void {
         this.embedReport(token);
     }
@@ -150,7 +149,7 @@ class PowerBiViewerApp extends AppBase {
 
     private embedReport(token: string): void {
         try {
-            let config: IEmbedConfiguration = {
+            let embedConfig: IEmbedConfiguration = {
                 viewMode: models.ViewMode.View,
                 tokenType: models.TokenType.Aad,
                 type: viewConfig.type,
@@ -166,7 +165,7 @@ class PowerBiViewerApp extends AppBase {
             };
 
             let powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
-            this._activeReport = powerbi.embed(this._pbiContainer, config);
+            this._activeReport = powerbi.embed(this._pbiContainer, embedConfig);
 
             // If defined - call view-specific function with implementation-specific customizations (filtering, handling of events etc.)
             if (viewConfig.customFn != null) {

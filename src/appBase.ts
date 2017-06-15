@@ -20,7 +20,7 @@ abstract class AppBase {
             return;
         }
 
-        let auth = AuthFactory.create(appConfig.online);
+        let auth = AuthFactory.create(appConfig.auth_mode);
 
         if (auth.isAuthFrame || auth.isCallback) {
             log.debug("Stopping here as we are in adal auth frame or popup");
