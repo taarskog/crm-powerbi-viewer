@@ -11,7 +11,7 @@ description: Filter reports on CRM data or using a custom javascript.
 <span class="badge badge-info">2</span> Using attributes from the form where the report is embedded.   
 <span class="badge badge-info">3</span> Creating a custom function that returns the filter.   
 
-[![]({{BASE_PATH}}/assets/images/crm-config/crm-config-report-filter.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-report-filter.png)
+[![]({{BASE_PATH}}/assets/images/v0.3/crm-config/crm-config-report-filter.png)]({{BASE_PATH}}/assets/images/v0.3/crm-config/crm-config-report-filter.png)
 
 
 **Note 1.** Currently Power BI supports setting a single filter. Feedback from the team during Build 2016 was that they have plans to add support for multiple filters in a future release.
@@ -93,7 +93,7 @@ Reference the function by adding the following to the end of your CRM data param
 
    > &filterFn=opportunityFilter
 
-[![]({{BASE_PATH}}/assets/images/crm-config/crm-config-filter-function.png)]({{BASE_PATH}}/assets/images/crm-config/crm-config-filter-function.png)
+[![]({{BASE_PATH}}/assets/images/v0.3/crm-config/crm-config-filter-function.png)]({{BASE_PATH}}/assets/images/v0.3/crm-config/crm-config-filter-function.png)
 {: style="text-align: center"}
 <br/>
 

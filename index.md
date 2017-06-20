@@ -26,7 +26,7 @@ for self-service dashboards users can embed report and tiles from their personal
 created in Power BI.
 
 <br />
-[![]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-4.png)]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-4.png)
+[![]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-4.png)]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-4.png)
 <br />
 <br />
 <br />
@@ -48,8 +48,8 @@ Reach out to your Office 365 Admin if you do not have the proper rights.
 
 **Installation steps:**
 
-<span class="badge badge-info">AAD</span> [Add crm-powerbi-viewer as an application in Azure AD](pages/azure-ad.html)  
-<span class="badge badge-info">CRM</span> [Install and configure crm-powerbi-viewer in Dynamics CRM](pages/install-solution.html)
+<span class="badge badge-info">AAD</span> [Add crm-powerbi-viewer as an application in Azure AD](pages/v0.3/pages/azure-ad.html)  
+<span class="badge badge-info">CRM</span> [Install and configure crm-powerbi-viewer in Dynamics CRM](pages/v0.3/pages/install-solution.html)
 
 <br />
 
@@ -57,14 +57,14 @@ Reach out to your Office 365 Admin if you do not have the proper rights.
 
 The guides below describe how to add Power BI elements to CRM Dashboards.
 
-<span class="badge badge-info">Report</span> [Add a Power BI report to a Dynamics CRM dashboard](pages/add-report-to-dashboard.html)     
-<span class="badge badge-info">Filter</span> [Add report filtering](pages/filter-reports.html)   
-<span class="badge badge-info">Tile</span> [Add a Power BI dashboard tile to a dashboard in Dynamics CRM](pages/add-tile-to-dashboard.html)   
+<span class="badge badge-info">Report</span> [Add a Power BI report to a Dynamics CRM dashboard](pages/v0.3/pages/add-report-to-dashboard.html)     
+<span class="badge badge-info">Filter</span> [Add report filtering](pages/v0.3/pages/filter-reports.html)   
+<span class="badge badge-info">Tile</span> [Add a Power BI dashboard tile to a dashboard in Dynamics CRM](pages/v0.3/pages/add-tile-to-dashboard.html)   
 
 <br />
 
 **Note** You can apply exactly the same steps to CRM Forms.
 {: .alert .alert-info }
 
-[![]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-3.png)]({{BASE_PATH}}/assets/images/samples/sample-crm-montage-3.png)
+[![]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-3.png)]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-3.png)
 <br />
