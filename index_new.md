@@ -5,11 +5,6 @@ tagline: add the Power of BI to Dynamics 365
 description: Embed Power BI reports/tiles into Dynamics CRM dashboards and forms.
 ---
 
-
-Enable protected mode
-or add https://login.microsoftonline.com to same zone as your CRM instance.
-
-
 [Download](https://github.com/taarskog/crm-powerbi-viewer/releases/latest/) \| [Source](https://github.com/taarskog/crm-powerbi-viewer)
 {: style="text-align: center"}
 
@@ -68,7 +63,7 @@ Reach out to your Azure or Office 365 Admin if you do not have the proper rights
 
 The guide below describe how to add Power BI elements to Dynamics 365 Dashboards.
 
-[<span class="badge badge-info">Dash</span> Add a Power BI View to a CRM Dashboard](pages/add-add-view-to-dashboard.html)   
+[<span class="badge badge-info">Dash</span> Add a Power BI View to a CRM Dashboard](pages/add-view-to-dashboard.html)   
 
 <br />
 

@@ -5,7 +5,7 @@ tagline: to Dynamics 365
 description: How to add a view from Power BI to a dashboard in Dynamics 365 Sales and Service.
 ---
 
-You embed a Power BI view by referencing the Power BI element id. If you, as recommended, embed views from a group workspace you will also reference the group id.
+You embed a Power BI view by referencing the Power BI element id. If you, as recommended, embed views from a group workspace you also need to reference the group id.
 
 The easiest approach to find elements you have access to and the required CRM configuration is by going to the solution
 configuration page.
@@ -16,6 +16,11 @@ group membership(s). Click preview to see how the view looks inside Dynamics 365
    > [![]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-overview.png)]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-overview.png)
 <br />
 <br />
+
+**On-premise and using Edge?** The security in Edge prevents communication between the webresource and the authentication popup if they are not in the same security zone
+You have two options; 1: Add "https://login.microsoftonline.com" to the same zone as your CRM instance, or 2: Disable protected mode on the security zone. This must be
+changed for all users.
+{: .alert .alert-warning }
 
 ## Steps
 The following example uses a report, but the exact same procedure applies to dashboard and tiles.
