@@ -26,7 +26,7 @@ of your Dynamics CRM instance **https://*yourinstancename*{: style="color: #ED7D
 
 7. Open the newly created app
 
-    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)
 
 
 8. The application needs access to Power BI. Go to required permissions, and ...
@@ -34,35 +34,32 @@ of your Dynamics CRM instance **https://*yourinstancename*{: style="color: #ED7D
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-pbi-api-access.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-pbi-api-access.png)
 
-10. Select API, and ...
-11. choose "Power BI Service"
+0. Select API, and ...
+1. choose "Power BI Service"
 
    **Can't find the service?** You remembered to create a report or dashboard in Power BI right? If not it might be that Power BI has not 
-   been associated with your environment. Login to Power BI and try again...
+   been associated with your environment. Login to Power BI before re-trying...
    {: .alert .alert-warning }
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-set-pbi-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-set-pbi-permissions.png)
 
-12. Next step is setting Power BI permissions
-
-13. What we need is rights to view.
-
-14. Set the new permissions...
-
-15. And you are (almost) done
+2. Next step is setting Power BI permissions
+3. What you need is rights to view.
+4. Click select to set the new permissions...
+5. and click done as that is what you are (almost)
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-modify-manifest.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-modify-manifest.png)
 
-16. A minor change to the manifest is required
-
-17. Change the following from false to true.
+6. A minor change to the manifest is required
+7. Change the following from false to true.
 
    > "oauth2AllowImplicitFlow": true,
    
-18. And save.
+8. And save.
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-copy-clientid.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-copy-clientid.png)
 
-19. Finally copy the application id as this will be required when configuring the solution in Dynamics 365.
+9. Finally copy the application id as this will be required when configuring the solution in Dynamics 365.
 
-   > Next step is to [install and configure crm-powerbi-viewer](install-solution.html) in Dynamics 365.
+Next step is to [install and configure crm-powerbi-viewer](install-solution.html) in Dynamics 365.
+{: .alert .alert-info }
