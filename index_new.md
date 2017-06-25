@@ -13,7 +13,7 @@ or add https://login.microsoftonline.com to same zone as your CRM instance.
 [Download](https://github.com/taarskog/crm-powerbi-viewer/releases/latest/) \| [Source](https://github.com/taarskog/crm-powerbi-viewer)
 {: style="text-align: center"}
 
-**Note** Documentation for version 0.3 is moved [here](pages/v0.3/index.html) 
+**Note** Documentation for previous version 0.3 is moved [here](pages/v0.3/index.html) 
 {: .alert .alert-information }
 <br />
 
@@ -64,7 +64,7 @@ Reach out to your Azure or Office 365 Admin if you do not have the proper rights
 
 <br />
 
-## Basic Configuration
+### Basic Configuration
 
 The guide below describe how to add Power BI elements to Dynamics 365 Dashboards.
 
@@ -78,7 +78,7 @@ The guide below describe how to add Power BI elements to Dynamics 365 Dashboards
 [![]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-3.png)]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-3.png)
 <br />
 
-## Advanced Configuration
+### Advanced Configuration
 
 _Documentation to be added_
 
