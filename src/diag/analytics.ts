@@ -21,7 +21,7 @@ export class Analytics {
         (<any>window).pbiaLocal = appConfig.analytics_local_view;
 
         if (appConfig.analytics_enabled) {
-            this.loadScript();
+            this.loadScript().catch(reason => { log.info("Loading analytics script failed."); });
         }
         else {
             log.warning("Continued releases of crm-powerbi-viewer depend on the team seeing that it is in use... Blocking analytics may result in future releases not being made available to the public.");
@@ -53,11 +53,15 @@ export class Analytics {
     }
 
     setEnv() {
+        this.env("Version", "/* @echo version */");
         this.env("AuthMode", appConfig.auth_mode);
         this.env("LogLevel", appConfig.log_level.toString());
         this.env("AuthLogLevel", appConfig.auth_log_level.toString());
         this.env("CacheLocation", appConfig.auth_cache_location);
         this.env("AnalyticsLocalView", appConfig.analytics_local_view ? "true" : "false");
+        let dt = new Date();
+        this.env("TimeZone", dt.getTimezoneOffset().toString());
+        this.env("Time", dt.toISOString());
     }
 
     private env(name: string, value: string) {
@@ -79,7 +83,7 @@ export class Analytics {
                 log.debug("Loaded pbia script");
             };
 
-            // No real diff on eval and embedding script thus choosing eval for nicer console logging (only reason really) - kept old code below if we chose to revert
+            // No real diff on eval and embedding script thus choosing eval for nicer console logging (only reason really) - kept old code below if we choose to revert
             // tslint:disable-next-line:no-eval
             eval(data);
 

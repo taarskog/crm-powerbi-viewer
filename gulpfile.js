@@ -243,6 +243,7 @@ gulp.task("build:typescript", ["analytics:lint"], function () {
             // TODO: Check out watchify OR browserify-incremental
             .pipe(source(paths.ts.entries[entry]))
             .pipe(buffer())
+            .pipe(preprocess({ context: config }))
             .pipe(gulpif(config.isDebug, sourcemaps.init({ loadMaps: true })))
             .pipe(gulpif(config.isRelease, uglify()))
             .pipe(header(config.banner))
