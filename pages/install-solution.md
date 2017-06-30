@@ -14,8 +14,8 @@ It is assumed that you have experience with Dynamics 365 configuration and know 
 1. Download the most recent managed [PowerBIViewer](https://github.com/taarskog/crm-powerbi-viewer/releases/latest/) release.
 2. Import it into your Dynamics 365 instance.
 
-    **Important.** You need to take special care if you have an existing version with version number 0.3.3 or lower already installed. The application has been completly 
-    rewritten and a few extra steps are required. When importing you must **"stage for upgrade"** and **"owerwrite customizations"**. Once imported you then need to update
+    **Upgrading from v0.3?**<br/>You need to take special care if you have an existing version already installed (i.e. v0.3.3 or lower). The application has been completly 
+    rewritten and a few extra steps are required. <br/><br/>When importing you must **"stage for upgrade"** and **"owerwrite customizations"**. Once imported you then need to update
     all locations where you have embedded Power BI and reference the new viewer.html making sure to use the new configuration values. Once complete and verified you should
     **"Apply Solution Upgrade"** to complete the installation.
     {: .alert .alert-warning }

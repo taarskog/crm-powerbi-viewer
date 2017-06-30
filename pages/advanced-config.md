@@ -2,7 +2,7 @@
 layout: page
 title: Advanced Configuration
 tagline: Introduction
-description: How to add custom lofic to embedded Power BI views in Dynamics 365.
+description: How to add custom logic to embedded Power BI views in Dynamics 365.
 ---
 
 With crm-powerbi-viewer you can add custom logic to any Power BI view.
@@ -25,8 +25,11 @@ To call custom logic you need to:
       **?ver=1** added so cache can be invalidated on new versions. Currently scripts are not cached but that may change in a future release.
       Increase the value when releasing updates to the script.
 
-0. Then add **&customFn=\<functionname\>** to the web resource custom parameter (dot notation is supported on functionname).
+0. Then add **&customFn=\<functionname\>** to the web resource custom parameter (dot notation is supported on functionname).<br /><br />
 
+   > [![]({{BASE_PATH}}/assets/images/v1.0/crm-advanced/sample-filterbyuser-customfn.png)]({{BASE_PATH}}/assets/images/v1.0/crm-advanced/sample-filterbyuser-customfn.png)
+
+<br />
 
 You can have multiple functions in a script file and each embedded view may call different functions. Thus various filters and events can be set for each view.
 
