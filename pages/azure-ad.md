@@ -8,58 +8,63 @@ To be able to authenticate with Power BI a token is required. The token is deliv
 ### Steps
 
 1. Go to the Azure portal at <https://portal.azure.com>. 
-
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app.png)
-
 2. Navigate to your Active Directory.
 3. Then to App Registrations
 4. Add new
 
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-details.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-details.png)
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app.png)
 
-5. Enter details. Name the application "**CRM Power BI Viewer**", set the type to "**Web app / API**", and set sign-on url to the URL 
-of your Dynamics CRM instance **https://*yourinstancename*{: style="color: #ED7D31"}.crm*?*{: style="color: #ED7D31"}.dynamics.com**
-        
+5. Enter details. Name the application "**Dynamics 365 Power BI Viewer**", set the type to "**Web app / API**", and set sign-on url to the URL 
+of your Dynamics CRM instance **https://*yourinstancename*{: style="color: #ED7D31"}.crm*?*{: style="color: #ED7D31"}.dynamics.com/\***
 6. Create the app
 
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-open-app-info.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-open-app-info.png)
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-details.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-details.png)
 
 7. Open the newly created app
 
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)
-
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-open-app-info.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-open-app-info.png)
 
 8. The application needs access to Power BI. Go to required permissions, and ...
 9. add new
 
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-pbi-api-access.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-pbi-api-access.png)
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-app-permissions.png)
 
 0. Select API, and ...
 1. choose "Power BI Service"
 
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-pbi-api-access.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-add-pbi-api-access.png)
+
    **Can't find the service?** You remembered to create a report or dashboard in Power BI right? If not it might be that Power BI has not 
    been associated with your environment. Login to Power BI before re-trying...
    {: .alert .alert-warning }
-
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-set-pbi-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-set-pbi-permissions.png)
 
 2. Next step is setting Power BI permissions
 3. What you need is rights to view.
 4. Click select to set the new permissions...
 5. and click done as that is what you are (almost)
 
-   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-modify-manifest.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-modify-manifest.png)
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-set-pbi-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-set-pbi-permissions.png)
+
+   **15b Grant Permissions.** After setting permissions you need to grant them to all users. Press the button named "Grant Permissions" (see 15b).
+   {: .alert .alert-error }
+
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-grant-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-grant-permissions.png)
 
 6. A minor change to the manifest is required
 7. Change the following from false to true.
 
    > "oauth2AllowImplicitFlow": true,
-   
+
 8. And save.
+
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-modify-manifest.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-modify-manifest.png)
+
+9. Finally copy the application id as this will be required when configuring the solution in Dynamics 365.
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-copy-clientid.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-copy-clientid.png)
 
-9. Finally copy the application id as this will be required when configuring the solution in Dynamics 365.
+<br/>
+<br/>
 
 Next step is to [install and configure crm-powerbi-viewer](install-solution.html) in Dynamics 365.
 {: .alert .alert-info }

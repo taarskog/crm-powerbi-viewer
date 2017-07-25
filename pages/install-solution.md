@@ -11,7 +11,7 @@ It is assumed that you have experience with Dynamics 365 configuration and know 
 
 ### Steps
 
-1. Download the most recent managed [PowerBIViewer](https://github.com/taarskog/crm-powerbi-viewer/releases/latest/) release.
+1. Download the most recent managed [PowerBIViewer](https://github.com/taarskog/crm-powerbi-viewer/releases) release.
 2. Import it into your Dynamics 365 instance.
 
     **Upgrading from v0.3?**<br/>You need to take special care if you have an existing version already installed (i.e. v0.3.3 or lower). The application has been completly 

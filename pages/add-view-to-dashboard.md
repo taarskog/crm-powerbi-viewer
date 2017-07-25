@@ -29,11 +29,12 @@ The following example uses a report, but the exact same procedure applies to das
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-copy2clipboard-report.png)]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-copy2clipboard-report.png)
 
-   > [![]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-add-webresource-report.png)]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-add-webresource-report.png)
-
 2. Next create a new dashboard and add the web resource named **'his_/powerbi/viewer.html'**.
 3. Give the resource a meaningful name and label.
 4. Paste the configuration from step 1 into *'Custom parameter (data)'*.
+
+   > [![]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-add-webresource-report.png)]({{BASE_PATH}}/assets/images/v1.0/crm-config/config-add-webresource-report.png)
+
 5. Save and publish the dashboard.
 6. You are done! The result should be similar to the image below.
 
