@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "name": "crm-powerbi-viewer",
   "displayName": "Power BI Viewer (v0.5 beta)",
   "description": "Embed tiles and reports from Power BI into Dynamics 365 Sales and Service Forms and Dashboards.",
@@ -35,18 +35,18 @@
     "gulp-if": "2.0.2",
     "gulp-sass": "3.1.0",
     "gulp-css-svg": "1.2.3",
-    "gulp-clean-css": "3.4.2",
+    "gulp-clean-css": "3.7.0",
     "gulp-htmlmin": "3.0.0",
-    "gulp-header": "1.8.8",
+    "gulp-header": "1.8.9",
     "gulp-newer": "1.3.0",
     "gulp-html-replace": "1.6.2",
     "gulp-preprocess": "2.0.0",
     "gulp-tslint": "8.1.1",
-    "tslint": "5.4.3",
+    "tslint": "5.5.0",
     "minimist": "1.2.0",
     "del": "3.0.0",
-    "typescript": "2.3.4",
-    "browser-sync": "2.18.12",
+    "typescript": "2.4.2",
+    "browser-sync": "2.18.13",
     "bs-html-injector": "3.0.3",
     "browserify": "14.4.0",
     "tsify": "3.0.1",
@@ -64,15 +64,10 @@
     "@types/xrm": "latest"
   },
 
-  "NOT_USE_JUST_YET": {
-    "info": "When adal 1.0.15 is released swap the direct github fetch of adal to the line below (with updated version num). Need to wait as 1.0.14 fails on token refresh",
-    "adal-angular": "1.0.15"
-  },
-
   "dependencies": {
     "babel-polyfill": "6.23.0",
-    "adal-angular": "AzureAD/azure-activedirectory-library-for-js#9c4982ec76f324174423418be5fb6ca5b9f8b326",
-    "powerbi-client": "2.3.1",
+    "adal-angular": "1.0.15",
+    "powerbi-client": "2.3.4",
     "handlebars": "4.0.10",
     "clipboard": "1.7.1"
   }
