@@ -19,11 +19,13 @@ To call custom logic you need to:
    0. Change null to an array of scripts to load. It is recommended that these scripts are web resources
 
       ```javascript
-      custom_scripts: ["samples/filters.js?ver=1"]
+      custom_scripts: ["samples/filters.js?ver=1", "../../prefix_/scripts/eventhandlers.js?ver=1"]
       ```
 
       **?ver=1** added so cache can be invalidated on new versions. Currently scripts are not cached but that may change in a future release.
       Increase the value when releasing updates to the script.
+
+      It is recommended to use relative urls. They are relative to viewer.html.
 
 0. Then add **&customFn=\<functionname\>** to the web resource custom parameter (dot notation is supported on functionname).<br /><br />
 

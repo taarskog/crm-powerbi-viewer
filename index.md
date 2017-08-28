@@ -75,7 +75,7 @@ The guide below describe how to add Power BI elements to Dynamics 365 Dashboards
 [![]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-3.png)]({{BASE_PATH}}/assets/images/v0.3/samples/sample-crm-montage-3.png)
 <br />
 
-### Advanced Configuration
+### Advanced Configuration - filtering, click-handling, ...
 
 Filtering and handling click-events require some javascripting - how much depend on what you want to achieve. The guide below provides a brief
 introduction and links to more information when you want to take it to the next step.
