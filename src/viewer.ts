@@ -151,6 +151,7 @@ class PowerBiViewerApp extends AppBase {
     private embedReport(token: string): void {
         try {
             let embedConfig: IEmbedConfiguration = {
+                dashboardId: viewConfig.dashboardId == null ? null : viewConfig.dashboardId,
                 viewMode: models.ViewMode.View,
                 tokenType: models.TokenType.Aad,
                 type: viewConfig.type,
@@ -164,6 +165,9 @@ class PowerBiViewerApp extends AppBase {
                     navContentPaneEnabled: viewConfig.showNavPane
                 }
             };
+
+            log.debug("Next up: Embedconfig");
+            log.debug(embedConfig);
 
             let powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
             this._activeReport = powerbi.embed(this._pbiContainer, embedConfig);

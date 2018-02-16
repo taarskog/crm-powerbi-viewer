@@ -20,7 +20,8 @@ var buffer = require('vinyl-buffer');
 var es = require('event-stream');
 var browsersync = require('browser-sync');
 var header = require('gulp-header');
-var gutil = require("gulp-util");
+var log = require("fancy-log");
+var colors = require('ansi-colors');
 var del = require('del');
 
 var argv = require("minimist")(process.argv.slice(2), {
@@ -146,7 +147,7 @@ var options = {
     },
 
     babelify: {
-        presets: ['es2015'],
+        presets: ['env'],
         extensions: ['.ts']
     },
 
@@ -284,8 +285,8 @@ gulp.task("build:pages", function () {
 
 function errorHandler(title) {
     return function (error) {
-        gutil.log([
-            gutil.colors.bold.red("Error in " + (title || error.plugin)),
+        log([
+            colors.bold.red("Error in " + (title || error.plugin)),
             error.message,
             ''
         ].join('\n'));

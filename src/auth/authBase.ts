@@ -1,3 +1,4 @@
+import * as adal from "../helpers/adalTsFix";
 import AuthenticationContext from "adal-angular";
 import appConfig from "../config/appConfig";
 import log from "../diag/logger";
@@ -100,7 +101,7 @@ abstract class AuthBase {
     /** Initialize Auth. Must be called in the constructor of classes that extend this class. Changes to properties in adalConfig should be performed prior to calling init. */
     protected init() {
         // Initialize Adal
-        this._adalContext = new AuthenticationContext(this.adalConfig);
+        this._adalContext = <adal.AuthenticationContext>new AuthenticationContext(this.adalConfig);
 
         // Handle auth response
         this._isAuthCallback = this._adalContext.isCallback(window.location.hash);

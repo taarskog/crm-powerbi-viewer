@@ -1,3 +1,4 @@
+import * as adal from "../helpers/adalTsFix";
 import { XhrClient, RequestMethods, XhrRequestError } from "../services/xhrClient";
 import {LogLevel, default as log } from "./logger";
 import appConfig from "../config/appConfig";

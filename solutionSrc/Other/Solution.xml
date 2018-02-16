@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Embed tiles and reports from Power BI into Dynamics 365 Sales and Service Dashboards and Forms." languagecode="1033" />
     </Descriptions>
-    <Version>0.5.0</Version>
+    <Version>1.0.0</Version>
     <Managed>2</Managed>
     <ConfigurationPage>his_/powerbi/admin.html</ConfigurationPage>
     <Publisher>

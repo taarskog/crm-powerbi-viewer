@@ -1,3 +1,5 @@
+import * as adal from "../helpers/adalTsFix";
+
 /**
  * Application configuration (singleton)
  */
@@ -20,7 +22,7 @@ class AppConfig {
     auth_ad_instance: string = null;
 
     /** Sets browser storage to either 'localStorage' or sessionStorage'. Adal defaults to 'sessionStorage'. */
-    auth_cache_location: string = null;
+    auth_cache_location: "localStorage" | "sessionStorage" = null;
 
     /** If the cached token is about to be expired in the expireOffsetSeconds (in seconds), Adal will renew the token instead of using the cached token. Defaults to 120 seconds. */
     auth_expire_offset: number = null;
