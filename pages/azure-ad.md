@@ -51,10 +51,12 @@ of your Dynamics CRM instance **https://*yourinstancename*{: style="color: #ED7D
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-grant-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-grant-permissions.png)
 
 6. Two changes to the manifest are required
-7. Change the following from false to true.
+7. Change the following from false to true:
 
-   > "oauth2AllowImplicitFlow": true,
-   > "oauth2AllowUrlPathMatching": true,
+   ```json
+   "oauth2AllowImplicitFlow": true,
+   "oauth2AllowUrlPathMatching": true,
+   ```
 
 8. And save.
 
