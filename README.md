@@ -1,3 +1,5 @@
+[![Known Vulnerabilities](https://snyk.io/test/github/taarskog/crm-powerbi-viewer/badge.svg?targetFile=package.json)](https://snyk.io/test/github/taarskog/crm-powerbi-viewer?targetFile=package.json)
+
 # crm-powerbi-viewer
 Embed tiles and reports from Power BI into Dynamics 365 Sales and Service Forms and Dashboards.
 
