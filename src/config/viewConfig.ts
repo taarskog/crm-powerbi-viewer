@@ -5,11 +5,14 @@ class ViewConfig {
     query: any = {};
     crmData: any = {};
 
-    /** View type (report, dashboard, tile) */
+    /** View type (report, dashboard, tile, visual) */
     get type(): string { return this.crmData.type; }
 
     /** View id */
     get id(): string { return this.crmData.id; }
+
+    /** Name of visual (only applicable if view type is visual) */
+    get visualName(): string { return ViewConfig.getValueOrDefault(this.crmData.visual, null); }
 
     /** Dashboard id (only applicable if view type is tile) */
     get dashboardId(): string { return ViewConfig.getValueOrDefault(this.crmData.dashboardId, null); }

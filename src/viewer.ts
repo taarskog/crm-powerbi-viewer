@@ -5,7 +5,7 @@ import log from "./diag/logger";
 import eventLog from "./diag/eventLog";
 import pbia from "./diag/analytics";
 import AuthBase from "./auth/authBase";
-import {service, factories, Embed, IEmbedConfiguration, models} from "powerbi-client";
+import {service, factories, Embed, IEmbedConfiguration, models, IEmbedSettings} from "powerbi-client";
 import AppBase from "./appBase";
 import { XhrClient, RequestMethods, XhrRequestError } from "./services/xhrClient";
 
@@ -58,6 +58,7 @@ class PowerBiViewerApp extends AppBase {
                 switch (viewConfig.type) {
                     case "tile": this.embedTile(token); break;
                     case "report": this.embedReport(token); break;
+                    case "visual": this.embedVisual(token); break;
                     case "dashboard": this.embedDashboard(token); break;
                 }
             })
@@ -111,6 +112,20 @@ class PowerBiViewerApp extends AppBase {
                     this.setError();
                     isValid = false;
                 }
+                break;
+            case "visual":
+                if (viewConfig.visualName == null || viewConfig.visualName.length === 0) {
+                    eventLog.error("Name of Visual is required when displaying a report visual.");
+                    this.setError();
+                    isValid = false;
+                }
+
+                if (viewConfig.pageName == null || viewConfig.pageName.length === 0) {
+                    eventLog.error("PageName is required when displaying a report visual.");
+                    this.setError();
+                    isValid = false;
+                }
+                break;
             case "report":
             case "dashboard":
                 break;
@@ -125,7 +140,7 @@ class PowerBiViewerApp extends AppBase {
 
     private getEmbedUrl(): string {
         let url = appConfig.embed_base_url;
-        if (viewConfig.type === "report") {
+        if (viewConfig.type === "report" || viewConfig.type === "visual") {
             url += `reportEmbed?reportId=${viewConfig.id}`;
         } else if (viewConfig.type === "dashboard") {
             url += `dashboardEmbed?dashboardId=${viewConfig.id}`;
@@ -141,31 +156,23 @@ class PowerBiViewerApp extends AppBase {
     }
 
     private embedTile(token: string): void {
-        this.embedReport(token);
+        this.embedObject(this.createTileConfiguration(token));
     }
 
     private embedDashboard(token: string): void {
-        this.embedReport(token);
+        this.embedObject(this.createDashboardConfiguration(token));
+    }
+
+    private embedVisual(token: string): void {
+        this.embedObject(this.createVisualConfiguration(token));
     }
 
     private embedReport(token: string): void {
-        try {
-            let embedConfig: IEmbedConfiguration = {
-                dashboardId: viewConfig.dashboardId == null ? null : viewConfig.dashboardId,
-                viewMode: models.ViewMode.View,
-                tokenType: models.TokenType.Aad,
-                type: viewConfig.type,
-                accessToken: token,
-                embedUrl: this.getEmbedUrl(),
-                id: viewConfig.id,
-                pageName: viewConfig.pageName,
-                permissions: models.Permissions.Read,
-                settings: {
-                    filterPaneEnabled: viewConfig.showFilterPane,
-                    navContentPaneEnabled: viewConfig.showNavPane
-                }
-            };
+        this.embedObject(this.createReportConfiguration(token));
+    }
 
+    private embedObject(embedConfig: IEmbedConfiguration): void {
+        try {
             log.debug("Next up: Embedconfig");
             log.debug(embedConfig);
 
@@ -181,6 +188,46 @@ class PowerBiViewerApp extends AppBase {
             eventLog.error(error);
             this.setError();
         }
+    }
+
+    private createTileConfiguration(token: string): IEmbedConfiguration {
+        let embedConfig = this.createDashboardConfiguration(token);
+        return embedConfig;
+    }
+
+    private createDashboardConfiguration(token: string): IEmbedConfiguration {
+        let embedConfig = this.createBaseEmbedConfiguration(token);
+        embedConfig.dashboardId = viewConfig.dashboardId;
+        return embedConfig;
+    }
+
+    private createVisualConfiguration(token: string): IEmbedConfiguration {
+        let embedConfig = this.createReportConfiguration(token);
+        (<any>embedConfig).visualName = viewConfig.visualName;
+        return embedConfig;
+    }
+
+    private createReportConfiguration(token: string): IEmbedConfiguration {
+        let embedConfig = this.createBaseEmbedConfiguration(token);
+        embedConfig.pageName = viewConfig.pageName,
+        embedConfig.settings = {
+            filterPaneEnabled: viewConfig.showFilterPane,
+            navContentPaneEnabled: viewConfig.showNavPane
+        } as IEmbedSettings;
+
+        return embedConfig;
+    }
+
+    private createBaseEmbedConfiguration(token: string): IEmbedConfiguration {
+        return {
+            viewMode: models.ViewMode.View,
+            tokenType: models.TokenType.Aad,
+            type: viewConfig.type,
+            accessToken: token,
+            embedUrl: this.getEmbedUrl(),
+            id: viewConfig.id,
+            permissions: models.Permissions.Read,
+        } as IEmbedConfiguration;
     }
 
     private executeFunctionByName(functionName: string, ...args) {
