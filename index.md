@@ -8,16 +8,35 @@ description: Embed Power BI reports/tiles into Dynamics CRM dashboards and forms
 [Download](https://github.com/taarskog/crm-powerbi-viewer/releases/) \| [Source](https://github.com/taarskog/crm-powerbi-viewer)
 {: style="text-align: center"}
 
-**Note** Documentation for previous version 0.3 is moved [here](pages/v0.3/index.html) 
-{: .alert .alert-information }
+<br />
+[![]({{BASE_PATH}}/assets/images/v1.0/samples/sample-montage.png)]({{BASE_PATH}}/assets/images/v1.0/samples/sample-montage.png)
 <br />
 
-[Power BI](http://powerbi.com) is the best tool for visualising your business data. As a customer of Dynamics 365 you obviously want to take advantage of Power BI inside your dashboards and forms.
+**[Power BI](http://powerbi.com) is the best tool for visualising your business data**. As a customer of Dynamics 365 Customer Engagement you obviously want to take advantage of Power BI inside your dashboards and forms.
 
-Today Dynamics 365 support showing Power BI reports and dashboards in your personal dashboards. But the functionality is limited. The goal of
-[crm-powerbi-viewer](https://github.com/taarskog/crm-powerbi-viewer/releases) is to provide as much of the Power BI functionality as possible.
+Today Dynamics 365 CE support showing Power BI reports and dashboards in your personal dashboards. But the functionality is limited.
+
+**The goal of _crm-powerbi-viewer_ is to deliver as much of the Power BI functionality inside Dynamics 365 as possible.**
+{: .alert .alert-information }
 
 Below is a list of enhancements provided by crm-powerbi-viewer that for the time being is _not_ available by using the built-in PowerBI integration in Dynamics 365.
+
+<br />
+**Enhancements:**
+- Solution aware. _Embed Power BI to any dashboard (not only personal)_
+- Embed Power BI to both dashboards and forms
+- Works with Dynamics 365 on-premises
+- Supports opening reports on a specific page
+- Support for custom filters and interactions. Enabling:
+    - Open related Dynamics 365 records when clicking on data in a report (or visual)
+    - Filter reports on Dynamics 365 data (e.g. filter on account id when showing reports on an account form)
+- Hide report navigation and filter panes
+- Mix and match multiple Power BI elements with Dynamics 365 elements on a single dashboard/form
+- Embed Power BI:
+    - Dashboards
+    - Single tile from a dashboard
+    - Reports
+    - Single visual from a report (coming with v1.1)
 
 <br />
 [![]({{BASE_PATH}}/assets/images/v1.0/samples/sample-montage-dashboards.png)]({{BASE_PATH}}/assets/images/v1.0/samples/sample-montage-dashboards.png)
@@ -25,16 +44,6 @@ Below is a list of enhancements provided by crm-powerbi-viewer that for the time
 <br />
 <br />
 
-**Enhancements:**
-- Embed Power BI to any dashboard (not only personal)
-- Embed Power BI to both dashboards and forms
-- Works with on-premise Dynamics 365 installations
-- Supports opening reports on any page
-- Support for custom filters and interactions. Enabling:
-    - Open related Dynamics 365 records when clicking on data in a report
-    - Filter reports on Dynamics 365 data (e.g. filter on account id when showing reports on an account form)
-- Hide report navigation and filter panes
-- Mix and match multiple Power BI elements with Dynamics 365 elements on a single dashboard/form
 
 <br />
 [![]({{BASE_PATH}}/assets/images/v1.0/samples/sample-multi-tiles-on-dash.png)]({{BASE_PATH}}/assets/images/v1.0/samples/sample-multi-tiles-on-dash.png)
@@ -54,8 +63,8 @@ Reach out to your Azure or Office 365 Admin if you do not have the proper rights
 
 ### Installation steps:
 
-[<span class="badge badge-info">AAD</span> Add crm-powerbi-viewer as an application in Azure AD](pages/azure-ad.html)  
-[<span class="badge badge-info">CRM</span> Install and configure crm-powerbi-viewer in Dynamics 365 Sales and Service](pages/install-solution.html)
+[<span class="badge badge-info">1</span> Add crm-powerbi-viewer as an application in Azure AD](pages/azure-ad.html)  
+[<span class="badge badge-info">2</span> Install and configure crm-powerbi-viewer in Dynamics 365 Sales and Service](pages/install-solution.html)
 
 Not working as expected? Have a look at [troubleshooting](pages/troubleshooting.html).
 
@@ -65,7 +74,7 @@ Not working as expected? Have a look at [troubleshooting](pages/troubleshooting.
 
 The guide below describe how to add Power BI elements to Dynamics 365 Dashboards.
 
-[<span class="badge badge-info">Dash</span> Add a Power BI View to a CRM Dashboard](pages/add-view-to-dashboard.html)   
+[<span class="badge badge-info">Dashboard</span> Add a Power BI View to a CRM Dashboard](pages/add-view-to-dashboard.html)   
 
 <br />
 
