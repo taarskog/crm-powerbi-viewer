@@ -5,6 +5,13 @@ description: Add crm-powerbi-viewer as an application in Azure AD
 ---
 To be able to authenticate with Power BI a token is required. The token is delivered by Azure AD and to get it crm-powerbi-viewer must be registered as a valid application.
 
+### _(new)_ Power BI Simplified Flow
+The Power BI team has created a schema that simplifies the creation of an application in Azure AD. You still need to perform a few steps in the Azure portal but the 
+flow is easier and with fewer steps. The guide on this page is the original one with all the steps taking place in Azure. The new guide using the Power BI schema can be found [here](azure-ad-simple.html).
+
+If you encounter issues following the new flow - please validate the created application using the guide on this page.
+{: .alert .alert-warning }
+
 ### Steps
 
 1. Go to the Azure portal at <https://portal.azure.com>. 
