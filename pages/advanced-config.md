@@ -79,3 +79,30 @@ Samples.Filters.filterOnUser = function (report) {
 }
 ```
 
+### Catch tile clicks and open full Power BI report
+
+```javascript
+window.Samples = window.Samples || {};
+Samples.Filters = Samples.Filters || {};
+
+/**
+ * Open full report in Power BI when a tile is clicked.
+ * 
+ * Note: It is possible to open the report in a dialog - 
+ *       similar to the OOB experience but it is an unsupported
+ *       hack that may break on future D365 updates (and might 
+ *       not even work in the new unified interface). You need to
+ *       investigate how to do that yourself but a hint is Mscrm.CrmDialog...
+ *
+ *       The sample below uses the supported approach :)
+ */
+Samples.Filters.openOnTileClick = function (embed) {
+    embed.on("tileClicked", function(event) {
+        // If you want to open in a new window
+        parent.Xrm.Navigation.openUrl(event.detail.navigationUrl);
+
+        // Alternative: Navigate to Power BI (and away from D365CE)
+        // top.location.replace(event.detail.navigationUrl);
+    });
+}
+```
