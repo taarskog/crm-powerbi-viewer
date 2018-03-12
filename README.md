@@ -1,5 +1,5 @@
 [![Latest Release](https://img.shields.io/github/release/taarskog/crm-powerbi-viewer.svg)](https://github.com/taarskog/crm-powerbi-viewer/releases/latest)
-![In Progress](https://img.shields.io/github/package-json/v/taarskog/crm-powerbi-viewer.svg?label=in%20progress&colorB=F17F41 "Release in progress")
+[![In Progress](https://img.shields.io/github/package-json/v/taarskog/crm-powerbi-viewer.svg?label=in%20progress&colorB=F17F41 "Release in progress")](https://github.com/taarskog/crm-powerbi-viewer)
 [![Known Vulnerabilities](https://snyk.io/test/github/taarskog/crm-powerbi-viewer/badge.svg?targetFile=package.json)](https://snyk.io/test/github/taarskog/crm-powerbi-viewer?targetFile=package.json)
 
 # crm-powerbi-viewer
