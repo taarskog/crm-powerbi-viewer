@@ -12,7 +12,7 @@ class ViewConfig {
     get id(): string { return this.crmData.id; }
 
     /** Name of visual (only applicable if view type is visual) */
-    get visualName(): string { return ViewConfig.getValueOrDefault(this.crmData.visual, null); }
+    get visualName(): string { return ViewConfig.getValueOrDefault(this.crmData.visualName, null); }
 
     /** Dashboard id (only applicable if view type is tile) */
     get dashboardId(): string { return ViewConfig.getValueOrDefault(this.crmData.dashboardId, null); }
