@@ -156,7 +156,8 @@ class PowerBiViewerAdminApp extends AppBase {
 
     private addReports(token: string, grpInfo: GroupInfo): Promise<void> {
         return PbiService.Client.getAllReports(token, grpInfo.group.id)
-            .then(response => { grpInfo.reports = response; });
+            .then(response => { grpInfo.reports = response; })
+            .catch(err => { log.warning(err); /* Ignoring errors... */ });
     }
 
     private addDashboards(token: string, grpInfo: GroupInfo): Promise<void> {
@@ -172,7 +173,8 @@ class PowerBiViewerAdminApp extends AppBase {
                         }));
                 });
                 return Promise.all(promises).then(() => { });
-            });
+            })
+            .catch(err => { log.warning(err); /* Ignoring errors... */ });
     }
 
     private addDashboardTiles(token: string, dashboardId: string, groupId: string = null): Promise<PbiService.TileModel[]> {

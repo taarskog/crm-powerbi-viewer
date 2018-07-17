@@ -1,4 +1,4 @@
-import * as adal from "../helpers/adalTsFix";
+import AuthenticationContext from "adal-angular";
 import { XhrClient, RequestMethods, XhrRequestError } from "../services/xhrClient";
 import {LogLevel, default as log } from "./logger";
 import appConfig from "../config/appConfig";
@@ -45,7 +45,7 @@ export class Analytics {
         this.post("Admin", action, value);
     }
 
-    setUser(user: adal.User) {
+    setUser(user: AuthenticationContext.UserInfo) {
         this.post("Auth", "setUser", hash(user.userName));
         this.post("User", "lcid", parent.Xrm.Page.context.getUserLcid().toString());
         this.post("User", "client type", parent.Xrm.Page.context.client.getClient());

@@ -1,4 +1,5 @@
-import * as adal from "../helpers/adalTsFix";
+// import * as adal from "../helpers/adalTsFix";
+// import * as adal from "adal-angular";
 import AuthenticationContext from "adal-angular";
 import appConfig from "../config/appConfig";
 import log from "../diag/logger";
@@ -15,7 +16,7 @@ interface IAuthWindow extends Window {
     parent: IAuthWindow;
     top: IXrmWindow;
     auth_master: boolean;
-    Logging: adal.Logging;
+    Logging: AuthenticationContext.LoggingConfig;
 }
 
 let authWindow = <IAuthWindow>window;
@@ -30,8 +31,8 @@ abstract class AuthBase {
     private _tokenExpireNotified: boolean = false;
     private _tokenExpirationTimerId: number = null;
 
-    protected adalConfig: adal.Config;
-    protected _adalContext: adal.AuthenticationContext = null;
+    protected adalConfig: AuthenticationContext.Options;
+    protected _adalContext: AuthenticationContext = null;
 
     /** Callback to notify that a token is about to expire. Thus probably needs to be refreshed. Called X ms prior to expiration per offset set in appConfig. */
     public authAboutToExpireCallback: VoidFunction;
@@ -101,7 +102,7 @@ abstract class AuthBase {
     /** Initialize Auth. Must be called in the constructor of classes that extend this class. Changes to properties in adalConfig should be performed prior to calling init. */
     protected init() {
         // Initialize Adal
-        this._adalContext = <adal.AuthenticationContext>new AuthenticationContext(this.adalConfig);
+        this._adalContext = <AuthenticationContext>new AuthenticationContext(this.adalConfig);
 
         // Handle auth response
         this._isAuthCallback = this._adalContext.isCallback(window.location.hash);
@@ -116,7 +117,7 @@ abstract class AuthBase {
      * @param {boolean} [loginIfRequired=true] Initiate login if user data not available.
      * @returns {Promise<adal.User>} User details.
      */
-    public getUser(loginIfRequired: boolean = true): Promise<adal.User> {
+    public getUser(loginIfRequired: boolean = true): Promise<AuthenticationContext.UserInfo> {
         let user = this._adalContext.getCachedUser();
         if (user && user.userName.length > 0) {
             log.info(`Logged in to Power BI as '${user.userName}'`);

@@ -1,4 +1,4 @@
-import * as adal from "../helpers/adalTsFix";
+// import * as adal from "../helpers/adalTsFix";
 
 /**
  * Application configuration (singleton)
@@ -46,7 +46,7 @@ class AppConfig {
     auth_token_expire_notification_offset: number = 5000;
 
     /** Log level to set on the ADAL library */
-    auth_log_level: adal.LoggingLevel = 0;
+    auth_log_level: 0 | 1 | 2 | 3 = 0;
 
     /** Function called by ADAL to log messages */
     auth_log_fn: (message: string) => void = msg => console.log(`ADAL: ${msg}`);
