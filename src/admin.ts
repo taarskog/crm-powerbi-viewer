@@ -118,6 +118,10 @@ class PowerBiViewerAdminApp extends AppBase {
                     (args.length > 3 ? dashboard : null) // Handlebars append opt at the end - thus num args vary
                 );
 
+                if (pbiType.toLowerCase() === "report") {
+                    crmData += "&customFn=PbiPreviewLogVisualsFn";
+                }
+
                 return `data=${encodeURIComponent(crmData)}`;
             }
         });

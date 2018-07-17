@@ -5,7 +5,7 @@ import log from "./diag/logger";
 import eventLog from "./diag/eventLog";
 import pbia from "./diag/analytics";
 import AuthBase from "./auth/authBase";
-import {service, factories, Embed, IEmbedConfiguration, models, IEmbedSettings} from "powerbi-client";
+import {service, factories, Embed, IEmbedConfiguration, models, IEmbedSettings, Report} from "powerbi-client";
 import AppBase from "./appBase";
 import { XhrClient, RequestMethods, XhrRequestError } from "./services/xhrClient";
 
@@ -245,6 +245,41 @@ class PowerBiViewerApp extends AppBase {
         return context[func].apply(context, argArray);
     }
 }
+
+(<any>window).PbiPreviewLogVisualsFn = (report: Report) => {
+    report.on("loaded", () => {
+        report.getPages()
+        .then(allReportPages => {
+            console.info(`Report contains ${allReportPages.length} pages.`);
+
+            // Loop through all pages
+            allReportPages.forEach(page => {
+                console.info(`Getting visuals for page '${page.displayName}' [${page.name}].`);
+
+                page.getVisuals()
+                .then(pageVisuals => {
+                    // Log all visuals found in the page
+                    let pageVisualsInfo = {
+                        Page: {
+                            displayName: page.displayName,
+                            name: page.name
+                        },
+
+                        Visuals: pageVisuals.map(visual => {
+                            return {
+                                name: visual.name,
+                                title: visual.title,
+                                type: visual.type
+                            };
+                        })
+                    };
+
+                    console.info(pageVisualsInfo);
+                });
+            });
+        });
+    });
+};
 
 // Let's get started
 new PowerBiViewerApp().start();
