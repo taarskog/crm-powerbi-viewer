@@ -55,6 +55,25 @@ Remove **groupid** including brackets when embedding a personal view.
 type=report&id=<reportid>[&groupId=<groupId>]&pageName=[initialPage]&showFilterPane=true&showNavPane=true
 ```
 
+##### Single Visual
+From v1.1 it is possible to display a single visual from a report page (effectively hiding all other visuals on the page). The configuration is similar to full reports,
+with a few minor differences:
+1. Set `type=visual`
+2. You should always specify pageName
+3. Name of the visual must be added as a new parameter called `visualName`.
+
+
+```
+type=visual&id=<reportid>[&groupId=<groupId>]&pageName=<pageName>&visualName=<visualName>
+```
+
+The visual name is not the same as the title and finding it is a bit of a hassle. To assist crm-powerbi-viewer logs the visual names to the dev console when you preview a report (see image below - click for larger view).
+
+[![]({{BASE_PATH}}/assets/images/v1.1/crm-config/config-console-visual-details.png)]({{BASE_PATH}}/assets/images/v1.1/crm-config/config-console-visual-details.png)
+
+You find the dev console by hitting [F12] when you have the configuration page in focus. Visual title and type are also logged to help you identify the correct visual.
+
+
 #### Dashboard
 ```
 type=dashboard&id=<dashboardid>[&groupId=<groupId>]

@@ -36,7 +36,7 @@ Below is a list of enhancements provided by crm-powerbi-viewer that for the time
     - Dashboards
     - Single tile from a dashboard
     - Reports
-    - Single visual from a report (coming with v1.1)
+    - Single visual from a report (new in v1.1)
 
 <br />
 [![]({{BASE_PATH}}/assets/images/v1.0/samples/sample-montage-dashboards.png)]({{BASE_PATH}}/assets/images/v1.0/samples/sample-montage-dashboards.png)
