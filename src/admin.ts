@@ -5,7 +5,7 @@ import pbia from "./diag/analytics";
 import AuthBase from "./auth/authBase";
 import * as PbiService from "./services/powerbi-service";
 import * as Handlebars from "handlebars";
-import Clipboard from "clipboard";
+import ClipboardJS from "clipboard";
 import AppBase from "./appBase";
 
 interface DashboardModelExt extends PbiService.DashboardModel {
@@ -75,7 +75,7 @@ class PowerBiViewerAdminApp extends AppBase {
         let data = template(vm);
         dataContainer.innerHTML = data;
 
-        let clipboard = new (<any>Clipboard)(".copy-action");
+        let clipboard = new ClipboardJS(".copy-action");
         clipboard.on("error", e => {
             pbia.admin("Copy to clipboard", "Error");
             log.error("Unable to copy view configuration to the clipboard.");

@@ -61,7 +61,8 @@
     "@types/browserify": "latest",
     "@types/adal-angular": "latest",
     "@types/handlebars": "latest",
-    "@types/xrm": "latest"
+    "@types/xrm": "latest",
+    "@types/clipboard": "latest"
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",
