@@ -40,6 +40,13 @@ described in that guide.
 
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-simple-modify-manifest.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-simple-modify-manifest.png)
 
+
+2. Final step is to grant permissions to all users. *Go to settings* > *Required permissions*
+3. Press *Grant permissions*
+
+   > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-simple-grant-permissions.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-simple-open-app-info.png)
+
+
 <br/>
 <br/>
 
