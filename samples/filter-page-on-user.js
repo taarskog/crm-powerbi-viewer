@@ -14,22 +14,27 @@ Samples.Filters = Samples.Filters || {};
  * - Using Xrm get name/id from current user or owner if view is embedded to a form.
  */
 Samples.Filters.filterOnUser = function (report) {
-    report.on("pageChanged", function(event) {
-        let page = event.detail.newPage;
-        console.log(`Page changed to '${page.displayName}' (${page.name})`);
 
-        if (page.displayName === "Top Won/Lost Deals") {
-            const filter = {
-                $schema: "http://powerbi.com/product/schema#basic",
-                target: {
-                    table: "User",
-                    column: "Full Name"
-                },
-                operator: "In",
-                values: ["Trond Aarskog"]
-            };
+    report.on("loaded", function (loadedEvent) {
+        report.removeFilters(); // For some reason this needs to be done before setting page filters (August 2018)
 
-            page.setFilters([filter]);
-        }
+        report.on("pageChanged", function(pageChangedEvent) {
+            let page = pageChangedEvent.detail.newPage;
+            console.log(`Page changed to '${page.displayName}' (${page.name})`);
+
+            if (page.displayName === "Top Won/Lost Deals") {
+                const filter = {
+                    $schema: "http://powerbi.com/product/schema#basic",
+                    target: {
+                        table: "User",
+                        column: "Full Name"
+                    },
+                    operator: "In",
+                    values: ["Trond Aarskog"]
+                };
+
+                page.setFilters([filter]);
+            }
+        });
     });
 }

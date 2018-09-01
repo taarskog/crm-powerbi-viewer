@@ -25,6 +25,7 @@ kramdown:
   input: GFM
   hard_wrap: false
   syntax_highlighter: rouge
+  extensions: fenced_code_blocks
 
 highlighter: rouge
 
