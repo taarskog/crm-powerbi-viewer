@@ -19,7 +19,9 @@ To call custom logic you need to:
    0. Change null to an array of scripts to load. It is recommended that these scripts are web resources
 
       ```javascript
-      custom_scripts: ["samples/filters.js?ver=1", "../../prefix_/scripts/eventhandlers.js?ver=1"]
+      var customConfig = { ...
+         custom_scripts: ["samples/filters.js?ver=1", "../../prefix_/scripts/eventhandlers.js?ver=1"]
+      }
       ```
 
       **?ver=1** added so cache can be invalidated on new versions. Currently scripts are not cached but that may change in a future release.
