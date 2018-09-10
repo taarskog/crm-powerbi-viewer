@@ -5,9 +5,11 @@ tagline:
 description: Answers to common issues.
 ---
 
-If you don't find an answer here - [report your issue](https://github.com/taarskog/crm-powerbi-viewer/issues).
-<br />
-<br />
+#### 401: Unauthorized-Error:null
+Is what you get if:
+1. You don't have a Power BI account
+2. Is not properly licensed (getting yourself a Power BI Pro license should do it)
+
 #### Refused to display 'https://login.microsoftonline.com/common/oauth2/authorize?*...*' in a frame because it set 'X-Frame-Options' to 'deny'.
 Will occur if you are on-premise and have forgot to set **auth_mode** to **"popup"** in the config.
 
@@ -22,3 +24,7 @@ Unfortunately that is currently not possible ref. known issues on [iFrame and we
 On the solution configuration you get: _"An error has occurred. Please try again and finally contact your administrator. More details may be found in the debug console (if appropriate logging level has been set)."_
 
 Take a look at the debug console (press F12). Best guess is that you have forgotten quotes (") around the client id in the config file. If that is not the case and the debug console does not provide hints I suggest increasing the log level to verbose.
+
+If you didn't find an answer here => [report your issue](https://github.com/taarskog/crm-powerbi-viewer/issues).
+{: .alert .alert-warning }
+

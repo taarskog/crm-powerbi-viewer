@@ -9,6 +9,10 @@ with the appropriate access to AAD needs to be involved and you should get that 
 
 It is assumed that you have experience with Dynamics 365 configuration and know how to import and create solutions. If not, you need to call a friend. 
 
+**License required**<br/>No point in doing this if you do not have a Power BI Pro (or better) license.<br/><br/>Before continuing make sure you have one and
+that you are able to log into the Power BI website.
+{: .alert .alert-error }
+
 ### Steps
 
 1. Download the most recent managed [PowerBIViewer](https://github.com/taarskog/crm-powerbi-viewer/releases) release.

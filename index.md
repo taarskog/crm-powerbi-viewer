@@ -63,7 +63,7 @@ Reach out to your Azure or Office 365 Admin if you do not have the proper rights
 
 ### Installation steps:
 
-[<span class="badge badge-info">1</span> Add crm-powerbi-viewer as an application in Azure AD](pages/azure-ad.html) (try the [alternative](pages/azure-ad-simple.html) simpler flow)  
+[<span class="badge badge-info">1</span> Add crm-powerbi-viewer as an application in Azure AD](pages/azure-ad.html) (or try the [alternative](pages/azure-ad-simple.html) simpler flow)  
 [<span class="badge badge-info">2</span> Install and configure crm-powerbi-viewer in Dynamics 365 Sales and Service](pages/install-solution.html)
 
 Not working as expected? Have a look at [troubleshooting](pages/troubleshooting.html).
