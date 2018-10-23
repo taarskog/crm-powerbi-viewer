@@ -173,6 +173,17 @@ class PowerBiViewerApp extends AppBase {
 
     private embedObject(embedConfig: IEmbedConfiguration): void {
         try {
+            if (viewConfig.filterFn != null) {
+                log.debug(`Getting filters from function '${viewConfig.filterFn}'`);
+                let filters = this.executeFunctionByName(viewConfig.filterFn);
+                if (filters != null && Array.isArray(filters)) {
+                    embedConfig.filters = filters;
+                }
+                else {
+                    log.error(`Filter function named '${viewConfig.filterFn}' did not return an array of filters to apply`);
+                }
+            }
+
             log.debug("Next up: Embedconfig");
             log.debug(embedConfig);
 

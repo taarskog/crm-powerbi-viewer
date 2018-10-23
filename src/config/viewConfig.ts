@@ -32,6 +32,9 @@ class ViewConfig {
     /** Function to call when loading a report or dashboard (supports dot-notation) */
     get customFn(): string { return ViewConfig.getValueOrDefault(this.crmData.customFn, null); }
 
+    /** Function called to retrieve custom filters (supports dot-notation) - expectes a return value of type array with the filters to apply */
+    get filterFn(): string { return ViewConfig.getValueOrDefault(this.crmData.filterFn, null); }
+
     /** True if this is a preview from the admin page */
     get isPreview(): boolean { return ViewConfig.getValueOrDefault(this.query.preview, false); }
 
