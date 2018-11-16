@@ -22,7 +22,7 @@ described in that guide.
    > [![]({{BASE_PATH}}/assets/images/v1.0/aad/aad-simple-reg-app.png)]({{BASE_PATH}}/assets/images/v1.0/aad/aad-simple-reg-app.png)
 
    The Power BI team is currently adjusting the list of permissions. The simplified flow does not always include all relevant permissions. Thus you may need to visit 
-   the [original guide](azure-ad.html) step #15 to verify the list of permissions you need to set.
+   the [original guide](azure-ad.html) step #13-15 to verify the list of permissions you need to set.
    {: .alert .alert-warning }
 
 4. Go to the <a href="https://portal.azure.com" target="_blank">Azure portal</a>. 
