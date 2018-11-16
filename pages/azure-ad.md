@@ -47,6 +47,12 @@ of your Dynamics CRM instance **https://*yourinstancename*{: style="color: #ED7D
 
 2. Next step is setting Power BI permissions
 3. What you need is rights to view.
+
+   The Power BI team is currently adjusting the list of permissions. The image below may not be up to date. Make sure you have view rights to everything.<br/>
+   <br/>
+   If you encounter issues (e.g. 401), try to set all permissions not requiring admin.
+   {: .alert .alert-warning }
+
 4. Click select to set the new permissions...
 5. and click done as that is what you are (almost)
 
