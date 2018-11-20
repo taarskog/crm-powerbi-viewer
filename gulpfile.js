@@ -17,7 +17,7 @@ var minifyCss = require('gulp-clean-css');
 var minifyHtml = require('gulp-htmlmin');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
-var es = require('event-stream');
+var stream = require('merge-stream')();
 var browsersync = require('browser-sync');
 var header = require('gulp-header');
 var log = require("fancy-log");
@@ -204,21 +204,9 @@ var options = {
 
 ////////////////////////////////
 
-gulp.task("clean", function () {
-    return del.sync(paths.clean.all);
+gulp.task("clean", function (cb) {
+    return del(paths.clean.all);
 });
-
-gulp.task('watch', ["build"], function () {
-    gulp.watch([paths.pages.src, paths.styles.src, ['./src/images/**/*.svg']], ['build:pages'])
-    gulp.watch(paths.ts.watch, ['build:typescript']);
-    gulp.watch(paths.js.src, ['build:javascript']);
-    //gulp.watch(paths.styles.src, ['build:styles']);
-
-    return browsersync(options.browserSync);
-});
-
-gulp.task("build", ["clean", "build:javascript", "build:typescript", "build:pages"/*, "build:styles"*/]);
-gulp.task("default", ["build"]);
 
 gulp.task("analytics:lint", function () {
     return gulp.src(['./src/**/*.ts'])
@@ -230,12 +218,11 @@ gulp.task("analytics:lint", function () {
         }));
 });
 
-gulp.task("build:typescript", ["analytics:lint"], function () {
+gulp.task("build:typescript", gulp.series("analytics:lint", function (cb) {
     var tasks = Object.keys(paths.ts.entries).map(function(entry) {
         // Create a clone of the options (may not be required but haven't checked consequence of re-using object in multi-calls)
         let opts = JSON.parse(JSON.stringify(options.browserify));
         opts.entries = entry;
-
         return browserify(opts)
             .plugin(tsify)
             .transform('babelify', options.babelify)
@@ -252,8 +239,9 @@ gulp.task("build:typescript", ["analytics:lint"], function () {
             .pipe(gulp.dest(paths.ts.destDir));
         });
 
-    return es.merge.apply(null, tasks);
-});
+    stream.add(tasks);
+    return stream;
+}));
 
 gulp.task("build:javascript", function () {
     // Javascript is in there for manual config in production - thus no compile / minifaction is relevant
@@ -282,6 +270,18 @@ gulp.task("build:pages", function () {
         .pipe(gulpif(config.isRelease, minifyHtml(options.minifyHtml)))
         .pipe(gulp.dest(paths.pages.dest));
 });
+
+gulp.task("build", gulp.series("clean", gulp.parallel("build:javascript", "build:typescript", "build:pages"/*, "build:styles"*/)));
+gulp.task("default", gulp.parallel("build"));
+
+gulp.task('watch', gulp.series("build", function () {
+    gulp.watch([paths.pages.src, paths.styles.src, ['./src/images/**/*.svg']], ['build:pages'])
+    gulp.watch(paths.ts.watch, ['build:typescript']);
+    gulp.watch(paths.js.src, ['build:javascript']);
+    //gulp.watch(paths.styles.src, ['build:styles']);
+
+    return browsersync(options.browserSync);
+}));
 
 function errorHandler(title) {
     return function (error) {
