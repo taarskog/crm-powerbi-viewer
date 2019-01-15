@@ -4,6 +4,13 @@ title: CRM Power BI Viewer
 tagline: add the Power of BI to Dynamics 365
 description: Embed Power BI reports/tiles into Dynamics CRM dashboards and forms.
 ---
+**Improved Power BI integration coming...?**<br/>
+Recent [communication](https://docs.microsoft.com/en-us/business-applications-release-notes/october18/powerapps/power-bi-embedding-available-in-common-data-service-entity-forms) and rumors
+hints of improved support for Power BI to be expected in the coming v10 of CE. Fingers crossed...<br/><br/>
+The future of CRM Power BI Viewer depends on what Power BI support Microsoft actually releases with v10. Additionally Microsoft has yet to release documentation
+on how to create custom controls for their new user interface. The consequence being that it is not possible to develop a proper CRM Power BI Viewer for v9 and above...<br/><br/>
+This project is not dead, but further development is postponed until more is known about the coming release of CE Q1 2019.
+{: .alert .alert-error }
 
 [Download](https://github.com/taarskog/crm-powerbi-viewer/releases/) \| [Source](https://github.com/taarskog/crm-powerbi-viewer)
 {: style="text-align: center"}

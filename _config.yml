@@ -2,7 +2,7 @@
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:day/:title
 
-exclude: [".rvmrc", ".rbenv-version", "ReadMe.md", "Rakefile", "changelog.md", "License.md", "start_local_server.sh", "start local server.bat", "Gemfile", "Gemfile.lock", "samples"]
+exclude: [".rvmrc", ".rbenv-version", "ReadMe.md", "Rakefile", "changelog.md", "License.md", "start_local_server.sh", "start local server.bat", "Gemfile", "Gemfile.lock", "samples", "vendor"]
 
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
