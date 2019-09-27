@@ -25,7 +25,9 @@
     "deploy": "npm run build && powershell ./tools/deployFiles.ps1",
     "deploy-debug": "npm run build-debug && powershell ./tools/deployFiles.ps1",
     "deploy-sample": "npm run build-sample && powershell ./tools/deployFiles.ps1",
-    "clean": "gulp clean"
+    "clean": "gulp clean",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "gulp": "3.9.1",
@@ -70,7 +72,9 @@
     "babel-polyfill": "6.26.0",
     "adal-angular": "1.0.15",
     "powerbi-client": "2.4.7",
-    "handlebars": "4.0.14",
-    "clipboard": "1.7.1"
-  }
+    "handlebars": "4.3.0",
+    "clipboard": "1.7.1",
+    "snyk": "^1.228.5"
+  },
+  "snyk": true
 }
