@@ -35,7 +35,6 @@ Samples.Filters.testvisual = function (/*report*/) {
     // });
 };
 
-
 Samples.Filters.test = function (report) {
     const filter = {
         $schema: "http://powerbi.com/product/schema#basic",
@@ -48,27 +47,107 @@ Samples.Filters.test = function (report) {
     };
 
     let filteredSet = false
+    // TA: This call will happen only once (when report has been rendered)
     report.on('rendered', () => {
         if (filteredSet) return;
         filteredSet = true;
         report.getPages()
-        .then(function (pages) {
-          // Retrieve active page.
-          var activePage = pages.find(function(page) {
-            return page.isActive
-          });
-     
-          activePage.setFilters([filter])
-            .then(function () {
-                console.log("Page filter was set.");
+            .then(function (pages) {
+                // Retrieve active page.
+                var activePage = pages.find(function (page) { return page.isActive });
+
+                // TA: Add page filter on initial page
+                Samples.Filters.addFilterToPage(filter, activePage);
             })
-            .catch(function (errors) {
-                console.error(errors);
-            });
+            .catch(function (errors) { console.error(errors); });
+    });
+
+    // TA: This call will happen only once (when report has been loaded)
+    report.on("loaded", event => {
+
+        // TA: Here you now add your filter to the full report
+        Samples.Filters.addFilterToReport(filter, report);
+
+        // TA: If you need to set filters after the user has changed the page you add the following event
+        //     May be useful if you want to re-apply filters when user changes page...
+        report.off("pageChanged");
+        report.on("pageChanged", function (event) {
+            var page = event.detail.newPage;
+            console.log(`Page changed to '${page.displayName}' (${page.name})`);
+
+            // TA: Here you can add filter on a specific page (when the user opens it)
+            if (page.displayName === "Page 1") {
+                // TA: Note that calling this multiple times will add the same filter several times
+                //     Thus you need to add handling of duplicates...
+                Samples.Filters.addFilterToPage(filter, page);
+            }
+        });
+
+    });
+}
+
+Samples.Filters.addFilterToReport = function (filter, report) {
+    Samples.Filters.addFilterToItem(filter, report)
+        .then(function () {
+            console.log("Report filter was set.");
         })
         .catch(function (errors) {
             console.error(errors);
         });
+}
+
+Samples.Filters.addFilterToPage = function (filter, page) {
+    Samples.Filters.addFilterToItem(filter, page)
+        .then(function () {
+            console.log("Page filter was set.");
+        })
+        .catch(function (errors) {
+            console.error(errors);
+        });
+}
+
+Samples.Filters.addFilterToItem = function (filter, item) {
+    return item.getFilters()
+        .then(filters => {
+            filters.push(filter);
+            return item.setFilters(filters)
+        });
+}
+
+Samples.Filters.testOld = function (report) {
+    const filter = {
+        $schema: "http://powerbi.com/product/schema#basic",
+        target: {
+            table: "TripPinAirports",
+            column: "City"
+        },
+        operator: "In",
+        values: ["San Francisco", "Los Angeles"]
+    };
+
+    let filteredSet = false
+    report.on('rendered', () => {
+        console.log(`Report rendered`);
+        if (filteredSet) return;
+        filteredSet = true;
+        report.getPages()
+            .then(function (pages) {
+                // Retrieve active page.
+                var activePage = pages.find(function (page) {
+                    return page.isActive
+                });
+
+                activePage.setFilters([filter])
+                    .then(function () {
+                        console.log("Page filter was set.");
+                    })
+                    .catch(function (errors) {
+                        console.error(errors);
+                    });
+            })
+            .catch(function (errors) {
+                console.error(errors);
+            });
     });
 
     report.off("loaded");
@@ -88,14 +167,13 @@ Samples.Filters.test = function (report) {
             console.log("Remove filters on report");
             report.removeFilters();
         }
-        catch(errors)
-        {
+        catch (errors) {
             console.error(errors);
         }
 
         //debugger;
 
-        
+
         report.off("pageChanged");
         report.on("pageChanged", function (event) {
 

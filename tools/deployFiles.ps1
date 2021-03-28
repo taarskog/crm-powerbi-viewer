@@ -132,6 +132,13 @@ function CreateNewConfig() {
 
 function ConnectToDynamics365($config) {
     $cred = Get-StoredCredential -Target $config.ServerUrl
+    # if ($cred) {
+    #     $reUseCred = (Read-Host -Prompt "Found existing credentials for this url. Use them?").ToLower() -eq "y"
+    #     if (!$reUseCred) {
+    #         $cred = $null
+    #     }
+    # }
+
     if (!$cred) {
         $cred = Get-Credential -Message "Enter your credentials"
         if ($cred) {
