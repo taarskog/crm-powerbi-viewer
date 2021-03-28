@@ -19,7 +19,7 @@ interface IAuthWindow extends Window {
     Logging: AuthenticationContext.LoggingConfig;
 }
 
-let authWindow = <IAuthWindow>window;
+let authWindow = <IAuthWindow><unknown>window;
 authWindow.top.pbiViewer = authWindow.top.pbiViewer || { loginInProgress: false };
 
 abstract class AuthBase {
@@ -224,11 +224,11 @@ abstract class AuthBase {
                     appConfig.auth_login_polltimer_duration);
 
                 // Listen for login completion from frame that initiated the login.
-                window.top.addEventListener("message", function cb(event) {
+                window.top.addEventListener("message", function cb(event: MessageEvent<LoginEventData>) {
                     let data: LoginEventData = event.data;
                     log.debug(data);
                     if (data.type === LoginEventData.typeName) {
-                        event.currentTarget.removeEventListener(event.type, cb);   // As IE and Edge do not support options in addEventListener we cannot use once and need to do it the hard way with removeEventListener.
+                        event.currentTarget.removeEventListener(event.type, <EventListenerOrEventListenerObject>cb);   // As IE and Edge do not support options in addEventListener we cannot use once and need to do it the hard way with removeEventListener.
 
                         pbia.auth("Await Login", "Done");
                         if (!isResolved && data.success) {
@@ -292,7 +292,7 @@ abstract class AuthBase {
             }
 
             this._tokenExpirationTimerId = window.setTimeout(
-                () => this.authAboutToExpireCallback && typeof this.authAboutToExpireCallback === "function" && this.authAboutToExpireCallback() && pbia.auth("Expiry Notification", "Access Token"),
+                () => this.authAboutToExpireCallback && typeof this.authAboutToExpireCallback === "function" && this.authAboutToExpireCallback() !== null && pbia.auth("Expiry Notification", "Access Token"),
                 this._tokenExpire - Date.now() - appConfig.auth_token_expire_notification_offset);
         }
     }

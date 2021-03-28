@@ -147,7 +147,7 @@ var options = {
     },
 
     babelify: {
-        presets: ['env'],
+        presets: ['@babel/preset-env'],
         extensions: ['.ts']
     },
 
