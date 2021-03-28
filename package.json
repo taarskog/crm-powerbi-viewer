@@ -71,8 +71,8 @@
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "adal-angular": "1.0.15",
-    "powerbi-client": "2.6.5",
-    "handlebars": "4.0.11",
+    "powerbi-client": "2.4.7",
+    "handlebars": "4.0.14",
     "clipboard": "1.7.1"
   }
 }
