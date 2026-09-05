@@ -3,6 +3,13 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/taarskog/crm-powerbi-viewer/badge.svg?targetFile=package.json)](https://snyk.io/test/github/taarskog/crm-powerbi-viewer?targetFile=package.json)
 
 # crm-powerbi-viewer
+
+> [!WARNING]  
+> **This repository is ARCHIVED and no longer maintained.**
+> As most of the features now are provided out of the box or can be solved with other supported solutions (generative pages, etc.).
+> 
+> Archived as part of cleanup September 2026.
+
 Embed tiles, dashboards, visuals and reports from Power BI into Dynamics 365 Sales and Service Forms and Dashboards.
 
 Read more about the solution and how to get started at [crm-powerbi-viewer.heiigjen.com](http://crm-powerbi-viewer.heiigjen.com).   
